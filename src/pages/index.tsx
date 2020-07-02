@@ -1,5 +1,6 @@
 import Head from "next/head";
 import {fetchDecoratorParts} from "../utils/dekorator";
+import {Sidetittel} from "nav-frontend-typografi";
 
 const Home = (props) => {
     const decoratorHeader = {__html: props.decoratorHeader};
@@ -16,21 +17,23 @@ const Home = (props) => {
     });
 
     return (
-        <div className="container">
-            <Head>
-                {headTags}
-                <title>Økonomi- og gjeldsrådgivning</title>
-            </Head>
+        <div className="app">
+            <div className="container">
+                <Head>
+                    {headTags}
+                    <title>Økonomi- og gjeldsrådgivning</title>
+                </Head>
 
-            <div dangerouslySetInnerHTML={decoratorHeader} />
+                <div dangerouslySetInnerHTML={decoratorHeader} />
 
-            <main>
-                <h1 className="title">Veiviser</h1>
-                <p>Her er det noe innhold</p>
-            </main>
+                <main>
+                    <Sidetittel>Økonomi- og gjeldsrådgivning</Sidetittel>
+                    <p>Her er det noe innhold</p>
+                </main>
 
-            <footer className="footer" dangerouslySetInnerHTML={decoratorFooterHtml} />
-            <div dangerouslySetInnerHTML={decoratorEnvHtml} />
+                <footer className="footer" dangerouslySetInnerHTML={decoratorFooterHtml} />
+                <div dangerouslySetInnerHTML={decoratorEnvHtml} />
+            </div>
         </div>
     );
 };
