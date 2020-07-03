@@ -25,6 +25,10 @@ For å starte Sanity studio lokalt
 
 TODO: Fylle inn med informasjon om bygg og deploy når dette er på plass
 
+## Kodekvalitet
+
+Prettier brukes til å formatere kode. Reglene for formatering ligger i `.prettierrc.js`. Det kjøres en egen hook som formaterer koden ved commit.
+
 ---
 
 # Henvendelser
