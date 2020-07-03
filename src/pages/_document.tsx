@@ -32,9 +32,11 @@ class CustomDocument extends Document<CustomDocumentProps> {
                     <meta name="robots" content="noindex, nofollow" />
                 </Head>
                 <body>
-                    <div className="app content">
-                        <div dangerouslySetInnerHTML={{__html: decoratorHeader}} />
-                        <Main />
+                    <div dangerouslySetInnerHTML={{__html: decoratorHeader}} />
+                    <div id="app" className="app">
+                        <div className="content">
+                            <Main />
+                        </div>
                     </div>
                     <footer className="footer" dangerouslySetInnerHTML={{__html: decoratorFooter}} />
                     <NextScript />

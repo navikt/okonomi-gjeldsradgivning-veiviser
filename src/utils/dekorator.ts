@@ -29,6 +29,7 @@ async function getDecoratorCached() {
             fetch("https://www.nav.no/dekoratoren/")
                 .then((res) => res.text())
                 .then((body) => {
+                    cache.set("decorator-cache", body);
                     resolve(body);
                 })
                 .catch((err) => reject(err));

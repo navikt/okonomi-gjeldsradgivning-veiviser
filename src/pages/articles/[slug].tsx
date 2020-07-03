@@ -1,16 +1,17 @@
 import BlockContent from "@sanity/block-content-to-react";
 import client from "../../utils/sanity-client";
 import {Sidetittel} from "nav-frontend-typografi";
+import Panel from "nav-frontend-paneler";
 
 const Article = (props: {title: string; categories: string[]; body}) => {
-    const {title = "Missing title", categories, body = []} = props;
+    const {title = "Missing title", categories = [], body = []} = props;
 
     return (
-        <article>
+        <Panel className="seksjon-panel">
             <Sidetittel>{title}</Sidetittel>
             <p>Posted in: {categories.map((category) => category)}</p>
             <BlockContent blocks={body} {...client.config()} />
-        </article>
+        </Panel>
     );
 };
 
