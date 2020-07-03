@@ -2,6 +2,7 @@
     "name": "okonomi-gjeldsradgivning-veiviser",
     "version": "0.1.0",
     "private": true,
+    "license": "MIT",
     "description": "Veiviser for økonomi- og gjeldsrådgivning",
     "scripts": {
         "dev": "next dev",
