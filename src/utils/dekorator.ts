@@ -12,12 +12,12 @@ const cache = new NodeCache({
     checkperiod: SECONDS_PER_MINUTE,
 });
 
-interface DecoratorParts {
+export interface DecoratorParts {
     decoratorHeader: string;
     decoratorFooter: string;
     decoratorEnv: string;
-    linkTags: object[];
-    scriptTags: object[];
+    linkTags: any[];
+    scriptTags: any[];
 }
 
 async function getDecoratorCached() {
