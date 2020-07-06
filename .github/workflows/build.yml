@@ -50,10 +50,10 @@ jobs:
         uses: fleskesvor/create-release@feature/support-target-commitish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          with:
-            tag_name: ${{ steps.artifact-version.outputs.version }}
-            release_name: ${{ steps.artifact-version.outputs.version }}
-            commitish: ${{ github.sha }}
+        with:
+          tag_name: ${{ steps.artifact-version.outputs.version }}
+          release_name: ${{ steps.artifact-version.outputs.version }}
+          commitish: ${{ github.sha }}
       - name: Push docker image
         run: |
           docker push $(cat DOCKER_TAG)
