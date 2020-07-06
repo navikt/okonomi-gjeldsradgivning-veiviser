@@ -29,6 +29,8 @@ jobs:
         run: npm run test
       - name: Build application
         run: npm run build
+      - name: Export application
+        run: npm run export
       - name: Login to GitHub package registry
         run: |
           echo ${GITHUB_TOKEN} | docker login -u ${GITHUB_REPOSITORY} --password-stdin docker.pkg.github.com
