@@ -8,7 +8,7 @@ export interface ArticleType {
 }
 
 export const fetchArticleWithSlug = async (slug: string = ""): Promise<ArticleType> => {
-    const query = `*[_type == "post" && slug.current == $slug][0]
+    const query = `*[_type == "article" && slug.current == $slug][0]
     {
         title,
         "slug": slug.current,
@@ -28,7 +28,7 @@ export interface FrontPageArticleType {
 }
 
 export const fetchArticlesForFrontpage = async (): Promise<FrontPageArticleType> => {
-    const query = `*[_type == "post"]
+    const query = `*[_type == "article"]
     {
         title,
         "slug": slug.current,

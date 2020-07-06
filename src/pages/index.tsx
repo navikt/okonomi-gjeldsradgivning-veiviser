@@ -11,13 +11,12 @@ const Home = (props: FrontPageArticleType) => {
             </Panel>
             <Panel className="seksjon-panel">
                 <Innholdstittel>Other posts</Innholdstittel>
-                {Object.values(props).map((article) => (
-                    <Link href="/articles/[slug]" as={`/articles/${article.slug}`}>
+                {Object.values(props).map((article, index) => (
+                    <Link key={index} href="/articles/[slug]" as={`/articles/${article.slug}`}>
                         <a>{article.title}</a>
                     </Link>
                 ))}
             </Panel>
-            <p>Her er det noe innhold</p>
         </>
     );
 };
