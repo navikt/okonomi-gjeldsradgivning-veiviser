@@ -1,31 +1,21 @@
-import BlockContent from "@sanity/block-content-to-react";
-import client from "../../utils/sanity-client";
 import {Sidetittel} from "nav-frontend-typografi";
 import Panel from "nav-frontend-paneler";
+import {fetchArticleWithSlug, ArticleType} from "../../utils/sanity-fetch";
+import {SanityBlockContent} from "../../components/SanityBlockContent";
+import {Context} from "../../types";
 
-const Article = (props: {title: string; categories: string[]; body}) => {
-    const {title = "Missing title", categories = [], body = []} = props;
-
+const Article = (props: ArticleType) => {
     return (
         <Panel className="seksjon-panel">
-            <Sidetittel>{title}</Sidetittel>
-            <p>Posted in: {categories.map((category) => category)}</p>
-            <BlockContent blocks={body} {...client.config()} />
+            <Sidetittel>{props.title}</Sidetittel>
+            <p>Posted in: {props.categories?.map((category) => category)}</p>
+            <SanityBlockContent blocks={props.body} />
         </Panel>
     );
 };
 
-Article.getInitialProps = async function (context) {
-    const {slug = ""} = context.query;
-    return await client.fetch(
-        `*[_type == "post" && slug.current == $slug][0]
-        {
-            title,
-            "categories": categories[]->title,
-            body
-        }`,
-        {slug}
-    );
+Article.getInitialProps = async (context: Context): Promise<ArticleType> => {
+    return await fetchArticleWithSlug(context.query.slug);
 };
 
 export default Article;
