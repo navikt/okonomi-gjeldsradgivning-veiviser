@@ -1,0 +1,39 @@
+apiVersion: "nais.io/v1alpha1"
+kind: "Application"
+metadata:
+  name: okonomi-gjeldsradgivning-veiviser
+  namespace: {{namespace}}
+  labels:
+    team: teamdigisos
+spec:
+  image: {{image}}
+  port: 8080
+  liveness:
+    path: /
+    initialDelay: 5
+    timeout: 1
+    periodSeconds: 5
+    failureThreshold: 10
+  readiness:
+    path: /
+    initialDelay: 5
+    timeout: 1
+  prometheus:
+    enabled: {{prometheusEnabled}}
+  replicas:
+    min: 2
+    max: 4
+  ingresses:
+{{#each ingresses}}
+    - "{{this}}"
+{{/each}}
+  webproxy: true
+  resources:
+    limits:
+      cpu: 500m
+      memory: 1Gi
+    requests:
+      cpu: 200m
+      memory: 512Mi
+  vault:
+    enabled: false
