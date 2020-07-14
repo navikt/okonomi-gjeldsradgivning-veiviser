@@ -21,8 +21,8 @@ spec:
   prometheus:
     enabled: {{prometheusEnabled}}
   replicas:
-    min: 2
-    max: 4
+    min: 1
+    max: 2
   ingresses:
 {{#each ingresses}}
     - "{{this}}"
@@ -30,10 +30,10 @@ spec:
   webproxy: true
   resources:
     limits:
-      cpu: 500m
-      memory: 512Mi
-    requests:
-      cpu: 200m
+      cpu: 100m
       memory: 256Mi
+    requests:
+      cpu: 50m
+      memory: 128Mi
   vault:
     enabled: false
