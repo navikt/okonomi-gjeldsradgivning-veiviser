@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 
-const port = process.env.PORT || 8081;
+const port = process.env.PORT || 8080;
 const contextPath = "/okonomi-og-gjeldsradgivning";
 const staticDir = __dirname + "/out";
 
