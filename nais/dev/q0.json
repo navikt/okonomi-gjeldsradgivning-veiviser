@@ -1,0 +1,5 @@
+{
+    "namespace": "teamdigisos",
+    "ingresses": ["https://okonomi-og-gjeldsradgivning-q0.dev-sbs.nais.io/"],
+    "prometheusEnabled": false
+}
