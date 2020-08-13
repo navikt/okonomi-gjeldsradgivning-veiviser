@@ -1,7 +1,7 @@
 import { PageBanner } from './PageBanner';
 import { Breadcrumbs } from './Breadcrumbs';
 
-export const Layout = (props: { title: string; isFrontPage: boolean; children: React.ReactChildren }) => (
+export const Layout = (props: { title: string; isFrontPage: boolean; children: React.ReactChild }) => (
     <>
         <PageBanner title={props.title} isFrontPage={props.isFrontPage} />
 
