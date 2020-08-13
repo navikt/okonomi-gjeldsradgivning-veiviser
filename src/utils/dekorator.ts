@@ -26,7 +26,7 @@ async function getDecoratorCached() {
         if (decorator) {
             resolve(decorator);
         } else {
-            fetch(process.env.DECORATOR_URL)
+            fetch(process.env.DECORATOR_URL + '?feedback=false')
                 .then((res) => res.text())
                 .then((body) => {
                     cache.set('decorator-cache', body);
