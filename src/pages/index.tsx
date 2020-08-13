@@ -1,14 +1,12 @@
-import Link from "next/link";
-import {Sidetittel, Innholdstittel} from "nav-frontend-typografi";
-import Panel from "nav-frontend-paneler";
-import {FrontPageArticleType, fetchArticlesForFrontpage} from "../utils/sanity-fetch";
+import Link from 'next/link';
+import { Innholdstittel } from 'nav-frontend-typografi';
+import Panel from 'nav-frontend-paneler';
+import { FrontPageArticleType, fetchArticlesForFrontpage } from '../utils/sanity-fetch';
+import { Layout } from '../components/Layout';
 
 const Home = (props: FrontPageArticleType) => {
     return (
-        <>
-            <Panel className="seksjon-panel">
-                <Sidetittel>Økonomi- og gjeldsrådgivning</Sidetittel>
-            </Panel>
+        <Layout title="Økonomi- og gjeldsrådgivning" isFrontPage={true}>
             <Panel className="seksjon-panel">
                 <Innholdstittel>Other posts</Innholdstittel>
                 {Object.values(props).map((article, index) => (
@@ -17,7 +15,7 @@ const Home = (props: FrontPageArticleType) => {
                     </Link>
                 ))}
             </Panel>
-        </>
+        </Layout>
     );
 };
 

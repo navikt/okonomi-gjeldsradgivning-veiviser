@@ -1,4 +1,4 @@
-@import "~nav-frontend-core/less/core";
+@import '~nav-frontend-core/less/core';
 
 body {
     background-color: @navLysGra;
@@ -21,7 +21,36 @@ body {
 .seksjon-panel {
     display: flex !important;
     flex-direction: column;
-    align-items: center;
     margin-top: 2rem;
     padding: 2rem 3rem !important;
+}
+
+.banner {
+    background-color: #9bd0b0;
+    border-bottom: 4px solid #38a161;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.banner-frontpage {
+    height: 190px;
+}
+
+.banner-other {
+    height: 70px;
+}
+
+.banner-content {
+    width: 100%;
+    max-width: 1024px;
+    padding: 0rem 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    .banner-content-icon {
+        align-self: flex-end;
+    }
 }

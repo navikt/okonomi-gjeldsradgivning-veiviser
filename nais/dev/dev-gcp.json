@@ -3,5 +3,6 @@
     "ingresses": [
         "https://okonomi-gjeldsradgivning-veiviser.dev.nav.no/"
     ],
-    "prometheusEnabled": false
+    "prometheusEnabled": false,
+    "decoratorUrl": "https://www-q0.nav.no/dekoratoren/"
 }
