@@ -34,9 +34,9 @@ spec:
   vault:
     enabled: false
   ingresses:
-    '{{#each ingresses}}
-        - "{{this}}"
-    {{/each}}'
+{{#each ingresses}}
+    - "{{this}}"
+{{/each}}
   env:
     - name: DECORATOR_URL
       value: {{decoratorUrl}}

@@ -1,9 +1,9 @@
-const express = require("express");
+const express = require('express');
 const app = express();
 
 const port = process.env.PORT || 8080;
-const contextPath = "/okonomi-og-gjeldsradgivning";
-const staticDir = __dirname + "/out";
+const contextPath = '/';
+const staticDir = __dirname + '/out';
 
 app.use(
     contextPath,
@@ -12,12 +12,12 @@ app.use(
     })
 );
 
-app.get("/", (req, res) => res.redirect(301, contextPath));
+app.get('/', (req, res) => res.redirect(301, contextPath));
 app.listen(port);
-console.info("Server is listening on port: " + port);
-console.info("serving:" + staticDir);
+console.info('Server is listening on port: ' + port);
+console.info('serving:' + staticDir);
 
 // Readiness / liveness probes
 const ready = express();
-ready.get("*", (req, res) => res.send("ok"));
+ready.get('*', (req, res) => res.send('ok'));
 ready.listen(2022);
