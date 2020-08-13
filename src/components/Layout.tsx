@@ -3,8 +3,7 @@ import { Breadcrumbs } from './Breadcrumbs';
 
 export const Layout = (props: { title: string; isFrontPage: boolean; children: React.ReactChild }) => (
     <>
-        <PageBanner title={props.title} isFrontPage={props.isFrontPage} />
-
+        <PageBanner isFrontPage={props.isFrontPage} />
         <div id="app" className="app">
             <div className="content">
                 {!props.isFrontPage && <Breadcrumbs title={props.title} />}

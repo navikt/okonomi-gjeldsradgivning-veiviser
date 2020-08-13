@@ -25,10 +25,12 @@ class CustomDocument extends Document<CustomDocumentProps> {
             attrs.key = 'props.linkTags' + index;
             headTags.push(<link {...attrs} />);
         });
+
         return (
             <Html lang="no">
                 <Head>
                     {headTags}
+                    <title>Økonomi- og gjeldsrådgivning</title>
                     <meta name="robots" content="noindex, nofollow" />
                 </Head>
                 <body>
