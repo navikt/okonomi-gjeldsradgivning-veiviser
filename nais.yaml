@@ -23,10 +23,6 @@ spec:
   replicas:
     min: 1
     max: 2
-  ingresses:
-{{#each ingresses}}
-    - "{{this}}"
-{{/each}}
   webproxy: true
   resources:
     limits:
@@ -37,3 +33,10 @@ spec:
       memory: 128Mi
   vault:
     enabled: false
+  ingresses:
+    '{{#each ingresses}}
+        - "{{this}}"
+    {{/each}}'
+  env:
+    - name: DECORATOR_URL
+      value: {{decoratorUrl}}
