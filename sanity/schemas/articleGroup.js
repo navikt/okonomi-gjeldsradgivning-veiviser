@@ -1,16 +1,11 @@
 export default {
-    name: 'article',
-    title: 'Article',
+    name: 'articleGroup',
+    title: 'Article Group',
     type: 'document',
     fields: [
         {
             name: 'title',
             title: 'Title',
-            type: 'string',
-        },
-        {
-            name: 'description',
-            title: 'Description',
             type: 'string',
         },
         {
@@ -23,15 +18,16 @@ export default {
             },
         },
         {
-            name: 'categories',
-            title: 'Categories',
+            name: 'articles',
+            title: 'Articles',
             type: 'array',
-            of: [{ type: 'reference', to: { type: 'category' } }],
+            of: [{ type: 'reference', to: [{ type: 'article' }] }],
         },
         {
-            name: 'body',
-            title: 'Body',
-            type: 'blockContent',
+            name: 'externalLinks',
+            title: 'External Links',
+            type: 'array',
+            of: [{ type: 'reference', to: [{ type: 'externalLink' }] }],
         },
     ],
 };
