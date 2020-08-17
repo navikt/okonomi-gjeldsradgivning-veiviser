@@ -2,8 +2,11 @@ import Link from 'next/link';
 
 export const Breadcrumbs = (props: { title: string }) => {
     return (
-        <div className="breadcrumbs">
-            <Link href="/">Økonomi- og gjeldsrådgivning</Link> / {props.title}
-        </div>
+        <nav className="breadcrumbs">
+            <Link href="/">
+                <a>Økonomi- og gjeldsrådgivning</a>
+            </Link>{' '}
+            / {props.title}
+        </nav>
     );
 };

@@ -30,7 +30,6 @@ class CustomDocument extends Document<CustomDocumentProps> {
             <Html lang="no">
                 <Head>
                     {headTags}
-                    <title>Økonomi- og gjeldsrådgivning</title>
                     <meta name="robots" content="noindex, nofollow" />
                 </Head>
                 <body>

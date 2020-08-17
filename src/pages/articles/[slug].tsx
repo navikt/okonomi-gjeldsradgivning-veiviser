@@ -4,16 +4,24 @@ import { fetchArticleWithSlug, ArticleType } from '../../utils/sanity-fetch';
 import { SanityBlockContent } from '../../components/SanityBlockContent';
 import { Context } from '../../types';
 import { Layout } from '../../components/Layout';
+import Head from 'next/head';
 
 const Article = (props: ArticleType) => {
     return (
-        <Layout title={props.title} isFrontPage={false}>
-            <Panel className="seksjon-panel">
-                <Sidetittel>{props.title}</Sidetittel>
-                <p>Posted in: {props.categories?.map((category) => category)}</p>
-                <SanityBlockContent blocks={props.body} />
-            </Panel>
-        </Layout>
+        <>
+            <Head>
+                <title>Økonomi- og gjeldsrådgivning - {props.title}</title>
+            </Head>
+            <Layout title={props.title} isFrontPage={false}>
+                <article>
+                    <Panel className="seksjon-panel">
+                        <Sidetittel>{props.title}</Sidetittel>
+                        <p>Posted in: {props.categories?.map((category) => category)}</p>
+                        <SanityBlockContent blocks={props.body} />
+                    </Panel>
+                </article>
+            </Layout>
+        </>
     );
 };
 

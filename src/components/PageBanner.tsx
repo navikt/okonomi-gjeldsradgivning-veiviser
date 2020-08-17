@@ -8,9 +8,9 @@ export const PageBanner = (props: { isFrontPage: boolean }) => {
         <div className={bannerClassNames}>
             <div className="banner-content">
                 {props.isFrontPage ? (
-                    <Sidetittel>{bannerTitle}</Sidetittel>
+                    <Sidetittel tag="h1">{bannerTitle}</Sidetittel>
                 ) : (
-                    <Systemtittel>{bannerTitle}</Systemtittel>
+                    <Systemtittel tag="h1">{bannerTitle}</Systemtittel>
                 )}
                 {props.isFrontPage && <HeaderIcon className="banner-content-icon" />}
             </div>
