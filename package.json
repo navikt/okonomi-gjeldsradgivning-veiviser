@@ -37,11 +37,11 @@
         "@zeit/next-less": "^1.0.1",
         "husky": "^4.2.5",
         "jest": "^26.4.0",
-        "less": "^3.11.3",
+        "less": "^3.12.2",
         "lint-staged": "^10.2.11",
         "next-transpile-modules": "^4.1.0",
         "prettier": "^2.0.5",
-        "typescript": "^3.9.6"
+        "typescript": "^3.9.7"
     },
     "husky": {
         "hooks": {
