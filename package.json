@@ -22,7 +22,7 @@
         "nav-frontend-paneler-style": "^0.3.21",
         "nav-frontend-typografi": "^2.0.21",
         "nav-frontend-typografi-style": "^1.0.22",
-        "next": "9.4.4",
+        "next": "^9.5.2",
         "node-cache": "^5.1.2",
         "node-fetch": "^2.6.0",
         "prop-types": "^15.7.2",
@@ -39,7 +39,7 @@
         "jest": "^26.4.0",
         "less": "^3.11.3",
         "lint-staged": "^10.2.11",
-        "next-transpile-modules": "^3.3.0",
+        "next-transpile-modules": "^4.1.0",
         "prettier": "^2.0.5",
         "typescript": "^3.9.6"
     },
