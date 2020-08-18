@@ -11,6 +11,8 @@ const articleSpec = `
 }`;
 
 export const fetchArticleWithSlug = async (slug: string = ''): Promise<SanityArticle> => {
+    console.log('Fetching article with slug: ' + slug);
+    console.log('Sanity.clientConfig.apiHost', client.clientConfig.apiHost);
     const query = `*[_type == "article" && slug.current == $slug][0]
     ${articleSpec}`;
     const params = { slug: slug };
