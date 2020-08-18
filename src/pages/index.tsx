@@ -1,11 +1,12 @@
 import Link from 'next/link';
 import { Innholdstittel } from 'nav-frontend-typografi';
 import Panel from 'nav-frontend-paneler';
-import { FrontPageArticleType, fetchArticlesForFrontpage } from '../utils/sanity-fetch';
+import { fetchArticlesForFrontpage } from '../utils/sanity-fetch';
 import { Layout } from '../components/Layout';
 import Head from 'next/head';
+import { SanityFrontPageArticle } from '../sanityDocumentTypes';
 
-const Home = (props: FrontPageArticleType) => {
+const Home = (props: { articles: SanityFrontPageArticle[] }) => {
     return (
         <>
             <Head>
@@ -14,7 +15,7 @@ const Home = (props: FrontPageArticleType) => {
             <Layout title="Økonomi- og gjeldsrådgivning" isFrontPage={true}>
                 <Panel className="seksjon-panel">
                     <Innholdstittel>Other posts</Innholdstittel>
-                    {Object.values(props).map((article, index) => (
+                    {props.articles.map((article, index) => (
                         <Link key={index} href="/articles/[slug]" as={`/articles/${article.slug}`}>
                             <a>{article.title}</a>
                         </Link>
@@ -25,8 +26,9 @@ const Home = (props: FrontPageArticleType) => {
     );
 };
 
-Home.getInitialProps = async (context): Promise<FrontPageArticleType> => {
-    return await fetchArticlesForFrontpage();
+Home.getInitialProps = async (): Promise<{ articles: SanityFrontPageArticle[] }> => {
+    const articles = await fetchArticlesForFrontpage();
+    return { articles: articles };
 };
 
 export default Home;

@@ -1,23 +1,24 @@
 import { Sidetittel } from 'nav-frontend-typografi';
 import Panel from 'nav-frontend-paneler';
-import { fetchArticleWithSlug, ArticleType } from '../../utils/sanity-fetch';
+import { fetchArticleWithSlug } from '../../utils/sanity-fetch';
 import { SanityBlockContent } from '../../components/SanityBlockContent';
 import { Context } from '../../types';
 import { Layout } from '../../components/Layout';
 import Head from 'next/head';
+import { SanityArticle } from '../../sanityDocumentTypes';
 
-const Article = (props: ArticleType) => {
+const Article = (props: { article: SanityArticle }) => {
     return (
         <>
             <Head>
-                <title>Økonomi- og gjeldsrådgivning - {props.title}</title>
+                <title>Økonomi- og gjeldsrådgivning - {props.article.title}</title>
             </Head>
-            <Layout title={props.title} isFrontPage={false}>
+            <Layout title={props.article.title} isFrontPage={false}>
                 <article>
                     <Panel className="seksjon-panel">
-                        <Sidetittel>{props.title}</Sidetittel>
-                        <p>Posted in: {props.categories?.map((category) => category)}</p>
-                        <SanityBlockContent blocks={props.body} />
+                        <Sidetittel>{props.article.title}</Sidetittel>
+                        <p>Posted in: {props.article.categories?.map((category) => category)}</p>
+                        <SanityBlockContent blocks={props.article.body} />
                     </Panel>
                 </article>
             </Layout>
@@ -25,8 +26,9 @@ const Article = (props: ArticleType) => {
     );
 };
 
-Article.getInitialProps = async (context: Context): Promise<ArticleType> => {
-    return await fetchArticleWithSlug(context.query.slug);
+Article.getInitialProps = async (context: Context): Promise<{ article: SanityArticle }> => {
+    const article = await fetchArticleWithSlug(context.query.slug);
+    return { article: article };
 };
 
 export default Article;
