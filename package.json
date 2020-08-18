@@ -31,7 +31,7 @@
     },
     "devDependencies": {
         "@types/jest": "^26.0.10",
-        "@types/node": "^14.0.27",
+        "@types/node": "^14.6.0",
         "@types/node-fetch": "^2.5.7",
         "@types/react": "^16.9.46",
         "@zeit/next-less": "^1.0.1",
