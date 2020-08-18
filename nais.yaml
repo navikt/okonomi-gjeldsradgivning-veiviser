@@ -33,6 +33,12 @@ spec:
       memory: 128Mi
   vault:
     enabled: false
+  accessPolicy:
+    outbound:
+      external:
+        - host: https://www.nav.no
+        - host: https://api.sanity.io
+        - host: https://apicdn.sanity.io
   ingresses:
 {{#each ingresses}}
     - "{{this}}"
