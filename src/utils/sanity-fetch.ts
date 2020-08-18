@@ -7,6 +7,7 @@ const articleSpec = `
     "slug": slug.current,
     "categories": categories[]->title,
     body,
+    "iconUrl": icon.asset->url,
 }`;
 
 export const fetchArticleWithSlug = async (slug: string = ''): Promise<SanityArticle> => {
@@ -21,7 +22,14 @@ export const fetchArticleGroupWithSlug = async (slug: string = ''): Promise<Sani
     {
         title,
         "slug": slug.current,
-        "articles": articles[]-> ${articleSpec},
+        "articles": articles[]-> 
+        {
+            title,
+            "slug": slug.current,
+            "categories": categories[]->title,
+            body,
+            "iconUrl": icon.asset->url,
+        },
         "links": externalLinks[]->
         {
             title, href

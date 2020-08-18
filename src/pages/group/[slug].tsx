@@ -1,14 +1,12 @@
 import Head from 'next/head';
-import { Innholdstittel } from 'nav-frontend-typografi';
-import Panel from 'nav-frontend-paneler';
 
 import { Layout } from '../../components/Layout';
 import { Context } from '../../types';
 import { fetchArticleGroupWithSlug } from '../../utils/sanity-fetch';
-import { SanityBlockContent } from '../../components/SanityBlockContent';
 import { SanityArticleGroup, SanityArticle } from '../../sanityDocumentTypes';
+import { Article } from '../../components/Article';
 
-const ArticleGroup = (props: { articleGroup: SanityArticleGroup }) => {
+const ArticleGroupPage = (props: { articleGroup: SanityArticleGroup }) => {
     return (
         <>
             <Head>
@@ -25,18 +23,9 @@ const ArticleGroup = (props: { articleGroup: SanityArticleGroup }) => {
     );
 };
 
-const Article = (props: { article: SanityArticle }) => (
-    <article>
-        <Panel className="seksjon-panel">
-            <Innholdstittel id={props.article.slug}>{props.article.title}</Innholdstittel>
-            <SanityBlockContent blocks={props.article.body} />
-        </Panel>
-    </article>
-);
-
-ArticleGroup.getInitialProps = async (context: Context): Promise<{ articleGroup: SanityArticleGroup }> => {
+ArticleGroupPage.getInitialProps = async (context: Context): Promise<{ articleGroup: SanityArticleGroup }> => {
     const articleGroup = await fetchArticleGroupWithSlug(context.query.slug);
     return { articleGroup: articleGroup };
 };
 
-export default ArticleGroup;
+export default ArticleGroupPage;

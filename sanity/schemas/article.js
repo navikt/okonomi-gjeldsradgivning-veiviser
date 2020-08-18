@@ -23,6 +23,11 @@ export default {
             },
         },
         {
+            name: 'icon',
+            title: 'Icon',
+            type: 'image',
+        },
+        {
             name: 'categories',
             title: 'Categories',
             type: 'array',

@@ -18,6 +18,11 @@ export default {
             },
         },
         {
+            name: 'description',
+            title: 'Description',
+            type: 'blockContent',
+        },
+        {
             name: 'articles',
             title: 'Articles',
             type: 'array',
