@@ -29,8 +29,6 @@ jobs:
         run: npm run test
       - name: Build application
         run: npm run build
-      - name: Export application
-        run: npm run export
       - name: Login to GitHub package registry
         run: |
           echo ${GITHUB_TOKEN} | docker login -u ${GITHUB_REPOSITORY} --password-stdin docker.pkg.github.com
@@ -48,8 +46,7 @@ jobs:
       - name: Build docker image
         run: docker build -t $(cat DOCKER_TAG) .
       - name: Create tag and release
-        # TODO: Bytt ut med upstream når/hvis https://github.com/actions/create-release/pull/32 merges
-        uses: fleskesvor/create-release@feature/support-target-commitish
+        uses: actions/create-release@v1.1.3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:

@@ -6,7 +6,6 @@ import { SanityArticle } from '../../sanityDocumentTypes';
 import { Article } from '../../components/Article';
 
 const ArticlePage = (props: { article: SanityArticle }) => {
-    console.log('props');
     return (
         <>
             <Head>
@@ -21,7 +20,6 @@ const ArticlePage = (props: { article: SanityArticle }) => {
 
 ArticlePage.getInitialProps = async (context: Context): Promise<{ article: SanityArticle }> => {
     const article = await fetchArticleWithSlug(context.query.slug);
-    console.log('SANITY');
     return { article: article };
 };
 

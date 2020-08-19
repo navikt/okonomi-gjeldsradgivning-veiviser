@@ -1,6 +1,18 @@
-FROM navikt/node-express:12.2.0-alpine
+FROM navikt/common:0.1 AS navikt-common
+FROM node:12.2.0-alpine
+
+COPY --from=navikt-common /init-scripts /init-scripts
+COPY --from=navikt-common /entrypoint.sh /entrypoint.sh
+COPY --from=navikt-common /dumb-init /dumb-init
+
+ENV NODE_ENV production
 
 WORKDIR /app
-COPY out/ out/
-COPY server.js ./
-EXPOSE 2022
+COPY package.json .
+COPY .next/ .next/
+COPY .env.local .
+COPY node_modules/ node_modules/
+RUN ls
+
+EXPOSE 3000
+CMD npm run start
