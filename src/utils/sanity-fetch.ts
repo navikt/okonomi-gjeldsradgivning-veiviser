@@ -6,7 +6,16 @@ const articleSpec = `
     title,
     "slug": slug.current,
     "categories": categories[]->title,
-    body,
+    body[]{
+        ...,
+        markDefs[]{
+            ...,
+            _type == 'internalLink' => {
+                "slug": @.reference->slug,
+                "type": @.reference->_type,
+            },
+        },
+    },
     "iconUrl": icon.asset->url,
 }`;
 
@@ -22,17 +31,12 @@ export const fetchArticleGroupWithSlug = async (slug: string = ''): Promise<Sani
     {
         title,
         "slug": slug.current,
-        "articles": articles[]-> 
-        {
-            title,
-            "slug": slug.current,
-            "categories": categories[]->title,
-            body,
-            "iconUrl": icon.asset->url,
-        },
+        "articles": articles[]-> ${articleSpec},
         "links": externalLinks[]->
         {
-            title, href
+            title, 
+            href,
+            "iconUrl": icon.asset->url,
         }
     }`;
     const params = { slug: slug };

@@ -1,3 +1,5 @@
+import paperclipIcon from 'react-icons/lib/fa/paperclip';
+
 /**
  * This is the schema definition for the rich text fields used for
  * for this blog studio. When you import it in schemas.js it can be
@@ -40,7 +42,30 @@ export default {
                 // Annotations can be any object structure – e.g. a link or a footnote.
                 annotations: [
                     {
-                        title: 'URL',
+                        title: 'Internal link',
+                        name: 'internalLink',
+                        type: 'object',
+                        blockEditor: {
+                            icon: paperclipIcon,
+                        },
+                        fields: [
+                            {
+                                title: 'Reference',
+                                name: 'reference',
+                                type: 'reference',
+                                to: [
+                                    {
+                                        type: 'article',
+                                    },
+                                    {
+                                        type: 'articleGroup',
+                                    },
+                                ],
+                            },
+                        ],
+                    },
+                    {
+                        title: 'External link',
                         name: 'link',
                         type: 'object',
                         fields: [
@@ -48,6 +73,11 @@ export default {
                                 title: 'URL',
                                 name: 'href',
                                 type: 'url',
+                            },
+                            {
+                                title: 'Open in new tab',
+                                name: 'blank',
+                                type: 'boolean',
                             },
                         ],
                     },

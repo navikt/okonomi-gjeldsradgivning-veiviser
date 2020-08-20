@@ -2,7 +2,7 @@ import { Sidetittel, Systemtittel } from 'nav-frontend-typografi';
 import { HeaderIcon } from '../icons/HeaderIcon';
 
 export const PageBanner = (props: { isFrontPage: boolean }) => {
-    const bannerClassNames = `banner ${props.isFrontPage ? 'banner-frontpage' : 'banner-other'}`;
+    const bannerClassNames = `banner ${props.isFrontPage ? 'banner__frontpage' : 'banner__article'}`;
     const bannerTitle = 'Økonomi- og gjeldsrådgivning';
     return (
         <div className={bannerClassNames}>

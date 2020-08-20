@@ -4,6 +4,7 @@ import { Layout } from '../../components/Layout';
 import Head from 'next/head';
 import { SanityArticle } from '../../sanityDocumentTypes';
 import { Article } from '../../components/Article';
+import { Breadcrumbs } from '../../components/Breadcrumbs';
 
 const ArticlePage = (props: { article: SanityArticle }) => {
     return (
@@ -12,7 +13,10 @@ const ArticlePage = (props: { article: SanityArticle }) => {
                 <title>Økonomi- og gjeldsrådgivning - {props.article.title}</title>
             </Head>
             <Layout title={props.article.title} isFrontPage={false}>
-                {props.article ? <Article article={props.article} /> : <div></div>}
+                <>
+                    <Breadcrumbs title={props.article.title} />
+                    {props.article ? <Article article={props.article} /> : <div></div>}
+                </>
             </Layout>
         </>
     );

@@ -15,17 +15,17 @@ const Home = (props: { articles: SanityFrontPageArticle[] }) => {
                 <title>Økonomi- og gjeldsrådgivning</title>
             </Head>
             <Layout title="Økonomi- og gjeldsrådgivning" isFrontPage={true}>
-                <Panel className="seksjon-panel">
+                <Panel className="section-panel">
                     <Innholdstittel>Ta kontroll på økonomien din</Innholdstittel>
                     <Link href="/group/ta-kontroll-pa-okonomien-din">
-                        <a>Ta kontroll på økonomien din</a>
+                        <a className="lenke">Ta kontroll på økonomien din</a>
                     </Link>
                     <Innholdstittel>Other posts</Innholdstittel>
                     <ul>
                         {props.articles.map((article, index) => (
-                            <li>
-                                <Link key={index} href="/articles/[slug]" as={`/articles/${article.slug}`}>
-                                    <a>{article.title}</a>
+                            <li key={index}>
+                                <Link href="/articles/[slug]" as={`/articles/${article.slug}`}>
+                                    <a className="lenke">{article.title}</a>
                                 </Link>
                             </li>
                         ))}
