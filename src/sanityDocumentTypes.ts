@@ -25,3 +25,17 @@ export interface SanityFrontPageArticle {
     categories: string[];
     slug: string;
 }
+
+export interface SanityFrontPageArticleGroup {
+    title: string;
+    slug: string;
+    description: object; // Sanity content
+    articles: [
+        {
+            title: string;
+            slug: string;
+            description: string;
+            iconUrl: string;
+        }
+    ];
+}

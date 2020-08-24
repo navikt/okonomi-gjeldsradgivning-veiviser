@@ -19,6 +19,19 @@ const articleSpec = `
     "iconUrl": icon.asset->url,
 }`;
 
+const articleGroupSpec = `
+{
+    title,
+    "slug": slug.current,
+    "articles": articles[]-> ${articleSpec},
+    "links": externalLinks[]->
+    {
+        title, 
+        href,
+        "iconUrl": icon.asset->url,
+    }
+}`;
+
 export const fetchArticleWithSlug = async (slug: string = ''): Promise<SanityArticle> => {
     const query = `*[_type == "article" && slug.current == $slug][0]
     ${articleSpec}`;
@@ -26,19 +39,25 @@ export const fetchArticleWithSlug = async (slug: string = ''): Promise<SanityArt
     return await client.fetch(query, params);
 };
 
-export const fetchArticleGroupWithSlug = async (slug: string = ''): Promise<SanityArticleGroup> => {
-    const query = `*[_type == "articleGroup" && slug.current == $slug][0]
+export const fetchArticleGroupsForFrontpage = async (): Promise<SanityFrontPageArticleGroup[]> => {
+    const query = `*[_type == "articleGroup"]
     {
         title,
         "slug": slug.current,
-        "articles": articles[]-> ${articleSpec},
-        "links": externalLinks[]->
-        {
-            title, 
-            href,
-            "iconUrl": icon.asset->url,
+        description,
+        "articles": articles[]-> {
+            title,
+            "slug": slug.current,
+            description,
+            "iconUrl": icon.asset->url
         }
     }`;
+    return await client.fetch(query);
+};
+
+export const fetchArticleGroupWithSlug = async (slug: string = ''): Promise<SanityArticleGroup> => {
+    const query = `*[_type == "articleGroup" && slug.current == $slug][0]
+    ${articleGroupSpec}`;
     const params = { slug: slug };
     return await client.fetch(query, params);
 };

@@ -12,9 +12,6 @@ body {
 }
 
 .content {
-    width: 100%;
-    max-width: 1024px;
-    //padding: 0rem 1rem 5rem 1rem;
     box-sizing: border-box;
 }
 
@@ -28,6 +25,7 @@ body {
 
 .section-panel {
     margin-bottom: 5rem;
+    max-width: 690px;
     position: relative;
 
     &__withIcon {
@@ -36,6 +34,25 @@ body {
 
     &__noIcon {
         padding: 3rem 3rem 2rem 3rem !important;
+    }
+}
+
+.section-article {
+    &__wrapper {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    &__article-box {
+        margin-top: 2rem;
+        width: 290px;
+    }
+
+    &__icon {
+        width: 50px;
+        margin-right: 1rem;
+        align-self: start;
     }
 }
 
@@ -139,4 +156,5 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    max-width: 1024px;
 }
