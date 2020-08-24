@@ -23,7 +23,10 @@ const Home = (props: { articles: SanityFrontPageArticle[]; articleGroups: Sanity
                             <SanityBlockContent blocks={articleGroup.description} />
                             <div className="section-article__wrapper">
                                 {articleGroup.articles?.map((article) => (
-                                    <div className="section-article__article-box section-article__wrapper">
+                                    <div
+                                        key={article.slug}
+                                        className="section-article__article-box section-article__wrapper"
+                                    >
                                         <img className="section-article__icon" src={article.iconUrl} />
                                         <div className="section-article__content">
                                             <Link href="group/[slug]" as={`group/${articleGroup.slug}#${article.slug}`}>
@@ -64,7 +67,6 @@ Home.getInitialProps = async (): Promise<{
 }> => {
     const articles = await fetchArticlesForFrontpage();
     const articleGroups = await fetchArticleGroupsForFrontpage();
-    console.log('articleGroups', articleGroups);
     return { articles: articles, articleGroups: articleGroups };
 };
 

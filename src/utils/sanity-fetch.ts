@@ -1,5 +1,10 @@
 import client from './sanity-client';
-import { SanityArticle, SanityArticleGroup, SanityFrontPageArticle } from '../sanityDocumentTypes';
+import {
+    SanityArticle,
+    SanityArticleGroup,
+    SanityFrontPageArticle,
+    SanityFrontPageArticleGroup,
+} from '../sanityDocumentTypes';
 
 const articleSpec = `
 {
