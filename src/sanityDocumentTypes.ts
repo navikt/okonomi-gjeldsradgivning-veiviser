@@ -12,6 +12,7 @@ export interface SanityArticleGroup {
     description: object[]; // Sanity content
     articles?: SanityArticle[];
     links?: SanityLink[];
+    iconUrl: string;
 }
 
 export interface SanityLink {

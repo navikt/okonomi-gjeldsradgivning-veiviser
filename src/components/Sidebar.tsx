@@ -8,7 +8,7 @@ import { PanelIcon } from './PanelIcon';
 export const Sidebar = (props: { articleGroup: SanityArticleGroup }) => (
     <aside className="sidebar">
         <Panel className="sidebar-panel">
-            <PanelIcon imageUrl={props.articleGroup.articles[0].iconUrl} />
+            <PanelIcon imageUrl={props.articleGroup.iconUrl} />
 
             <Ingress>{props.articleGroup.title}</Ingress>
 

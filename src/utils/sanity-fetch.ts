@@ -29,6 +29,7 @@ const articleGroupSpec = `
     title,
     "slug": slug.current,
     "articles": articles[]-> ${articleSpec},
+    "iconUrl": icon.asset->url,
     "links": externalLinks[]->
     {
         title, 

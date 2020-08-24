@@ -23,6 +23,11 @@ export default {
             type: 'blockContent',
         },
         {
+            name: 'icon',
+            title: 'Icon',
+            type: 'image',
+        },
+        {
             name: 'articles',
             title: 'Articles',
             type: 'array',
