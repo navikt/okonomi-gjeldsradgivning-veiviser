@@ -39,21 +39,21 @@ const Home = (props: { articles: SanityFrontPageArticle[]; articleGroups: Sanity
                             </div>
                         </Panel>
                     ))}
-                    <Panel className="section-panel">
-                        <Innholdstittel>Ta kontroll på økonomien din</Innholdstittel>
-                        <Link href="/group/ta-kontroll-pa-okonomien-din">
-                            <a className="lenke">Ta kontroll på økonomien din</a>
-                        </Link>
-                        <Innholdstittel>Other posts</Innholdstittel>
-                        <ul>
+                    <Panel className="section-panel section-panel__noIcon">
+                        <Innholdstittel>Har du økonomiske bekymringer?</Innholdstittel>
+                        <div className="section-article__wrapper">
                             {props.articles.map((article, index) => (
-                                <li key={index}>
+                                <div
+                                    key={article.slug}
+                                    className="section-article__article-box section-article__wrapper"
+                                >
                                     <Link href="/articles/[slug]" as={`/articles/${article.slug}`}>
                                         <a className="lenke">{article.title}</a>
                                     </Link>
-                                </li>
+                                    <Normaltekst>{article.description}</Normaltekst>
+                                </div>
                             ))}
-                        </ul>
+                        </div>
                     </Panel>
                 </>
             </Layout>

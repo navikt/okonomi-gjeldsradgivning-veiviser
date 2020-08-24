@@ -23,6 +23,7 @@ export interface SanityLink {
 
 export interface SanityFrontPageArticle {
     title: string;
+    description: string;
     categories: string[];
     slug: string;
 }

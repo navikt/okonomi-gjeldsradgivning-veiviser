@@ -72,6 +72,7 @@ export const fetchArticlesForFrontpage = async (): Promise<SanityFrontPageArticl
     const query = `*[_type == "article"]
     {
         title,
+        description,
         "slug": slug.current,
         "categories": categories[]->title,
     }`;
