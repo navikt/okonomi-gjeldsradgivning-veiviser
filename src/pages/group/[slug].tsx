@@ -37,7 +37,6 @@ ArticleGroupPage.getInitialProps = async (
     context: Context
 ): Promise<{ articleGroup: SanityArticleGroup; statusCode: number }> => {
     const articleGroup = await fetchArticleGroupWithSlug(context.query.slug);
-    console.log('articleGroup', articleGroup);
     return { articleGroup: articleGroup, statusCode: Object.keys(articleGroup).length === 0 ? 404 : 200 };
 };
 
