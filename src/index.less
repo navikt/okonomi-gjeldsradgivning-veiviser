@@ -24,7 +24,7 @@ body {
 }
 
 .section-panel {
-    margin-bottom: 5rem;
+    margin-bottom: 4rem;
     max-width: 690px;
     position: relative;
 
@@ -92,6 +92,8 @@ body {
     margin-top: 118px;
     margin-right: 2rem;
 
+    flex-shrink: 0;
+
     .divider {
         width: 100%;
         margin-top: 2rem;
@@ -101,8 +103,9 @@ body {
 }
 
 .sidebar-panel {
-    position: sticky;
     width: 280px;
+    position: sticky;
+    top: calc(50% - 315px);
 }
 
 .sidebar-link {
@@ -152,9 +155,12 @@ body {
     min-width: 5rem;
 }
 
+.group-articles {
+    display: block;
+}
+
 .group-content {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    max-width: 1024px;
 }
