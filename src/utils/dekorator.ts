@@ -1,16 +1,7 @@
-import NodeCache from 'node-cache';
 import fetch from 'node-fetch';
 import * as cheerio from 'cheerio';
 import { createHash } from 'crypto';
-
-const SECONDS_PER_MINUTE = 60;
-const SECONDS_PER_HOUR = SECONDS_PER_MINUTE * 60;
-
-// Refresh cache every hour
-const cache = new NodeCache({
-    stdTTL: SECONDS_PER_HOUR,
-    checkperiod: SECONDS_PER_MINUTE,
-});
+import { cache } from './cache';
 
 export interface DecoratorParts {
     decoratorHeader: string;
@@ -20,7 +11,7 @@ export interface DecoratorParts {
     scriptTags: any[];
 }
 
-async function getDecoratorCached() {
+const getDecoratorCached = async () => {
     return new Promise((resolve, reject) => {
         const decorator = cache.get('decorator-cache');
         if (decorator) {
@@ -35,14 +26,14 @@ async function getDecoratorCached() {
                 .catch((err) => reject(err));
         }
     });
-}
+};
 
-function objHash(obj): string {
+const objHash = (obj): string => {
     const str = JSON.stringify(obj);
     return createHash('md5').update(str).digest('hex');
-}
+};
 
-export async function fetchDecoratorParts(): Promise<DecoratorParts> {
+export const fetchDecoratorParts = async (): Promise<DecoratorParts> => {
     const decoratorSrc = await getDecoratorCached();
 
     const $ = cheerio.load(decoratorSrc);
@@ -82,4 +73,4 @@ export async function fetchDecoratorParts(): Promise<DecoratorParts> {
         scriptTags: scriptTags,
         linkTags: linkTags,
     };
-}
+};

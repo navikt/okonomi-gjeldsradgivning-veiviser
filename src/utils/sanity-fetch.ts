@@ -5,6 +5,7 @@ import {
     SanityFrontPageArticle,
     SanityFrontPageArticleGroup,
 } from '../sanityDocumentTypes';
+import { cache } from './cache';
 
 const articleSpec = `
 {
@@ -43,7 +44,7 @@ export const fetchArticleWithSlug = async (slug: string = ''): Promise<SanityArt
     const query = `*[_type == "article" && slug.current == $slug][0]
     ${articleSpec}`;
     const params = { slug: slug };
-    return await client.fetch(query, params);
+    return fetchQueryAndParamWithCache(query, params, `article-${slug}`);
 };
 
 export const fetchArticleGroupsForFrontpage = async (): Promise<SanityFrontPageArticleGroup[]> => {
@@ -59,14 +60,14 @@ export const fetchArticleGroupsForFrontpage = async (): Promise<SanityFrontPageA
             "iconUrl": icon.asset->url
         }
     }`;
-    return await client.fetch(query);
+    return fetchQueryWithCache(query, 'frontpage-article-group');
 };
 
 export const fetchArticleGroupWithSlug = async (slug: string = ''): Promise<SanityArticleGroup> => {
     const query = `*[_type == "articleGroup" && slug.current == $slug][0]
     ${articleGroupSpec}`;
     const params = { slug: slug };
-    return await client.fetch(query, params);
+    return fetchQueryAndParamWithCache(query, params, `article-group-${slug}`);
 };
 
 export const fetchArticlesForFrontpage = async (): Promise<SanityFrontPageArticle[]> => {
@@ -77,5 +78,39 @@ export const fetchArticlesForFrontpage = async (): Promise<SanityFrontPageArticl
         "slug": slug.current,
         "categories": categories[]->title,
     }`;
-    return client.fetch(query);
+    return fetchQueryWithCache(query, 'frontpage-article');
+};
+
+const fetchQueryWithCache = async (query: string, cacheKey: string): Promise<any> => {
+    return new Promise((resolve, reject) => {
+        const cachedResponse = cache.get(cacheKey);
+        if (cachedResponse) {
+            resolve(cachedResponse);
+        } else {
+            client
+                .fetch(query)
+                .then((response) => {
+                    cache.set(cacheKey, response);
+                    resolve(response);
+                })
+                .catch((err) => reject(err));
+        }
+    });
+};
+
+const fetchQueryAndParamWithCache = async (query: string, params: {}, cacheKey: string): Promise<any> => {
+    return new Promise((resolve, reject) => {
+        const cachedResponse = cache.get(cacheKey);
+        if (cachedResponse) {
+            resolve(cachedResponse);
+        } else {
+            client
+                .fetch(query, params)
+                .then((response) => {
+                    cache.set(cacheKey, response);
+                    resolve(response);
+                })
+                .catch((err) => reject(err));
+        }
+    });
 };
