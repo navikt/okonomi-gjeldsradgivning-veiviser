@@ -1,9 +1,10 @@
 export interface SanityArticle {
     title: string;
     slug: string;
+    description: string;
     categories: string[];
     body: object[]; // Sanity content
-    iconUrl: string;
+    iconUrl?: string;
 }
 
 export interface SanityArticleGroup {
