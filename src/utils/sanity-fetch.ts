@@ -10,6 +10,7 @@ const articleSpec = `
 {
     title,
     "slug": slug.current,
+    description,
     "categories": categories[]->title,
     body[]{
         ...,
