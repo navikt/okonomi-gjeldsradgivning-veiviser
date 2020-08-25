@@ -5,8 +5,12 @@ import Head from 'next/head';
 import { SanityArticle } from '../../sanityDocumentTypes';
 import { Article } from '../../components/Article';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
+import Error from '../_error';
 
-const ArticlePage = (props: { article: SanityArticle }) => {
+const ArticlePage = (props: { article: SanityArticle; statusCode: number }) => {
+    if (props.statusCode === 404) {
+        return <Error />;
+    }
     return (
         <>
             <Head>
@@ -22,9 +26,9 @@ const ArticlePage = (props: { article: SanityArticle }) => {
     );
 };
 
-ArticlePage.getInitialProps = async (context: Context): Promise<{ article: SanityArticle }> => {
+ArticlePage.getInitialProps = async (context: Context): Promise<{ article: SanityArticle; statusCode: number }> => {
     const article = await fetchArticleWithSlug(context.query.slug);
-    return { article: article };
+    return { article: article, statusCode: Object.keys(article).length === 0 ? 404 : 200 };
 };
 
 export default ArticlePage;

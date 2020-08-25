@@ -7,8 +7,12 @@ import { SanityArticleGroup, SanityArticle } from '../../sanityDocumentTypes';
 import { Article } from '../../components/Article';
 import { Sidebar } from '../../components/Sidebar';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
+import Error from '../_error';
 
-const ArticleGroupPage = (props: { articleGroup: SanityArticleGroup }) => {
+const ArticleGroupPage = (props: { articleGroup: SanityArticleGroup; statusCode: number }) => {
+    if (props.statusCode === 404) {
+        return <Error />;
+    }
     return (
         <>
             <Head>
@@ -29,9 +33,12 @@ const ArticleGroupPage = (props: { articleGroup: SanityArticleGroup }) => {
     );
 };
 
-ArticleGroupPage.getInitialProps = async (context: Context): Promise<{ articleGroup: SanityArticleGroup }> => {
+ArticleGroupPage.getInitialProps = async (
+    context: Context
+): Promise<{ articleGroup: SanityArticleGroup; statusCode: number }> => {
     const articleGroup = await fetchArticleGroupWithSlug(context.query.slug);
-    return { articleGroup: articleGroup };
+    console.log('articleGroup', articleGroup);
+    return { articleGroup: articleGroup, statusCode: Object.keys(articleGroup).length === 0 ? 404 : 200 };
 };
 
 export default ArticleGroupPage;
