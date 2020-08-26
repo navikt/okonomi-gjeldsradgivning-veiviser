@@ -165,3 +165,66 @@ body {
     flex-direction: row;
     justify-content: center;
 }
+
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.4);
+
+    .panel {
+        border-radius: 0;
+    }
+
+    &__header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .mobile-menu-content {
+        display: none;
+
+        &__open {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        &__links {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        &__link {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+
+            width: 250px;
+
+            overflow: hidden;
+            margin: 0.5rem 0;
+        }
+    }
+
+    .divider {
+        width: 100%;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border: 1px solid #e7e9e9;
+    }
+}
