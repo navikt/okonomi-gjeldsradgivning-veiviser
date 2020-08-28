@@ -21,7 +21,7 @@ spec:
   prometheus:
     enabled: {{prometheusEnabled}}
   replicas:
-    min: 1
+    min: 2
     max: 2
   webproxy: true
   resources:
