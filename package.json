@@ -16,7 +16,6 @@
         "@sanity/client": "^1.149.18",
         "cheerio": "^1.0.0-rc.3",
         "classnames": "^2.2.6",
-        "crypto": "^1.0.1",
         "nav-frontend-chevron": "^1.0.13",
         "nav-frontend-chevron-style": "^0.3.5",
         "nav-frontend-core": "^5.0.1",
@@ -35,6 +34,7 @@
         "react-responsive": "^8.1.0"
     },
     "devDependencies": {
+        "@types/cheerio": "^0.22.21",
         "@types/jest": "^26.0.10",
         "@types/node": "^14.6.0",
         "@types/node-fetch": "^2.5.7",

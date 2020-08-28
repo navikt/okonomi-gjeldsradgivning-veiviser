@@ -28,13 +28,13 @@ const getDecoratorCached = async () => {
     });
 };
 
-const objHash = (obj): string => {
+const objHash = (obj: any): string => {
     const str = JSON.stringify(obj);
     return createHash('md5').update(str).digest('hex');
 };
 
 export const fetchDecoratorParts = async (): Promise<DecoratorParts> => {
-    const decoratorSrc = await getDecoratorCached();
+    const decoratorSrc = (await getDecoratorCached()) as string;
 
     const $ = cheerio.load(decoratorSrc);
     const scriptTags = [];
@@ -62,7 +62,7 @@ export const fetchDecoratorParts = async (): Promise<DecoratorParts> => {
             attrib.async = true;
         }
         if (attrib.src.indexOf('app.min.js')) {
-            //attrib.defer = "true";
+            attrib.defer = true;
         }
     });
 
