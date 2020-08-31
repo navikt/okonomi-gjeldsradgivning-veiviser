@@ -25,7 +25,7 @@ const Home = (props: { articles: SanityFrontPageArticle[]; articleGroups: Sanity
                                 {articleGroup.articles?.map((article) => (
                                     <div
                                         key={article.slug}
-                                        className="section-article__article-box section-article__wrapper"
+                                        className="section-article__article-box section-article__article-box-wrapper"
                                     >
                                         <img className="section-article__icon" src={article.iconUrl} />
                                         <div className="section-article__content">
@@ -42,17 +42,21 @@ const Home = (props: { articles: SanityFrontPageArticle[]; articleGroups: Sanity
                     <Panel className="section-panel section-panel__noIcon">
                         <Innholdstittel>Har du økonomiske bekymringer?</Innholdstittel>
                         <div className="section-article__wrapper">
-                            {props.articles.map((article, index) => (
-                                <div
-                                    key={article.slug}
-                                    className="section-article__article-box section-article__wrapper"
-                                >
-                                    <Link href="/articles/[slug]" as={`/articles/${article.slug}`}>
-                                        <a className="lenke">{article.title}</a>
-                                    </Link>
-                                    <Normaltekst>{article.description}</Normaltekst>
-                                </div>
-                            ))}
+                            {props.articles
+                                .filter((article) => article.categories?.includes('Har du økonomiske bekymringer?'))
+                                .map((article, index) => (
+                                    <div
+                                        key={article.slug}
+                                        className="section-article__article-box section-article__article-box-wrapper"
+                                    >
+                                        <div className="section-article__content section-article__noIcon">
+                                            <Link href="/articles/[slug]" as={`/articles/${article.slug}`}>
+                                                <a className="lenke">{article.title}</a>
+                                            </Link>
+                                            <Normaltekst>{article.description}</Normaltekst>
+                                        </div>
+                                    </div>
+                                ))}
                         </div>
                     </Panel>
                 </>

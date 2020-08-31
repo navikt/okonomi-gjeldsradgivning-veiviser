@@ -78,7 +78,7 @@ export const fetchArticlesForFrontpage = async (): Promise<SanityFrontPageArticl
         "slug": slug.current,
         "categories": categories[]->title,
     }`;
-    return fetchQueryWithCache(query, 'frontpage-article');
+    return fetchQueryWithCache(query, 'frontpage-articles');
 };
 
 const fetchQueryWithCache = async (query: string, cacheKey: string): Promise<any> => {

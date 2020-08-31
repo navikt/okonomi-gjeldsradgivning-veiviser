@@ -13,6 +13,7 @@ body {
 
 .content {
     box-sizing: border-box;
+    margin-bottom: 6rem;
 }
 
 .breadcrumbs {
@@ -31,16 +32,21 @@ body {
 }
 
 .section-panel {
-    margin-bottom: 4rem;
-    max-width: 690px;
+    margin-bottom: 2rem;
+    max-width: 792px;
     position: relative;
 
     &__withIcon {
-        padding: 1rem 3rem 2rem 3rem !important;
+        padding: 1rem 2rem 2rem 2rem !important;
+        margin-bottom: 4rem;
     }
 
     &__noIcon {
-        padding: 3rem 3rem 2rem 3rem !important;
+        padding: 3rem 2rem 2rem 2rem !important;
+    }
+
+    h1 {
+        margin-bottom: 1rem;
     }
 }
 
@@ -49,17 +55,34 @@ body {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        //justify-content: space-between;
+    }
+
+    &__article-box-wrapper {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-right: 1rem;
+        width: 322px;
     }
 
     &__article-box {
-        margin-top: 2rem;
-        width: 290px;
+        margin-bottom: 20px;
+    }
+
+    &__content {
+        max-width: 261px;
     }
 
     &__icon {
-        width: 50px;
+        width: 45px;
+        height: 50px;
         margin-right: 1rem;
         align-self: start;
+    }
+
+    &__noIcon {
+        max-width: 322px;
     }
 }
 
@@ -97,7 +120,7 @@ body {
 
 .sidebar {
     margin-top: 118px;
-    margin-right: 2rem;
+    margin-right: 1.5rem;
 
     flex-shrink: 0;
 
