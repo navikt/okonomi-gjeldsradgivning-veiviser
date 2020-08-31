@@ -2,8 +2,15 @@ import BlockContent from '@sanity/block-content-to-react';
 import client from '../utils/sanity-client';
 import Lenke from 'nav-frontend-lenker';
 import Link from 'next/link';
+import Vimeo from '@u-wave/react-vimeo';
 
 const serializers = {
+    types: {
+        vimeo: ({ node }) => {
+            const { url } = node;
+            return <Vimeo responsive video={url} />;
+        },
+    },
     marks: {
         link: ({ mark, children }) => {
             const { blank, href } = mark;
