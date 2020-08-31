@@ -59,6 +59,12 @@ const Home = (props: { articles: SanityFrontPageArticle[]; articleGroups: Sanity
                                 ))}
                         </div>
                     </Panel>
+                    <Panel className="section-panel section-panel__noIcon">
+                        <Innholdstittel>Ta kontakt</Innholdstittel>
+                        <Link href="/articles/kontakt-oss">
+                            <a className="lenke">Ta kontakt</a>
+                        </Link>
+                    </Panel>
                 </>
             </Layout>
         </>
