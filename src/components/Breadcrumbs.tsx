@@ -6,7 +6,7 @@ import MediaQuery from 'react-responsive';
 export const Breadcrumbs = (props: { title: string }) => {
     return (
         <nav className="breadcrumbs">
-            <MediaQuery minWidth={310}>
+            <MediaQuery minWidth={376}>
                 <Link href="/">
                     <a className="breadcrumbs__previous lenke">Økonomi- og gjeldsrådgivning</a>
                 </Link>
@@ -15,9 +15,10 @@ export const Breadcrumbs = (props: { title: string }) => {
                     <Normaltekst>{props.title}</Normaltekst>
                 </div>
             </MediaQuery>
-            <MediaQuery maxWidth={309}>
+            <MediaQuery maxWidth={375}>
+                <NavFrontendChevron type="venstre" />
                 <Link href="/">
-                    <a className="lenke">Til forsiden</a>
+                    <a className="lenke">Tilbake</a>
                 </Link>
             </MediaQuery>
         </nav>

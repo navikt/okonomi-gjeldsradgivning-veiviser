@@ -28,7 +28,7 @@ const Home = (props: { articles: SanityFrontPageArticle[]; articleGroups: Sanity
                                         className="section-article__article-box section-article__article-box-wrapper"
                                     >
                                         <img className="section-article__icon" src={article.iconUrl} />
-                                        <div className="section-article__content">
+                                        <div>
                                             <Link href="group/[slug]" as={`group/${articleGroup.slug}#${article.slug}`}>
                                                 <a className="lenke">{article.title}</a>
                                             </Link>
@@ -49,7 +49,7 @@ const Home = (props: { articles: SanityFrontPageArticle[]; articleGroups: Sanity
                                         key={article.slug}
                                         className="section-article__article-box section-article__article-box-wrapper"
                                     >
-                                        <div className="section-article__content section-article__noIcon">
+                                        <div>
                                             <Link href="/articles/[slug]" as={`/articles/${article.slug}`}>
                                                 <a className="lenke">{article.title}</a>
                                             </Link>
