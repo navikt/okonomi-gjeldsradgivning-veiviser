@@ -12,6 +12,12 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install Sanity CLI
         run: npm install @sanity/cli -g
+      - name: ls
+        working-directory: ./sanity
+        run: ls && pwd
+      - name: npm install
+        working-directory: ./sanity
+        run: npm ci
       - name: Deploy Sanity Studio
         working-directory: ./sanity
         run: sanity deploy
