@@ -1,0 +1,17 @@
+name: Deploy Sanity Studio
+on: workflow_dispatch
+
+jobs:
+  deploy:
+    name: Deploy Sanity Studio
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "12.8.1"
+      - uses: actions/checkout@v2
+      - name: Install Sanity CLI
+        run: npm install @sanity/cli -g
+      - name: Deploy Sanity Studio
+        working-directory: ./sanity
+        run: sanity deploy
