@@ -28,10 +28,7 @@ class CustomDocument extends Document<CustomDocumentProps> {
 
         return (
             <Html lang="no">
-                <Head>
-                    {headTags}
-                    <meta name="robots" content="noindex, nofollow" />
-                </Head>
+                <Head>{headTags}</Head>
                 <body>
                     <div dangerouslySetInnerHTML={{ __html: decoratorHeader }} />
                     <Main />
