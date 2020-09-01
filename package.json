@@ -36,17 +36,17 @@
     },
     "devDependencies": {
         "@types/cheerio": "^0.22.21",
-        "@types/jest": "^26.0.10",
-        "@types/node": "^14.6.0",
+        "@types/jest": "^26.0.12",
+        "@types/node": "^14.6.2",
         "@types/node-fetch": "^2.5.7",
-        "@types/react": "^16.9.46",
+        "@types/react": "^16.9.49",
         "@zeit/next-less": "^1.0.1",
         "husky": "^4.2.5",
-        "jest": "^26.4.0",
+        "jest": "^26.4.2",
         "less": "^3.12.2",
-        "lint-staged": "^10.2.11",
+        "lint-staged": "^10.2.13",
         "next-transpile-modules": "^4.1.0",
-        "prettier": "^2.0.5",
+        "prettier": "^2.1.1",
         "typescript": "^3.9.7"
     },
     "husky": {
