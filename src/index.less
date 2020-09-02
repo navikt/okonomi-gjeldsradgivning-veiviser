@@ -56,6 +56,24 @@ body {
     h1 {
         margin-bottom: 1rem;
     }
+
+    &__image {
+        background-color: #9bd0b0;
+        border-radius: 50%;
+        overflow: hidden;
+
+        height: 5rem;
+        width: 5rem;
+        min-width: 5rem;
+        margin-right: 1rem;
+    }
+
+    &__icon {
+        min-width: 5rem;
+        width: 5rem;
+        height: 5rem;
+        align-self: center;
+    }
 }
 
 .section-article {
@@ -106,7 +124,7 @@ body {
     justify-content: center;
 
     &__frontpage {
-        height: 190px;
+        min-height: 190px;
         justify-content: center;
         margin-bottom: 4rem;
     }
@@ -120,6 +138,7 @@ body {
 .banner-content {
     width: 100%;
     max-width: 1024px;
+    margin-top: 1rem;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -127,7 +146,7 @@ body {
     align-items: center;
 
     .banner-content-icon {
-        max-width: 200px;
+        margin-top: 1rem;
         align-self: flex-end;
     }
 }
