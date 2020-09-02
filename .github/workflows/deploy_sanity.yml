@@ -10,6 +10,8 @@ jobs:
         with:
           node-version: "12.8.1"
       - uses: actions/checkout@v2
+      - name: check secrets
+        run: echo $NOT_SO_SECRET
       - name: Install Sanity CLI
         run: npm install @sanity/cli -g
       - name: npm install
