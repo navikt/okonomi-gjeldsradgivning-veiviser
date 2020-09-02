@@ -1,0 +1,23 @@
+import Link from 'next/link';
+import { LenkepanelBase } from 'nav-frontend-lenkepanel';
+import { Innholdstittel } from 'nav-frontend-typografi';
+
+import { SanityBlockContent } from './SanityBlockContent';
+import { SanityLinkPanel } from '../sanityDocumentTypes';
+
+export const LinkPanel = (props: { linkPanel: SanityLinkPanel }) => (
+    <LenkepanelBase
+        href={`/articles/${props.linkPanel.slug}`}
+        linkCreator={(linkProps) => (
+            <Link href="/articles/[slug]" as={linkProps.href}>
+                <div className={`section-panel section-panel__noIcon lenkepanel`} style={{ cursor: 'pointer' }}>
+                    <div>
+                        <Innholdstittel>{props.linkPanel.title}</Innholdstittel>
+                        <SanityBlockContent blocks={props.linkPanel.description} />
+                    </div>
+                    <span className="lenkepanel__indikator" />
+                </div>
+            </Link>
+        )}
+    />
+);

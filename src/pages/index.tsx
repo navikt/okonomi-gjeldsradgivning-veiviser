@@ -3,13 +3,17 @@ import Head from 'next/head';
 import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
 import Panel from 'nav-frontend-paneler';
 
-import { fetchArticlesForFrontpage, fetchArticleGroupsForFrontpage } from '../utils/sanity-fetch';
+import { fetchArticlesForFrontpage, fetchArticleGroupsForFrontpage, fetchLinkPanels } from '../utils/sanity-fetch';
 import { Layout } from '../components/Layout';
-
-import { SanityFrontPageArticle, SanityFrontPageArticleGroup } from '../sanityDocumentTypes';
+import { SanityFrontPageArticle, SanityFrontPageArticleGroup, SanityLinkPanel } from '../sanityDocumentTypes';
 import { SanityBlockContent } from '../components/SanityBlockContent';
+import { LinkPanel } from '../components/LinkPanel';
 
-const Home = (props: { articles: SanityFrontPageArticle[]; articleGroups: SanityFrontPageArticleGroup[] }) => {
+const Home = (props: {
+    articles: SanityFrontPageArticle[];
+    articleGroups: SanityFrontPageArticleGroup[];
+    linkPanels: SanityLinkPanel[];
+}) => {
     return (
         <>
             <Head>
@@ -59,12 +63,9 @@ const Home = (props: { articles: SanityFrontPageArticle[]; articleGroups: Sanity
                                 ))}
                         </div>
                     </Panel>
-                    <Panel className="section-panel section-panel__noIcon">
-                        <Innholdstittel>Ta kontakt</Innholdstittel>
-                        <Link href="/articles/kontakt-oss">
-                            <a className="lenke">Ta kontakt</a>
-                        </Link>
-                    </Panel>
+                    {props.linkPanels?.map((linkPanel) => (
+                        <LinkPanel linkPanel={linkPanel} key={linkPanel.slug} />
+                    ))}
                 </>
             </Layout>
         </>
@@ -74,10 +75,12 @@ const Home = (props: { articles: SanityFrontPageArticle[]; articleGroups: Sanity
 Home.getInitialProps = async (): Promise<{
     articles: SanityFrontPageArticle[];
     articleGroups: SanityFrontPageArticleGroup[];
+    linkPanels: SanityLinkPanel[];
 }> => {
     const articles = await fetchArticlesForFrontpage();
     const articleGroups = await fetchArticleGroupsForFrontpage();
-    return { articles: articles, articleGroups: articleGroups };
+    const linkPanels = await fetchLinkPanels();
+    return { articles, articleGroups, linkPanels };
 };
 
 export default Home;

@@ -4,6 +4,7 @@ import {
     SanityArticleGroup,
     SanityFrontPageArticle,
     SanityFrontPageArticleGroup,
+    SanityLinkPanel,
 } from '../sanityDocumentTypes';
 import { cache } from './cache';
 
@@ -79,6 +80,18 @@ export const fetchArticlesForFrontpage = async (): Promise<SanityFrontPageArticl
         "categories": categories[]->title,
     }`;
     return fetchQueryWithCache(query, 'frontpage-articles');
+};
+
+export const fetchLinkPanels = async (): Promise<SanityLinkPanel[]> => {
+    const query = `*[_type == "linkPanel"]
+    {
+        title,
+        description,
+        "slug": article->slug.current,
+        "type": article->_type,
+        "iconUrl": icon.asset->url
+    }`;
+    return fetchQueryWithCache(query, 'frontpage-link-panels');
 };
 
 const fetchQueryWithCache = async (query: string, cacheKey: string): Promise<any> => {

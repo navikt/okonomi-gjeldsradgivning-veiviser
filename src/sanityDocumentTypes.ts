@@ -42,3 +42,11 @@ export interface SanityFrontPageArticleGroup {
         }
     ];
 }
+
+export interface SanityLinkPanel {
+    title: string;
+    description: object;
+    slug: string;
+    iconUrl?: string;
+    type: string;
+}
