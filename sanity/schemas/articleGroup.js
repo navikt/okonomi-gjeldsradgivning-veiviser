@@ -26,6 +26,13 @@ export default {
             validation: (Rule) => Rule.required(),
         },
         {
+            name: 'metaDescription',
+            title: 'Meta description',
+            type: 'string',
+            description: 'Dette er teksten som vil vises for søkeresultater på eks. Google',
+            validation: (Rule) => Rule.required(),
+        },
+        {
             name: 'icon',
             title: 'Icon',
             type: 'image',

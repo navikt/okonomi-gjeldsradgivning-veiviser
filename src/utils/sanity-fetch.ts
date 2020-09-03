@@ -13,6 +13,7 @@ const articleSpec = `
     title,
     "slug": slug.current,
     description,
+    metaDescription,
     "categories": categories[]->title,
     body[]{
         ...,
@@ -31,6 +32,8 @@ const articleGroupSpec = `
 {
     title,
     "slug": slug.current,
+    description,
+    metaDescription,
     "articles": articles[]-> ${articleSpec},
     "iconUrl": icon.asset->url,
     "links": externalLinks[]->

@@ -18,6 +18,7 @@ const Home = (props: {
         <>
             <Head>
                 <title>Økonomi- og gjeldsrådgivning</title>
+                <meta>Informativ tekst om hva økonomi og gjeldsrådgivning er</meta>
             </Head>
             <Layout title="Økonomi- og gjeldsrådgivning" isFrontPage={true}>
                 <>
@@ -31,7 +32,7 @@ const Home = (props: {
                                         key={article.slug}
                                         className="section-article__article-box section-article__article-box-wrapper"
                                     >
-                                        <img className="section-article__icon" src={article.iconUrl} />
+                                        <img alt="" className="section-article__icon" src={article.iconUrl} />
                                         <div>
                                             <Link href="group/[slug]" as={`group/${articleGroup.slug}#${article.slug}`}>
                                                 <a className="lenke">{article.title}</a>

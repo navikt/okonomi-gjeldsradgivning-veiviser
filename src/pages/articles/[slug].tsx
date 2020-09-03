@@ -15,6 +15,7 @@ const ArticlePage = (props: { article: SanityArticle; statusCode: number }) => {
         <>
             <Head>
                 <title>Økonomi- og gjeldsrådgivning - {props.article.title}</title>
+                <meta>{props.article.metaDescription}</meta>
             </Head>
             <Layout title={props.article.title} isFrontPage={false}>
                 <>
