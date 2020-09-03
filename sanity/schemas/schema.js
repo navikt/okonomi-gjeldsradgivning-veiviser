@@ -7,9 +7,11 @@ import schemaTypes from 'all:part:@sanity/base/schema-type';
 // We import object and document schemas
 import article from './article';
 import articleGroup from './articleGroup';
+import articlePanel from './articlePanel';
 import blockContent from './blockContent';
 import category from './category';
 import externalLink from './externalLink';
+import frontpage from './frontpage';
 import linkPanel from './linkPanel';
 import vimeo from './vimeo';
 
@@ -24,9 +26,11 @@ export default createSchema({
         // in the studio.
         article,
         articleGroup,
+        articlePanel,
         blockContent,
         category,
         externalLink,
+        frontpage,
         linkPanel,
         vimeo,
         // When added to this list, object types can be used as
