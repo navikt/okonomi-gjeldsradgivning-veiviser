@@ -19,7 +19,7 @@ const ArticleGroupPage = (props: { articleGroup: SanityArticleGroup; statusCode:
         <>
             <Head>
                 <title>Økonomi- og gjeldsrådgivning - {props.articleGroup.title}</title>
-                <meta>{props.articleGroup.metaDescription}</meta>
+                <meta name="Description" content={props.articleGroup.metaDescription} />
             </Head>
             <Layout title={props.articleGroup.title} isFrontPage={false}>
                 <div className="group-content">

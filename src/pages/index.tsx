@@ -18,7 +18,7 @@ const Home = (props: {
         <>
             <Head>
                 <title>Økonomi- og gjeldsrådgivning</title>
-                <meta>Informativ tekst om hva økonomi og gjeldsrådgivning er</meta>
+                <meta name="Description" content="Informativ tekst om hva økonomi og gjeldsrådgivning er" />
             </Head>
             <Layout title="Økonomi- og gjeldsrådgivning" isFrontPage={true}>
                 <>
