@@ -59,7 +59,7 @@ export const MobileMenu = (props: { articleGroup: SanityArticleGroup }) => {
                         {props.articleGroup.links?.map((link: SanityLink) => (
                             <Normaltekst key={link.title} className="mobile-menu-content__link">
                                 <Lenke href={link.href}>
-                                    <img src={link.iconUrl} />
+                                    <img alt="" src={link.iconUrl} />
                                     <span>{link.title}</span>
                                 </Lenke>
                             </Normaltekst>
