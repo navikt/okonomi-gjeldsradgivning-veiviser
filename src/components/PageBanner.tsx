@@ -1,18 +1,17 @@
 import { Sidetittel, Systemtittel } from 'nav-frontend-typografi';
 import { HeaderIcon } from '../icons/HeaderIcon';
 
-export const PageBanner = (props: { isFrontPage: boolean }) => {
+export const PageBanner = (props: { isFrontPage: boolean; title: string; iconUrl: string }) => {
     const bannerClassNames = `banner ${props.isFrontPage ? 'banner__frontpage' : 'banner__article'}`;
-    const bannerTitle = 'Økonomi- og gjeldsrådgivning';
     return (
         <div className={bannerClassNames}>
             <div className="banner-content">
                 {props.isFrontPage ? (
-                    <Sidetittel tag="h1">{bannerTitle}</Sidetittel>
+                    <Sidetittel tag="h1">{props.title}</Sidetittel>
                 ) : (
-                    <Systemtittel tag="h1">{bannerTitle}</Systemtittel>
+                    <Systemtittel tag="h1">{props.title}</Systemtittel>
                 )}
-                {props.isFrontPage && <HeaderIcon className="banner-content-icon" />}
+                {props.isFrontPage && <img alt="" src={props.iconUrl} className="banner-content-icon" />}
             </div>
         </div>
     );

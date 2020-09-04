@@ -3,13 +3,15 @@ import {
     SanityArticle,
     SanityArticleGroup,
     SanityFrontPageArticle,
-    SanityFrontPageArticleGroup,
     SanityLinkPanel,
+    SanityFrontpage,
+    SanityArticlePanel,
 } from '../sanityDocumentTypes';
 import { cache } from './cache';
 
 const articleSpec = `
 {
+    "id": _id,
     title,
     "slug": slug.current,
     description,
@@ -30,6 +32,7 @@ const articleSpec = `
 
 const articleGroupSpec = `
 {
+    "id": _id,
     title,
     "slug": slug.current,
     description,
@@ -51,20 +54,10 @@ export const fetchArticleWithSlug = async (slug: string = ''): Promise<SanityArt
     return fetchQueryAndParamWithCache(query, params, `article-${slug}`);
 };
 
-export const fetchArticleGroupsForFrontpage = async (): Promise<SanityFrontPageArticleGroup[]> => {
+export const fetchArticleGroups = async (): Promise<SanityArticleGroup[]> => {
     const query = `*[_type == "articleGroup"]
-    {
-        title,
-        "slug": slug.current,
-        description,
-        "articles": articles[]-> {
-            title,
-            "slug": slug.current,
-            description,
-            "iconUrl": icon.asset->url
-        }
-    }`;
-    return fetchQueryWithCache(query, 'frontpage-article-group');
+    ${articleGroupSpec}`;
+    return fetchQueryWithCache(query, 'sanity-article-groups');
 };
 
 export const fetchArticleGroupWithSlug = async (slug: string = ''): Promise<SanityArticleGroup> => {
@@ -74,27 +67,51 @@ export const fetchArticleGroupWithSlug = async (slug: string = ''): Promise<Sani
     return fetchQueryAndParamWithCache(query, params, `article-group-${slug}`);
 };
 
-export const fetchArticlesForFrontpage = async (): Promise<SanityFrontPageArticle[]> => {
+export const fetchArticles = async (): Promise<SanityArticle[]> => {
     const query = `*[_type == "article"]
-    {
-        title,
-        description,
-        "slug": slug.current,
-        "categories": categories[]->title,
-    }`;
-    return fetchQueryWithCache(query, 'frontpage-articles');
+    ${articleSpec}`;
+    return fetchQueryWithCache(query, 'sanity-articles');
 };
 
 export const fetchLinkPanels = async (): Promise<SanityLinkPanel[]> => {
     const query = `*[_type == "linkPanel"]
     {
+        "id": _id,
         title,
         description,
         "slug": article->slug.current,
         "type": article->_type,
-        "iconUrl": icon.asset->url
+        "iconUrl": icon.asset->url,
     }`;
-    return fetchQueryWithCache(query, 'frontpage-link-panels');
+    return fetchQueryWithCache(query, 'sanity-link-panels');
+};
+
+export const fetchArticlePanels = async (): Promise<SanityArticlePanel[]> => {
+    const query = `*[_type == "articlePanel"]
+    {
+        "id": _id,
+        title,
+        "articles": articles[]->{
+            title,
+            "slug": slug.current,
+            description
+        }
+    }`;
+    return fetchQueryWithCache(query, 'sanity-article-panels');
+};
+
+export const fetchFrontpage = async (): Promise<SanityFrontpage> => {
+    const query = `*[_id == "frontpage"][0]
+    {
+        title,
+        metaDescription,
+        "bannerIconUrl": bannerIcon.asset->url,
+        "panels": panels[]->{
+            _type,
+            _id,
+        },
+    }`;
+    return fetchQueryWithCache(query, 'sanity-frontpage');
 };
 
 const fetchQueryWithCache = async (query: string, cacheKey: string): Promise<any> => {

@@ -1,72 +1,43 @@
-import Link from 'next/link';
 import Head from 'next/head';
-import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
-import Panel from 'nav-frontend-paneler';
 
-import { fetchArticlesForFrontpage, fetchArticleGroupsForFrontpage, fetchLinkPanels } from '../utils/sanity-fetch';
+import { fetchLinkPanels, fetchFrontpage, fetchArticleGroups, fetchArticlePanels } from '../utils/sanity-fetch';
 import { Layout } from '../components/Layout';
-import { SanityFrontPageArticle, SanityFrontPageArticleGroup, SanityLinkPanel } from '../sanityDocumentTypes';
-import { SanityBlockContent } from '../components/SanityBlockContent';
+import { SanityLinkPanel, SanityFrontpage, SanityArticleGroup, SanityArticlePanel } from '../sanityDocumentTypes';
 import { LinkPanel } from '../components/LinkPanel';
+import { ArticleGroupPanel } from '../components/ArticleGroupPanel';
+import { ArticlePanel } from '../components/ArticlePanel';
 
 const Home = (props: {
-    articles: SanityFrontPageArticle[];
-    articleGroups: SanityFrontPageArticleGroup[];
+    frontpage: SanityFrontpage;
+    articlePanels: SanityArticlePanel[];
+    articleGroups: SanityArticleGroup[];
     linkPanels: SanityLinkPanel[];
 }) => {
     return (
         <>
             <Head>
-                <title>Økonomi- og gjeldsrådgivning</title>
-                <meta name="Description" content="Informativ tekst om hva økonomi og gjeldsrådgivning er" />
+                <title>{props.frontpage.title}</title>
+                <meta name="Description" content={props.frontpage.metaDescription} />
             </Head>
-            <Layout title="Økonomi- og gjeldsrådgivning" isFrontPage={true}>
+            <Layout title={props.frontpage.title} isFrontPage={true} bannerIconUrl={props.frontpage.bannerIconUrl}>
                 <>
-                    {props.articleGroups?.map((articleGroup: SanityFrontPageArticleGroup) => (
-                        <Panel key={articleGroup.slug} className="section-panel section-panel__noIcon">
-                            <Innholdstittel>{articleGroup.title}</Innholdstittel>
-                            <SanityBlockContent blocks={articleGroup.description} />
-                            <div className="section-article__wrapper">
-                                {articleGroup.articles?.map((article) => (
-                                    <div
-                                        key={article.slug}
-                                        className="section-article__article-box section-article__article-box-wrapper"
-                                    >
-                                        <img alt="" className="section-article__icon" src={article.iconUrl} />
-                                        <div>
-                                            <Link href="group/[slug]" as={`group/${articleGroup.slug}#${article.slug}`}>
-                                                <a className="lenke">{article.title}</a>
-                                            </Link>
-                                            <Normaltekst>{article.description}</Normaltekst>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </Panel>
-                    ))}
-                    <Panel className="section-panel section-panel__noIcon">
-                        <Innholdstittel>Har du økonomiske bekymringer?</Innholdstittel>
-                        <div className="section-article__wrapper">
-                            {props.articles
-                                .filter((article) => article.categories?.includes('Har du økonomiske bekymringer?'))
-                                .map((article, index) => (
-                                    <div
-                                        key={article.slug}
-                                        className="section-article__article-box section-article__article-box-wrapper"
-                                    >
-                                        <div>
-                                            <Link href="/articles/[slug]" as={`/articles/${article.slug}`}>
-                                                <a className="lenke">{article.title}</a>
-                                            </Link>
-                                            <Normaltekst>{article.description}</Normaltekst>
-                                        </div>
-                                    </div>
-                                ))}
-                        </div>
-                    </Panel>
-                    {props.linkPanels?.map((linkPanel) => (
-                        <LinkPanel linkPanel={linkPanel} key={linkPanel.slug} />
-                    ))}
+                    {props.frontpage.panels.map((panel) => {
+                        if (panel._type === 'articleGroup') {
+                            return props.articleGroups
+                                .filter((articleGroup) => articleGroup.id === panel._id)
+                                .map((articleGroup) => <ArticleGroupPanel articleGroup={articleGroup} />);
+                        }
+                        if (panel._type === 'linkPanel') {
+                            return props.linkPanels
+                                .filter((linkPanel) => linkPanel.id === panel._id)
+                                .map((linkPanel) => <LinkPanel linkPanel={linkPanel} />);
+                        }
+                        if (panel._type === 'articlePanel') {
+                            return props.articlePanels
+                                .filter((articlePanel) => articlePanel.id === panel._id)
+                                .map((articlePanel) => <ArticlePanel articlePanel={articlePanel} />);
+                        }
+                    })}
                 </>
             </Layout>
         </>
@@ -74,14 +45,17 @@ const Home = (props: {
 };
 
 Home.getInitialProps = async (): Promise<{
-    articles: SanityFrontPageArticle[];
-    articleGroups: SanityFrontPageArticleGroup[];
+    frontpage: SanityFrontpage;
+    articlePanels: SanityArticlePanel[];
+    articleGroups: SanityArticleGroup[];
     linkPanels: SanityLinkPanel[];
 }> => {
-    const articles = await fetchArticlesForFrontpage();
-    const articleGroups = await fetchArticleGroupsForFrontpage();
+    const frontpage = await fetchFrontpage();
+    const articlePanels = await fetchArticlePanels();
+    const articleGroups = await fetchArticleGroups();
     const linkPanels = await fetchLinkPanels();
-    return { articles, articleGroups, linkPanels };
+
+    return { frontpage, articlePanels, articleGroups, linkPanels };
 };
 
 export default Home;
