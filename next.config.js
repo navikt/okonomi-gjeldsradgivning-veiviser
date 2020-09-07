@@ -12,6 +12,7 @@ const withTranspileModules = require('next-transpile-modules')(navFrontendModule
 const isProd = process.env.NODE_ENV === 'production';
 module.exports = withTranspileModules(
     withLess({
+        basePath: '/okonomi-og-gjeld',
         target: 'server',
         trailingSlash: false,
         assetPrefix: isProd ? constants.CONTEXT_PATH : '',
