@@ -17,17 +17,32 @@ body {
 }
 
 .breadcrumbs {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 2rem 0 4rem;
-    align-self: flex-start;
-
     &__previous {
         max-width: 250px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+    }
+
+    &__desktop,
+    &__mobile {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 2rem 0 4rem;
+        align-self: flex-start;
+    }
+
+    @media screen and (max-width: 470px) {
+        &__desktop {
+            display: none;
+        }
+    }
+
+    @media screen and (min-width: 471px) {
+        &__mobile {
+            display: none;
+        }
     }
 }
 
@@ -133,7 +148,7 @@ body {
     }
 
     &__article {
-        height: 70px;
+        min-height: 70px;
         justify-content: center;
     }
 }

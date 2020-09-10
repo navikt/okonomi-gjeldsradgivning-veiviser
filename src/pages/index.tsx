@@ -25,17 +25,19 @@ const Home = (props: {
                         if (panel._type === 'articleGroup') {
                             return props.articleGroups
                                 .filter((articleGroup) => articleGroup.id === panel._id)
-                                .map((articleGroup) => <ArticleGroupPanel articleGroup={articleGroup} />);
+                                .map((articleGroup) => (
+                                    <ArticleGroupPanel key={panel._id} articleGroup={articleGroup} />
+                                ));
                         }
                         if (panel._type === 'linkPanel') {
                             return props.linkPanels
                                 .filter((linkPanel) => linkPanel.id === panel._id)
-                                .map((linkPanel) => <LinkPanel linkPanel={linkPanel} />);
+                                .map((linkPanel) => <LinkPanel key={panel._id} linkPanel={linkPanel} />);
                         }
                         if (panel._type === 'articlePanel') {
                             return props.articlePanels
                                 .filter((articlePanel) => articlePanel.id === panel._id)
-                                .map((articlePanel) => <ArticlePanel articlePanel={articlePanel} />);
+                                .map((articlePanel) => <ArticlePanel key={panel._id} articlePanel={articlePanel} />);
                         }
                     })}
                 </>

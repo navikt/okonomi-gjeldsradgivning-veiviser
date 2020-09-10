@@ -10,20 +10,24 @@ export const LinkPanel = (props: { linkPanel: SanityLinkPanel }) => (
         href={`/articles/${props.linkPanel.slug}`}
         linkCreator={(linkProps) => (
             <Link href="/articles/[slug]" as={linkProps.href}>
-                <div className={`section-panel section-panel__noIcon lenkepanel`} style={{ cursor: 'pointer' }}>
-                    {props.linkPanel.iconUrl && (
-                        <div className="section-panel__image">
-                            <img className="section-panel__icon" alt="" src={props.linkPanel.iconUrl} />
-                        </div>
-                    )}
+                <a>
+                    <div className={`section-panel section-panel__noIcon lenkepanel`} style={{ cursor: 'pointer' }}>
+                        {props.linkPanel.iconUrl && (
+                            <div className="section-panel__image">
+                                <img className="section-panel__icon" alt="" src={props.linkPanel.iconUrl} />
+                            </div>
+                        )}
 
-                    <div>
-                        <Innholdstittel>{props.linkPanel.title}</Innholdstittel>
-                        <SanityBlockContent blocks={props.linkPanel.description} />
+                        <div>
+                            <Innholdstittel>{props.linkPanel.title}</Innholdstittel>
+                            <SanityBlockContent blocks={props.linkPanel.description} />
+                        </div>
+                        <span className="lenkepanel__indikator" />
                     </div>
-                    <span className="lenkepanel__indikator" />
-                </div>
+                </a>
             </Link>
         )}
-    />
+    >
+        <></>
+    </LenkepanelBase>
 );
