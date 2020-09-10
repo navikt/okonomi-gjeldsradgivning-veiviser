@@ -28,7 +28,7 @@
         "nav-frontend-paneler-style": "^0.3.21",
         "nav-frontend-typografi": "^2.0.26",
         "nav-frontend-typografi-style": "^1.0.22",
-        "next": "^9.5.2",
+        "next": "^9.5.3",
         "node-cache": "^5.1.2",
         "node-fetch": "^2.6.0",
         "prop-types": "^15.7.2",
