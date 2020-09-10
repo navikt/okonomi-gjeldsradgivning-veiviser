@@ -1,7 +1,5 @@
-const path = require('path');
 const withLess = require('@zeit/next-less');
 const packageJson = require('./package.json');
-const constants = require('./src/constants.json');
 const navFrontendModuler = [];
 Object.keys(packageJson.dependencies).forEach((key) => {
     if (key.startsWith('nav-frontend-')) {
