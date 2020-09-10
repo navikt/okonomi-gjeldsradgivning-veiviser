@@ -1,10 +1,10 @@
 import NodeCache from 'node-cache';
 
 const SECONDS_PER_MINUTE = 60;
-const SECONDS_PER_HOUR = SECONDS_PER_MINUTE * 60;
+const TTL = SECONDS_PER_MINUTE * 5;
 
-// Refresh cache every hour
+// Refresh cache every 5 min
 export const cache = new NodeCache({
-    stdTTL: SECONDS_PER_HOUR,
+    stdTTL: TTL,
     checkperiod: SECONDS_PER_MINUTE,
 });
