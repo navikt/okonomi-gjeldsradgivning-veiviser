@@ -1,9 +1,9 @@
+import { useRouter } from 'next/router';
 import Head from 'next/head';
 import MediaQuery from 'react-responsive';
 
 import { Layout } from '../../components/Layout';
-import { Context } from '../../types';
-import { fetchArticleGroupWithSlug } from '../../utils/sanity-fetch';
+import { fetchArticleGroupWithSlug, getAllArticleGroupsWithSlug } from '../../utils/sanity-fetch';
 import { SanityArticleGroup, SanityArticle } from '../../sanityDocumentTypes';
 import { Article } from '../../components/Article';
 import { Sidebar } from '../../components/Sidebar';
@@ -15,6 +15,19 @@ const ArticleGroupPage = (props: { articleGroup: SanityArticleGroup; statusCode:
     if (props.statusCode === 404) {
         return <Error />;
     }
+
+    const router = useRouter();
+
+    if (router.isFallback) {
+        return (
+            <>
+                <Layout title="" isFrontPage={false}>
+                    <></>
+                </Layout>
+            </>
+        );
+    }
+
     return (
         <>
             <Head>
@@ -41,11 +54,36 @@ const ArticleGroupPage = (props: { articleGroup: SanityArticleGroup; statusCode:
     );
 };
 
-ArticleGroupPage.getInitialProps = async (
-    context: Context
-): Promise<{ articleGroup: SanityArticleGroup; statusCode: number }> => {
-    const articleGroup = await fetchArticleGroupWithSlug(context.query.slug);
-    return { articleGroup: articleGroup, statusCode: Object.keys(articleGroup).length === 0 ? 404 : 200 };
+interface StaticPathProps {
+    paths: { params: { slug: string } }[];
+    fallback: boolean;
+}
+
+export const getStaticPaths = async (): Promise<StaticPathProps> => {
+    const articleGroupSlugs = await getAllArticleGroupsWithSlug();
+
+    return {
+        paths:
+            articleGroupSlugs?.map((article) => ({
+                params: {
+                    slug: article.slug,
+                },
+            })) || [],
+        fallback: true,
+    };
+};
+
+interface StaticProps {
+    props: {
+        articleGroup: SanityArticleGroup;
+        statusCode: number;
+    };
+    revalidate: number;
+}
+
+export const getStaticProps = async (props: { params: { slug: string } }): Promise<StaticProps> => {
+    const articleGroup = await fetchArticleGroupWithSlug(props.params.slug);
+    return { props: { articleGroup, statusCode: Object.keys(articleGroup).length === 0 ? 404 : 200 }, revalidate: 60 };
 };
 
 export default ArticleGroupPage;

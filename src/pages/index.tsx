@@ -46,18 +46,23 @@ const Home = (props: {
     );
 };
 
-Home.getInitialProps = async (): Promise<{
-    frontpage: SanityFrontpage;
-    articlePanels: SanityArticlePanel[];
-    articleGroups: SanityArticleGroup[];
-    linkPanels: SanityLinkPanel[];
-}> => {
+interface StaticProps {
+    props: {
+        frontpage: SanityFrontpage;
+        articlePanels: SanityArticlePanel[];
+        articleGroups: SanityArticleGroup[];
+        linkPanels: SanityLinkPanel[];
+    };
+    revalidate: number;
+}
+
+export const getStaticProps = async (): Promise<StaticProps> => {
     const frontpage = await fetchFrontpage();
     const articlePanels = await fetchArticlePanels();
     const articleGroups = await fetchArticleGroups();
     const linkPanels = await fetchLinkPanels();
 
-    return { frontpage, articlePanels, articleGroups, linkPanels };
+    return { props: { frontpage, articlePanels, articleGroups, linkPanels }, revalidate: 60 };
 };
 
 export default Home;

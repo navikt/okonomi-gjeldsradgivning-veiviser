@@ -2,7 +2,6 @@ import client from './sanity-client';
 import {
     SanityArticle,
     SanityArticleGroup,
-    SanityFrontPageArticle,
     SanityLinkPanel,
     SanityFrontpage,
     SanityArticlePanel,
@@ -46,6 +45,14 @@ const articleGroupSpec = `
         "iconUrl": icon.asset->url,
     }
 }`;
+
+export const getAllArticlesWithSlug = async (): Promise<[{ slug: string }]> => {
+    return await client.fetch(`*[_type == "article"]{ 'slug': slug.current }`);
+};
+
+export const getAllArticleGroupsWithSlug = async (): Promise<[{ slug: string }]> => {
+    return await client.fetch(`*[_type == "articleGroup"]{ 'slug': slug.current }`);
+};
 
 export const fetchArticleWithSlug = async (slug: string = ''): Promise<SanityArticle> => {
     const query = `*[_type == "article" && slug.current == $slug][0]
