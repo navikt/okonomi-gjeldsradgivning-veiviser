@@ -12,6 +12,7 @@ export interface DecoratorParts {
 }
 
 export interface DecoratorParams {
+    siteTitle: string;
     cacheKey: string;
     breadcrumbs: {
         title: string;

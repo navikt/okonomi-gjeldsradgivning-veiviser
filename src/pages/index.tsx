@@ -7,27 +7,28 @@ import { LinkPanel } from '../components/LinkPanel';
 import { ArticleGroupPanel } from '../components/ArticleGroupPanel';
 import { ArticlePanel } from '../components/ArticlePanel';
 import { fetchDecoratorParts, DecoratorParts } from '../utils/dekorator';
+import { getPageProps, PageProps } from '../pageProps';
 
 const Home = (props: {
+    page: PageProps;
     frontpage: SanityFrontpage;
     articlePanels: SanityArticlePanel[];
     articleGroups: SanityArticleGroup[];
     linkPanels: SanityLinkPanel[];
-    decoratorParts: DecoratorParts;
 }) => {
     return (
         <>
             {
                 <Head>
-                    <title>{props.frontpage.title}</title>
-                    <meta name="Description" content={props.frontpage.metaDescription} />
+                    <title>{props.page.appTitle}</title>
+                    <meta name="Description" content={props.page.metaDescription} />
                 </Head>
             }
             <Layout
-                title={props.frontpage.title}
+                title={props.page.title}
                 isFrontPage={true}
                 bannerIconUrl={props.frontpage.bannerIconUrl}
-                decoratorParts={props.decoratorParts}
+                decoratorParts={props.page.decorator}
             >
                 <>
                     {props.frontpage.panels.map((panel) => {
@@ -57,11 +58,11 @@ const Home = (props: {
 
 interface StaticProps {
     props: {
+        page: PageProps;
         frontpage: SanityFrontpage;
         articlePanels: SanityArticlePanel[];
         articleGroups: SanityArticleGroup[];
         linkPanels: SanityLinkPanel[];
-        decoratorParts: DecoratorParts;
     };
     revalidate: number;
 }
@@ -71,9 +72,12 @@ export const getStaticProps = async (): Promise<StaticProps> => {
     const articlePanels = await fetchArticlePanels();
     const articleGroups = await fetchArticleGroups();
     const linkPanels = await fetchLinkPanels();
-    const decoratorParts = await fetchDecoratorParts({ cacheKey: 'index', breadcrumbs: [] });
+    const page = await getPageProps(frontpage.title, frontpage.metaDescription, '/', 'index');
 
-    return { props: { frontpage, articlePanels, articleGroups, linkPanels, decoratorParts }, revalidate: 60 };
+    return {
+        props: { page, frontpage, articlePanels, articleGroups, linkPanels },
+        revalidate: 60,
+    };
 };
 
 export default Home;

@@ -3,20 +3,15 @@ import Head from 'next/head';
 import MediaQuery from 'react-responsive';
 
 import { Layout } from '../../components/Layout';
-import { fetchArticleGroupWithSlug, getAllArticleGroupsWithSlug } from '../../utils/sanity-fetch';
+import { fetchArticleGroupWithSlug, fetchFrontpage, getAllArticleGroupsWithSlug } from '../../utils/sanity-fetch';
 import { SanityArticleGroup, SanityArticle } from '../../sanityDocumentTypes';
 import { Article } from '../../components/Article';
 import { Sidebar } from '../../components/Sidebar';
-import { Breadcrumbs } from '../../components/Breadcrumbs';
 import Error from '../_error';
 import { MobileMenu } from '../../components/MobileMenu';
-import { fetchDecoratorParts, DecoratorParts } from '../../utils/dekorator';
+import { getPageProps, PageProps, StaticPathProps } from '../../pageProps';
 
-const ArticleGroupPage = (props: {
-    articleGroup: SanityArticleGroup;
-    decoratorParts: DecoratorParts;
-    statusCode: number;
-}) => {
+const ArticleGroupPage = (props: { page: PageProps; articleGroup: SanityArticleGroup; statusCode: number }) => {
     if (props.statusCode === 404) {
         return <Error />;
     }
@@ -36,10 +31,12 @@ const ArticleGroupPage = (props: {
     return (
         <>
             <Head>
-                <title>Økonomi- og gjeldsrådgivning - {props.articleGroup.title}</title>
-                <meta name="Description" content={props.articleGroup.metaDescription} />
+                <title>
+                    {props.page.appTitle} - {props.page.title}
+                </title>
+                <meta name="Description" content={props.page.metaDescription} />
             </Head>
-            <Layout title={props.articleGroup.title} isFrontPage={false} decoratorParts={props.decoratorParts}>
+            <Layout title={props.page.appTitle} isFrontPage={false} decoratorParts={props.page.decorator}>
                 <div className="group-content">
                     <MediaQuery minWidth={1000}>
                         <Sidebar articleGroup={props.articleGroup} />
@@ -58,11 +55,6 @@ const ArticleGroupPage = (props: {
     );
 };
 
-interface StaticPathProps {
-    paths: { params: { slug: string } }[];
-    fallback: boolean;
-}
-
 export const getStaticPaths = async (): Promise<StaticPathProps> => {
     const articleGroupSlugs = await getAllArticleGroupsWithSlug();
 
@@ -79,8 +71,8 @@ export const getStaticPaths = async (): Promise<StaticPathProps> => {
 
 interface StaticProps {
     props: {
+        page: PageProps;
         articleGroup: SanityArticleGroup;
-        decoratorParts: DecoratorParts;
         statusCode: number;
     };
     revalidate: number;
@@ -88,12 +80,15 @@ interface StaticProps {
 
 export const getStaticProps = async (props: { params: { slug: string } }): Promise<StaticProps> => {
     const articleGroup = await fetchArticleGroupWithSlug(props.params.slug);
-    const decoratorParts = await fetchDecoratorParts({
-        cacheKey: `group-${articleGroup.slug}`,
-        breadcrumbs: [{ title: articleGroup.title, url: process.env.APP_URL + '/group/' + articleGroup.slug }],
-    });
+    const page = await getPageProps(articleGroup.title, articleGroup.metaDescription, articleGroup.slug, 'group');
+
     return {
-        props: { articleGroup, decoratorParts, statusCode: Object.keys(articleGroup).length === 0 ? 404 : 200 },
+        props: {
+            page,
+            articleGroup,
+            statusCode: Object.keys(articleGroup).length === 0 ? 404 : 200,
+        },
+
         revalidate: 60,
     };
 };
