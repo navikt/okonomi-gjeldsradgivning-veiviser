@@ -6,8 +6,9 @@ import { SanityArticle } from '../../sanityDocumentTypes';
 import { Article } from '../../components/Article';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 import Error from '../_error';
+import { fetchDecoratorParts, DecoratorParts } from '../../utils/dekorator';
 
-const ArticlePage = (props: { article: SanityArticle; statusCode: number }) => {
+const ArticlePage = (props: { article: SanityArticle; decoratorParts: DecoratorParts; statusCode: number }) => {
     if (props.statusCode === 404) {
         return <Error />;
     }
@@ -18,7 +19,7 @@ const ArticlePage = (props: { article: SanityArticle; statusCode: number }) => {
         return (
             <>
                 <Layout title="" isFrontPage={false}>
-                    <></>
+                    <>Loading...</>
                 </Layout>
             </>
         );
@@ -29,11 +30,8 @@ const ArticlePage = (props: { article: SanityArticle; statusCode: number }) => {
                 <title>Økonomi- og gjeldsrådgivning - {props.article.title}</title>
                 <meta name="Description" content={props.article.metaDescription} />
             </Head>
-            <Layout title={props.article.title} isFrontPage={false}>
-                <>
-                    <Breadcrumbs title={props.article.title} />
-                    {props.article ? <Article article={props.article} /> : <div></div>}
-                </>
+            <Layout title={props.article.title} isFrontPage={false} decoratorParts={props.decoratorParts}>
+                <>{props.article ? <Article article={props.article} /> : <div></div>}</>
             </Layout>
         </>
     );
@@ -61,6 +59,7 @@ export const getStaticPaths = async (): Promise<StaticPathProps> => {
 interface StaticProps {
     props: {
         article: SanityArticle;
+        decoratorParts: DecoratorParts;
         statusCode: number;
     };
     revalidate: number;
@@ -68,7 +67,14 @@ interface StaticProps {
 
 export const getStaticProps = async (props: { params: { slug: string } }): Promise<StaticProps> => {
     const article = await fetchArticleWithSlug(props.params.slug);
-    return { props: { article, statusCode: Object.keys(article).length === 0 ? 404 : 200 }, revalidate: 60 };
+    const decoratorParts = await fetchDecoratorParts({
+        cacheKey: `article-${article.slug}`,
+        breadcrumbs: [{ title: article.title, url: process.env.APP_URL + '/articles/' + article.slug }],
+    });
+    return {
+        props: { article, decoratorParts, statusCode: Object.keys(article).length === 0 ? 404 : 200 },
+        revalidate: 60,
+    };
 };
 
 export default ArticlePage;

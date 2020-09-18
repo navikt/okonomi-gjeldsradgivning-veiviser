@@ -1,8 +1,7 @@
 {
     "namespace": "teamdigisos",
-    "ingresses": [
-        "https://okonomi-gjeldsradgivning-veiviser.dev.nav.no/"
-    ],
+    "ingresses": ["https://okonomi-gjeldsradgivning-veiviser.dev.nav.no/"],
     "prometheusEnabled": false,
-    "decoratorUrl": "https://www.nav.no/dekoratoren/"
+    "decoratorUrl": "https://www.nav.no/dekoratoren/",
+    "appUrl": "https://okonomi-gjeldsradgivning-veiviser.dev.nav.no/okonomi-og-gjeld"
 }

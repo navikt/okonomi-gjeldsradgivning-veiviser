@@ -6,18 +6,40 @@ import { cache } from './cache';
 export interface DecoratorParts {
     decoratorHeader: string;
     decoratorFooter: string;
-    decoratorEnv: string;
+    decoratorEnv: { dataSrc: string; scriptUrl: string };
     linkTags: any[];
     scriptTags: any[];
 }
 
-const getDecoratorCached = async () => {
+export interface DecoratorParams {
+    cacheKey: string;
+    breadcrumbs: {
+        title: string;
+        url: string;
+    }[];
+}
+
+const getDecoratorCached = async (decoratorParams: DecoratorParams) => {
     return new Promise((resolve, reject) => {
-        const decorator = cache.get('decorator-cache');
+        const decorator = cache.get(`decorator-cache-${decoratorParams.cacheKey}`);
         if (decorator) {
             resolve(decorator);
         } else {
-            fetch(process.env.DECORATOR_URL + '?feedback=false')
+            const queryParams = {
+                feedback: false,
+                breadcrumbs: [
+                    {
+                        title: 'Økonomi- og gjeldsrådgivinig',
+                        url: process.env.APP_URL,
+                    },
+                ].concat(decoratorParams.breadcrumbs),
+            };
+            const queryString = Object.keys(queryParams)
+                .map((key: string) => {
+                    return key + '=' + JSON.stringify(queryParams[key]);
+                })
+                .join('&');
+            fetch(process.env.DECORATOR_URL + '?' + queryString)
                 .then((res) => res.text())
                 .then((body) => {
                     cache.set('decorator-cache', body);
@@ -33,8 +55,8 @@ const objHash = (obj: any): string => {
     return createHash('md5').update(str).digest('hex');
 };
 
-export const fetchDecoratorParts = async (): Promise<DecoratorParts> => {
-    const decoratorSrc = (await getDecoratorCached()) as string;
+export const fetchDecoratorParts = async (decoratorParams: DecoratorParams): Promise<DecoratorParts> => {
+    const decoratorSrc = (await getDecoratorCached(decoratorParams)) as string;
 
     const $ = cheerio.load(decoratorSrc);
     const scriptTags = [];
@@ -69,7 +91,10 @@ export const fetchDecoratorParts = async (): Promise<DecoratorParts> => {
     return {
         decoratorHeader: $.html($('#decorator-header')),
         decoratorFooter: $.html($('#decorator-footer')),
-        decoratorEnv: $.html($('#decorator-env')),
+        decoratorEnv: {
+            dataSrc: $('#decorator-env').attr('data-src'),
+            scriptUrl: $('#scripts script').attr('src'),
+        },
         scriptTags: scriptTags,
         linkTags: linkTags,
     };

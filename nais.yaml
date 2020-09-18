@@ -47,3 +47,5 @@ spec:
   env:
     - name: DECORATOR_URL
       value: {{decoratorUrl}}
+    - name: APP_URL
+      value: {{appUrl}}

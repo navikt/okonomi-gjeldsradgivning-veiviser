@@ -1,7 +1,5 @@
-@import '~nav-frontend-core/less/core';
-
 body {
-    background-color: @navLysGra;
+    background-color: #e9e7e7;
 }
 
 .app {
@@ -14,36 +12,6 @@ body {
 .content {
     box-sizing: border-box;
     margin: 0rem 1rem 6rem 1rem;
-}
-
-.breadcrumbs {
-    &__previous {
-        max-width: 250px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    &__desktop,
-    &__mobile {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        padding: 2rem 0 4rem;
-        align-self: flex-start;
-    }
-
-    @media screen and (max-width: 470px) {
-        &__desktop {
-            display: none;
-        }
-    }
-
-    @media screen and (min-width: 471px) {
-        &__mobile {
-            display: none;
-        }
-    }
 }
 
 .section-panel {
@@ -140,11 +108,11 @@ body {
     padding: 0 1rem;
     display: flex;
     justify-content: center;
+    margin-bottom: 4rem;
 
     &__frontpage {
         min-height: 190px;
         justify-content: center;
-        margin-bottom: 4rem;
     }
 
     &__article {
@@ -174,9 +142,7 @@ body {
 }
 
 .sidebar {
-    margin-top: 118px;
     margin-right: 1.5rem;
-
     flex-shrink: 0;
 
     .divider {
