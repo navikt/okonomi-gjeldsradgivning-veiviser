@@ -38,18 +38,18 @@
     },
     "devDependencies": {
         "@types/cheerio": "^0.22.21",
-        "@types/jest": "^26.0.13",
-        "@types/node": "^14.6.4",
+        "@types/jest": "^26.0.14",
+        "@types/node": "^14.11.1",
         "@types/node-fetch": "^2.5.7",
         "@types/react": "^16.9.49",
         "@zeit/next-less": "^1.0.1",
         "husky": "^4.3.0",
         "jest": "^26.4.2",
         "less": "^3.12.2",
-        "lint-staged": "^10.3.0",
+        "lint-staged": "^10.4.0",
         "next-transpile-modules": "^4.1.0",
-        "prettier": "^2.1.1",
-        "typescript": "^4.0.2"
+        "prettier": "^2.1.2",
+        "typescript": "^4.0.3"
     },
     "husky": {
         "hooks": {
