@@ -1,6 +1,7 @@
 import { SanityArticleGroup } from '../sanityDocumentTypes';
-import Panel from 'nav-frontend-paneler';
+
 import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
+import Panel from 'nav-frontend-paneler';
 import { SanityBlockContent } from './SanityBlockContent';
 import Link from 'next/link';
 

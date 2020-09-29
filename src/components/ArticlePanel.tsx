@@ -1,7 +1,8 @@
-import { SanityArticlePanel, SanityPanel, SanityArticle } from '../sanityDocumentTypes';
-import Panel from 'nav-frontend-paneler';
-import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
 import Link from 'next/link';
+import { SanityArticlePanel } from '../sanityDocumentTypes';
+
+import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
+import Panel from 'nav-frontend-paneler';
 
 export const ArticlePanel = (props: { articlePanel: SanityArticlePanel }) => (
     <>

@@ -12,5 +12,6 @@ module.exports = withTranspileModules(
         basePath: '/okonomi-og-gjeld',
         target: 'server',
         trailingSlash: false,
+        reactStrictMode: true,
     })
 );

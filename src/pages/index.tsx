@@ -6,7 +6,6 @@ import { SanityLinkPanel, SanityFrontpage, SanityArticleGroup, SanityArticlePane
 import { LinkPanel } from '../components/LinkPanel';
 import { ArticleGroupPanel } from '../components/ArticleGroupPanel';
 import { ArticlePanel } from '../components/ArticlePanel';
-import { fetchDecoratorParts, DecoratorParts } from '../utils/dekorator';
 import { getPageProps, PageProps } from '../pageProps';
 
 const Home = (props: {

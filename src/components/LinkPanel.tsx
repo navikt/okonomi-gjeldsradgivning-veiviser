@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { LenkepanelBase } from 'nav-frontend-lenkepanel';
 import { Innholdstittel } from 'nav-frontend-typografi';
+import { LenkepanelBase } from 'nav-frontend-lenkepanel';
 
 import { SanityBlockContent } from './SanityBlockContent';
 import { SanityLinkPanel } from '../sanityDocumentTypes';
