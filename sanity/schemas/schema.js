@@ -11,6 +11,7 @@ import articlePanel from './articlePanel';
 import blockContent from './blockContent';
 import category from './category';
 import externalLink from './externalLink';
+import fileUpload from './fileUpload';
 import frontpage from './frontpage';
 import linkPanel from './linkPanel';
 import vimeo from './vimeo';
@@ -30,6 +31,7 @@ export default createSchema({
         blockContent,
         category,
         externalLink,
+        fileUpload,
         frontpage,
         linkPanel,
         vimeo,

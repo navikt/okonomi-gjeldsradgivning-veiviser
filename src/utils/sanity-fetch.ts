@@ -24,6 +24,11 @@ const articleSpec = `
                 "slug": @.reference->slug,
                 "type": @.reference->_type,
             },
+            _type == 'fileUpload' => {
+                "assetId": @.reference->file.asset->assetId,
+                "extension": @.reference->file.asset->extension,
+                "originalFilename": @.reference->file.asset->originalFilename,
+            },
         },
     },
     "iconUrl": icon.asset->url,

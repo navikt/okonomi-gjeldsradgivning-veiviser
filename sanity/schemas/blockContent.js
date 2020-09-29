@@ -1,4 +1,5 @@
 import paperclipIcon from 'react-icons/lib/fa/paperclip';
+import fileIcon from 'react-icons/lib/fa/file';
 
 /**
  * This is the schema definition for the rich text fields used for
@@ -78,6 +79,22 @@ export default {
                                 title: 'Open in new tab',
                                 name: 'blank',
                                 type: 'boolean',
+                            },
+                        ],
+                    },
+                    {
+                        title: 'File',
+                        name: 'fileUpload',
+                        type: 'object',
+                        blockEditor: {
+                            icon: fileIcon,
+                        },
+                        fields: [
+                            {
+                                title: 'Reference',
+                                name: 'reference',
+                                type: 'reference',
+                                to: [{ type: 'fileUpload' }],
                             },
                         ],
                     },
