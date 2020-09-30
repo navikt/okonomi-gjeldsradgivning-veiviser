@@ -103,6 +103,8 @@ export const fetchArticlePanels = async (): Promise<SanityArticlePanel[]> => {
     {
         "id": _id,
         title,
+        description,
+        "iconUrl": icon.asset->url,
         "articles": articles[]->{
             title,
             "slug": slug.current,

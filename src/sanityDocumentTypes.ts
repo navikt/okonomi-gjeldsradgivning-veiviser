@@ -76,6 +76,8 @@ export interface SanityLinkPanel {
 export interface SanityArticlePanel {
     id: string;
     title: string;
+    description?: object; // Sanity content
+    iconUrl?: string;
     articles: [
         {
             title: string;

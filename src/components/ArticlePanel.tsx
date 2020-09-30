@@ -3,11 +3,19 @@ import { SanityArticlePanel } from '../sanityDocumentTypes';
 
 import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
 import Panel from 'nav-frontend-paneler';
+import { PanelIcon } from './PanelIcon';
+import { SanityBlockContent } from './SanityBlockContent';
 
 export const ArticlePanel = (props: { articlePanel: SanityArticlePanel }) => (
     <>
-        <Panel className="section-panel section-panel__noIcon">
+        <Panel
+            className={`section-panel ${
+                props.articlePanel.iconUrl ? 'section-panel__withIcon' : 'section-panel__noIcon'
+            }`}
+        >
+            <PanelIcon imageUrl={props.articlePanel.iconUrl} />
             <Innholdstittel>{props.articlePanel.title}</Innholdstittel>
+            {props.articlePanel.description && <SanityBlockContent blocks={props.articlePanel.description} />}
             <div className="section-article__wrapper">
                 {props.articlePanel.articles.map((article) => (
                     <div
