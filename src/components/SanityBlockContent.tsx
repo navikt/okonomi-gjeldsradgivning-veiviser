@@ -15,7 +15,7 @@ const serializers = {
         fileUpload: ({ mark, children }) => {
             const { assetId, extension, originalFilename } = mark;
             return (
-                <Lenke href={`/okonomi-og-gjeld/api/download?file=${assetId}.${extension}&name=${originalFilename}`}>
+                <Lenke href={`/okonomi-og-gjeld/api/download?id=${assetId}.${extension}&dl=${originalFilename}`}>
                     {children}
                 </Lenke>
             );
