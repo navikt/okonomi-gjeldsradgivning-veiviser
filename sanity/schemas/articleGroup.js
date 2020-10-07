@@ -22,8 +22,7 @@ export default {
         {
             name: 'description',
             title: 'Description',
-            type: 'blockContent',
-            validation: (Rule) => Rule.required(),
+            type: 'string',
         },
         {
             name: 'metaDescription',

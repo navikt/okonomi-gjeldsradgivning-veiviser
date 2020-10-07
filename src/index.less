@@ -16,8 +16,16 @@ body {
 
 .section-panel {
     margin-bottom: 2rem;
-    max-width: 792px;
     position: relative;
+
+    &__frontpage {
+        max-width: 58.25rem;
+        padding: 2rem 2rem 1rem 2rem !important;
+    }
+
+    &__article {
+        max-width: 792px;
+    }
 
     @media screen and (min-width: 376px) {
         &__withIcon {
@@ -39,10 +47,6 @@ body {
         margin-top: 0rem;
     }
 
-    h1 {
-        margin-bottom: 1rem;
-    }
-
     &__image {
         background-color: #9bd0b0;
         border-radius: 50%;
@@ -52,6 +56,10 @@ body {
         width: 5rem;
         min-width: 5rem;
         margin-right: 1rem;
+    }
+
+    .typo-ingress {
+        margin: 1rem 0rem;
     }
 
     &__icon {
@@ -67,29 +75,29 @@ body {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        justify-content: space-between;
     }
 
     &__article-box-wrapper {
         display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
-        margin-right: 1rem;
     }
 
-    @media screen and (min-width: 787px) {
+    @media screen and (min-width: 1024px) {
         &__article-box-wrapper {
-            width: 322px;
+            width: 28.375rem;
         }
     }
 
-    @media screen and (max-width: 786px) {
+    @media screen and (max-width: 1023px) {
         &__article-box-wrapper {
             width: 100%;
         }
     }
 
     &__article-box {
-        margin-bottom: 20px;
+        margin-bottom: 1rem;
     }
 }
 
@@ -269,5 +277,35 @@ body {
         margin-top: 1rem;
         margin-bottom: 1rem;
         border: 1px solid #e7e9e9;
+    }
+}
+
+.situation-panel {
+    &__link-panel {
+        width: 26.375rem;
+        padding: 2rem 1rem !important;
+    }
+    @media screen and (min-width: 1024px) {
+        &__link-panel {
+            width: 26.375rem;
+        }
+    }
+
+    @media screen and (max-width: 1023px) {
+        &__link-panel {
+            width: 100%;
+        }
+    }
+
+    .header-wrapper {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .divider {
+        width: 100px;
+        margin: 1rem 0rem 2rem 0rem;
+        border: 1px solid #79706b;
     }
 }

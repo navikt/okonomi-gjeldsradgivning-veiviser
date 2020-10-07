@@ -11,7 +11,7 @@ export const LinkPanel = (props: { linkPanel: SanityLinkPanel }) => (
         linkCreator={(linkProps) => (
             <Link href="/articles/[slug]" as={linkProps.href}>
                 <a
-                    className="lenkepanel lenkepanel-border section-panel section-panel__noIcon"
+                    className="lenkepanel lenkepanel-border section-panel section-panel__frontpage"
                     style={{ cursor: 'pointer' }}
                 >
                     {props.linkPanel.iconUrl && (

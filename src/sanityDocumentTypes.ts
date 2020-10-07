@@ -53,7 +53,7 @@ export interface SanityFrontPageArticleGroup {
     id: string;
     title: string;
     slug: string;
-    description: object; // Sanity content
+    description?: string; // Sanity content
     articles: [
         {
             title: string;
@@ -76,7 +76,7 @@ export interface SanityLinkPanel {
 export interface SanityArticlePanel {
     id: string;
     title: string;
-    description?: object; // Sanity content
+    description?: string; // Sanity content
     iconUrl?: string;
     articles: [
         {

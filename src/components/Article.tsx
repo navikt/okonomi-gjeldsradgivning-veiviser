@@ -8,7 +8,9 @@ export const Article = (props: { article: SanityArticle }) => (
     <article>
         <Panel
             id={props.article.slug}
-            className={`section-panel ${props.article.iconUrl ? 'section-panel__withIcon' : 'section-panel__noIcon'}`}
+            className={`section-panel section-panel__article ${
+                props.article.iconUrl ? 'section-panel__withIcon' : 'section-panel__noIcon'
+            }`}
         >
             <PanelIcon imageUrl={props.article.iconUrl} />
             <Innholdstittel>{props.article.title}</Innholdstittel>

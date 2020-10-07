@@ -5,7 +5,7 @@ import { Layout } from '../components/Layout';
 import { SanityLinkPanel, SanityFrontpage, SanityArticleGroup, SanityArticlePanel } from '../sanityDocumentTypes';
 import { LinkPanel } from '../components/LinkPanel';
 import { ArticleGroupPanel } from '../components/ArticleGroupPanel';
-import { ArticlePanel } from '../components/ArticlePanel';
+import { ArticlePanel } from '../components/SituationPanel';
 import { getPageProps, PageProps } from '../pageProps';
 
 const Home = (props: {
