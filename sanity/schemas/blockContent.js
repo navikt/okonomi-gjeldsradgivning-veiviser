@@ -1,6 +1,5 @@
 import React from 'react';
-import paperclipIcon from 'react-icons/lib/fa/paperclip';
-import fileIcon from 'react-icons/lib/fa/file';
+import { FaFile, FaPaperclip } from 'react-icons/fa';
 
 const IngressRender = (props) => <p style={{ fontSize: '1.25rem' }}>{props.children}</p>;
 
@@ -54,7 +53,7 @@ export default {
                         name: 'internalLink',
                         type: 'object',
                         blockEditor: {
-                            icon: paperclipIcon,
+                            icon: FaPaperclip,
                         },
                         fields: [
                             {
@@ -94,7 +93,7 @@ export default {
                         name: 'fileUpload',
                         type: 'object',
                         blockEditor: {
-                            icon: fileIcon,
+                            icon: FaFile,
                         },
                         fields: [
                             {
