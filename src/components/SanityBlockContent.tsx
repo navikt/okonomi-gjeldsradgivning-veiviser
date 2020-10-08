@@ -3,12 +3,32 @@ import client from '../utils/sanity-client';
 import Lenke from 'nav-frontend-lenker';
 import Link from 'next/link';
 import Vimeo from '@u-wave/react-vimeo';
+import { Ingress, Normaltekst, Undertittel, Element } from 'nav-frontend-typografi';
 
 const serializers = {
     types: {
         vimeo: ({ node }) => {
             const { url } = node;
             return <Vimeo responsive video={url} />;
+        },
+        block: ({ node, children }) => {
+            const style = node.style;
+
+            if (style === 'normal') {
+                return <Normaltekst>{children}</Normaltekst>;
+            }
+            if (style === 'h2') {
+                return <Undertittel>{children}</Undertittel>;
+            }
+            if (style === 'h3') {
+                return <Element tag="h3">{children}</Element>;
+            }
+            if (style === 'ingress') {
+                return <Ingress>{children}</Ingress>;
+            }
+
+            console.error('unhandled style', style);
+            return children;
         },
     },
     marks: {

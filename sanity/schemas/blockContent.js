@@ -1,5 +1,8 @@
+import React from 'react';
 import paperclipIcon from 'react-icons/lib/fa/paperclip';
 import fileIcon from 'react-icons/lib/fa/file';
+
+const IngressRender = (props) => <p style={{ fontSize: '1.25rem' }}>{props.children}</p>;
 
 /**
  * This is the schema definition for the rich text fields used for
@@ -25,11 +28,15 @@ export default {
             // use your content.
             styles: [
                 { title: 'Normal', value: 'normal' },
-                //{title: "H1", value: "h1"},
                 { title: 'H2', value: 'h2' },
                 { title: 'H3', value: 'h3' },
-                { title: 'H4', value: 'h4' },
-                { title: 'Quote', value: 'blockquote' },
+                {
+                    title: 'Ingress',
+                    value: 'ingress',
+                    blockEditor: {
+                        render: IngressRender,
+                    },
+                },
             ],
             lists: [{ title: 'Bullet', value: 'bullet' }],
             // Marks let you mark up inline text in the block editor.
