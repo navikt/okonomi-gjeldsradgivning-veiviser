@@ -6,6 +6,7 @@ import NavFrontendChevron from 'nav-frontend-chevron';
 import { getArticleOffsets, getFirstIdAfterCurrentOffset } from '../utils/scrollUtils';
 import Panel from 'nav-frontend-paneler';
 import Lenke from 'nav-frontend-lenker';
+import Link from 'next/link';
 
 export const MobileMenu = (props: { articleGroup: SanityArticleGroup }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -55,15 +56,11 @@ export const MobileMenu = (props: { articleGroup: SanityArticleGroup }) => {
                     </div>
 
                     <div className="divider" />
-                    <div className="mobile-menu-content__links">
-                        {props.articleGroup.links?.map((link: SanityLink) => (
-                            <Normaltekst key={link.title} className="mobile-menu-content__link">
-                                <Lenke href={link.href}>
-                                    <img alt="" src={link.iconUrl} />
-                                    <span>{link.title}</span>
-                                </Lenke>
-                            </Normaltekst>
-                        ))}
+
+                    <div className="mobile-menu-content__buttons">
+                        <Link href="/artikkel/jeg-har-mote-med-en-gjeldsradgiver">
+                            <a className="knapp">Gjeldsrådgivning fra NAV</a>
+                        </Link>
                     </div>
                 </div>
             </Panel>

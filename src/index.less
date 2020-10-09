@@ -1,3 +1,5 @@
+@import '~nav-frontend-knapper-style';
+
 body {
     background-color: #e9e7e7;
 }
@@ -191,6 +193,11 @@ body {
                 letter-spacing: normal;
             }
         }
+
+        .knapp {
+            padding: 0;
+            width: 100%;
+        }
     }
 }
 
@@ -284,10 +291,14 @@ body {
             &__links {
                 display: flex;
                 flex-direction: row;
-                align-items: center;
                 justify-content: space-between;
-                width: 100%;
                 flex-wrap: wrap;
+            }
+
+            &__buttons {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
             }
 
             &__link {
