@@ -38,12 +38,10 @@ const ArticleGroupPage = (props: { page: PageProps; articleGroup: SanityArticleG
             </Head>
             <Layout title={props.page.appTitle} isFrontPage={false} decoratorParts={props.page.decorator}>
                 <div className="group-content">
-                    <MediaQuery minWidth={1000}>
-                        <Sidebar articleGroup={props.articleGroup} />
-                    </MediaQuery>
-                    <MediaQuery maxWidth={999}>
-                        <MobileMenu articleGroup={props.articleGroup} />
-                    </MediaQuery>
+                    <Sidebar articleGroup={props.articleGroup} />
+
+                    <MobileMenu articleGroup={props.articleGroup} />
+
                     <div className="group-articles">
                         {props.articleGroup.articles?.map((article: SanityArticle) => (
                             <Article key={article.slug} article={article} />

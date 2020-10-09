@@ -24,7 +24,7 @@ export const ArticlePanel = (props: { articlePanel: SanityArticlePanel }) => (
                                 style={{ cursor: 'pointer' }}
                             >
                                 <div>
-                                    <Undertittel tag="h3">{article.title}</Undertittel>
+                                    <Undertittel tag="p">{article.title}</Undertittel>
                                 </div>
                                 <span className="lenkepanel__indikator" />
                             </a>

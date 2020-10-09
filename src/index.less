@@ -58,10 +58,6 @@ body {
         margin-right: 1rem;
     }
 
-    .typo-ingress {
-        margin: 1rem 0rem;
-    }
-
     &__icon {
         min-width: 5rem;
         width: 5rem;
@@ -72,6 +68,11 @@ body {
     .typo-normal {
         margin-block-start: 0.5rem;
         margin-block-end: 0.5rem;
+    }
+
+    .typo-ingress {
+        margin-block-start: 1rem;
+        margin-block-end: 1rem;
     }
 
     .typo-innholdstittel {
@@ -153,35 +154,43 @@ body {
     background-color: #fff;
 }
 
-.sidebar {
-    margin-right: 1.5rem;
-    flex-shrink: 0;
-
-    .divider {
-        width: 100%;
-        margin-top: 2rem;
-        margin-bottom: 2rem;
-        border: 1px solid #e7e9e9;
+@media screen and (max-width: 1024px) {
+    .sidebar {
+        display: none;
     }
 }
 
-.sidebar-panel {
-    width: 280px;
-    position: sticky;
-    top: calc(50% - 315px);
-    margin-bottom: 4rem;
-}
+@media screen and (min-width: 1024px) {
+    .sidebar {
+        margin-right: 1.5rem;
+        flex-shrink: 0;
 
-.sidebar-link {
-    &__link {
-        margin-top: 1rem !important;
-        letter-spacing: 0.2px;
-        white-space: pre-wrap;
-    }
-    &__current {
-        color: black;
-        font-weight: bold;
-        letter-spacing: normal;
+        .divider {
+            width: 100%;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid #e7e9e9;
+        }
+
+        .sidebar-panel {
+            width: 280px;
+            position: sticky;
+            top: calc(50% - 315px);
+            margin-bottom: 4rem;
+        }
+
+        .sidebar-link {
+            &__link {
+                margin-top: 1rem !important;
+                letter-spacing: 0.2px;
+                white-space: pre-wrap;
+            }
+            &__current {
+                color: black;
+                font-weight: bold;
+                letter-spacing: normal;
+            }
+        }
     }
 }
 
@@ -230,66 +239,74 @@ body {
     margin: 0 1rem;
 }
 
-.mobile-menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 10;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: stretch;
-
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.4);
-
-    .panel {
-        border-radius: 0;
-    }
-
-    &__header {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .mobile-menu-content {
+@media screen and (min-width: 1024px) {
+    .mobile-menu {
         display: none;
+    }
+}
 
-        &__open {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            margin-top: 1rem;
+@media screen and (max-width: 1024px) {
+    .mobile-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 10;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: stretch;
+
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.4);
+
+        .panel {
+            border-radius: 0;
         }
 
-        &__links {
+        &__header {
             display: flex;
             flex-direction: row;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
+        }
+
+        .mobile-menu-content {
+            display: none;
+
+            &__open {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                margin-top: 1rem;
+            }
+
+            &__links {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                flex-wrap: wrap;
+            }
+
+            &__link {
+                white-space: nowrap;
+                text-overflow: ellipsis;
+
+                width: 250px;
+
+                overflow: hidden;
+                margin: 0.5rem 0;
+            }
+        }
+
+        .divider {
             width: 100%;
-            flex-wrap: wrap;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid #e7e9e9;
         }
-
-        &__link {
-            white-space: nowrap;
-            text-overflow: ellipsis;
-
-            width: 250px;
-
-            overflow: hidden;
-            margin: 0.5rem 0;
-        }
-    }
-
-    .divider {
-        width: 100%;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-        border: 1px solid #e7e9e9;
     }
 }
 
@@ -308,6 +325,10 @@ body {
         &__link-panel {
             width: 100%;
         }
+    }
+
+    .typo-undertittel {
+        margin: 0;
     }
 
     .header-wrapper {

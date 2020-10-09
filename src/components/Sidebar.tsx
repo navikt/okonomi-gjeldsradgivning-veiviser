@@ -21,6 +21,9 @@ export const Sidebar = (props: { articleGroup: SanityArticleGroup }) => {
         const articleOffsets = getArticleOffsets(props.articleGroup.articles ?? []);
         const currentOffset = window.pageYOffset;
 
+        console.log('articleOffsets', articleOffsets);
+        console.log('currentOffset', currentOffset);
+
         if (articleOffsets) {
             const nextArticle = getFirstIdAfterCurrentOffset(currentOffset, articleOffsets);
             setCurrentArticle(nextArticle);
