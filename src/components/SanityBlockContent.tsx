@@ -65,9 +65,9 @@ const serializers = {
 const getFullPathForInternalLink = (type: string, href: string): string => {
     switch (type) {
         case 'article':
-            return '/articles' + href;
+            return '/artikkel' + href;
         case 'articleGroup':
-            return '/group' + href;
+            return '/artikkelgruppe' + href;
         default:
             return href;
     }

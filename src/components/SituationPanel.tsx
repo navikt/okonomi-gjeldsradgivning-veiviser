@@ -16,9 +16,9 @@ export const ArticlePanel = (props: { articlePanel: SanityArticlePanel }) => (
             {props.articlePanel.articles.map((article) => (
                 <LenkepanelBase
                     key={article.slug}
-                    href={`/articles/${article.slug}`}
+                    href={`/artikkel/${article.slug}`}
                     linkCreator={(linkProps) => (
-                        <Link href="/articles/[slug]" as={linkProps.href}>
+                        <Link href="/artikkel/[slug]" as={linkProps.href}>
                             <a
                                 className="lenkepanel lenkepanel--border situation-panel__link-panel"
                                 style={{ cursor: 'pointer' }}

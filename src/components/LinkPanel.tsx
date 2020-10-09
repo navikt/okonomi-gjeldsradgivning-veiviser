@@ -7,9 +7,9 @@ import { SanityLinkPanel } from '../sanityDocumentTypes';
 
 export const LinkPanel = (props: { linkPanel: SanityLinkPanel }) => (
     <LenkepanelBase
-        href={`/articles/${props.linkPanel.slug}`}
+        href={`/artikkel/${props.linkPanel.slug}`}
         linkCreator={(linkProps) => (
-            <Link href="/articles/[slug]" as={linkProps.href}>
+            <Link href="/artikkel/[slug]" as={linkProps.href}>
                 <a
                     className="lenkepanel lenkepanel-border section-panel section-panel__frontpage"
                     style={{ cursor: 'pointer' }}
