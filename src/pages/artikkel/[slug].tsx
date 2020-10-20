@@ -4,24 +4,18 @@ import { Layout } from '../../components/Layout';
 import Head from 'next/head';
 import { SanityArticle } from '../../sanityDocumentTypes';
 import { Article } from '../../components/Article';
-import Error from '../_error';
+import Custom404 from '../404';
 import { getPageProps, PageProps, StaticPathProps } from '../../pageProps';
+import { LoadingPage } from '../../components/LoadingPage';
 
-const ArticlePage = (props: { page: PageProps; article: SanityArticle; statusCode: number }) => {
-    if (props.statusCode === 404) {
-        return <Error />;
-    }
-
+const ArticlePage = (props: { page?: PageProps; article?: SanityArticle }) => {
     const router = useRouter();
 
     if (router.isFallback) {
-        return (
-            <>
-                <Layout title="" isFrontPage={false}>
-                    <>Loading...</>
-                </Layout>
-            </>
-        );
+        return <LoadingPage page={props.page} />;
+    }
+    if (!router.isFallback && Object.keys(props.article).length === 0) {
+        return <Custom404 page={props.page} />;
     }
     return (
         <>
@@ -54,25 +48,27 @@ export const getStaticPaths = async (): Promise<StaticPathProps> => {
 
 interface StaticProps {
     props: {
-        page: PageProps;
+        page?: PageProps;
         article: SanityArticle;
-        statusCode: number;
     };
     revalidate: number;
 }
 
-export const getStaticProps = async (props: { params: { slug: string } }): Promise<StaticProps> => {
+export async function getStaticProps(props: { params: { slug: string } }): Promise<StaticProps> {
+    const frontpage = await fetchFrontpage();
     const article = await fetchArticleWithSlug(props.params.slug);
-    const page = await getPageProps(article.title, article.metaDescription, article.slug, 'article');
+    const page =
+        Object.keys(article).length > 0
+            ? await getPageProps(article.title, article.metaDescription, article.slug, 'article')
+            : await getPageProps(frontpage.title, frontpage.metaDescription, '/', 'index');
 
     return {
         props: {
             page,
             article,
-            statusCode: Object.keys(article).length === 0 ? 404 : 200,
         },
         revalidate: 60,
     };
-};
+}
 
 export default ArticlePage;
