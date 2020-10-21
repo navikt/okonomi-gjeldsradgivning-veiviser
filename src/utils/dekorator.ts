@@ -40,13 +40,17 @@ const getDecoratorCached = async (decoratorParams: DecoratorParams) => {
                     return key + '=' + JSON.stringify(queryParams[key]);
                 })
                 .join('&');
-            fetch(process.env.DECORATOR_URL + '?' + queryString)
+            const url = process.env.DECORATOR_URL + '?' + queryString;
+            fetch(url)
                 .then((res) => res.text())
                 .then((body) => {
                     cache.set('decorator-cache', body);
                     resolve(body);
                 })
-                .catch((err) => reject(err));
+                .catch((err) => {
+                    console.error('Failed to fetch decorator with params', url, decoratorParams);
+                    reject(err);
+                });
         }
     });
 };
