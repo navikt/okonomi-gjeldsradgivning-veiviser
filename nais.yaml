@@ -36,7 +36,7 @@ spec:
   accessPolicy:
     outbound:
       external:
-        - host: nav.no
+        - host: www.nav.no
         - host: api.sanity.io
         - host: cxql1dm9.api.sanity.io
         - host: apicdn.sanity.io
