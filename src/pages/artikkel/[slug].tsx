@@ -36,11 +36,12 @@ export const getStaticPaths = async (): Promise<StaticPathProps> => {
     const articleSlugs = await getAllArticlesWithSlug();
 
     return {
-        paths: /*articleSlugs?.map((article) => ({
+        paths:
+            articleSlugs?.map((article) => ({
                 params: {
                     slug: article.slug,
                 },
-            })) ||*/ [],
+            })) || [],
         fallback: true,
     };
 };
