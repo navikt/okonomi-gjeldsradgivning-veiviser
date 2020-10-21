@@ -140,7 +140,10 @@ const fetchQueryWithCache = async (query: string, cacheKey: string): Promise<any
                     cache.set(cacheKey, response);
                     resolve(response);
                 })
-                .catch((err) => reject(err));
+                .catch((err) => {
+                    console.error('Klarte ikke hente data fra Sanity med query', query, err);
+                    reject(err);
+                });
         }
     });
 };
@@ -157,7 +160,10 @@ const fetchQueryAndParamWithCache = async (query: string, params: {}, cacheKey: 
                     cache.set(cacheKey, response);
                     resolve(response);
                 })
-                .catch((err) => reject(err));
+                .catch((err) => {
+                    console.error('Klarte ikke hente data fra Sanity med query', query, err);
+                    reject(err);
+                });
         }
     });
 };

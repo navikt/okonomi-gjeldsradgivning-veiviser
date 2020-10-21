@@ -46,7 +46,10 @@ const getDecoratorCached = async (decoratorParams: DecoratorParams) => {
                     cache.set('decorator-cache', body);
                     resolve(body);
                 })
-                .catch((err) => reject(err));
+                .catch((err) => {
+                    console.error('Feilet med å hente dekoratør', err);
+                    reject(err);
+                });
         }
     });
 };
