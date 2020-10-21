@@ -36,12 +36,11 @@ export const getStaticPaths = async (): Promise<StaticPathProps> => {
     const articleSlugs = await getAllArticlesWithSlug();
 
     return {
-        paths:
-            articleSlugs?.map((article) => ({
+        paths: /*articleSlugs?.map((article) => ({
                 params: {
                     slug: article.slug,
                 },
-            })) || [],
+            })) ||*/ [],
         fallback: true,
     };
 };
@@ -61,6 +60,8 @@ export async function getStaticProps(props: { params: { slug: string } }): Promi
         Object.keys(article).length > 0
             ? await getPageProps(article.title, article.metaDescription, article.slug, 'article')
             : await getPageProps(frontpage.title, frontpage.metaDescription, '/', 'index');
+
+    console.log('Revalidating article with slug', props.params.slug);
 
     return {
         props: {

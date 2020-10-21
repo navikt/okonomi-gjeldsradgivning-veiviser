@@ -73,6 +73,7 @@ export const getStaticProps = async (): Promise<StaticProps> => {
     const linkPanels = await fetchLinkPanels();
     const page = await getPageProps(frontpage.title, frontpage.metaDescription, '/', 'index');
 
+    console.log('Revalidating frontpage');
     return {
         props: { page, frontpage, articlePanels, articleGroups, linkPanels },
         revalidate: 60,

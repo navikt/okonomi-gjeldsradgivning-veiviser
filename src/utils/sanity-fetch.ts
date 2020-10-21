@@ -149,11 +149,14 @@ const fetchQueryAndParamWithCache = async (query: string, params: {}, cacheKey: 
     return new Promise((resolve, reject) => {
         const cachedResponse = cache.get(cacheKey);
         if (cachedResponse) {
+            console.log('returning query from cache', query);
             resolve(cachedResponse);
         } else {
             client
                 .fetch(query, params)
                 .then((response) => {
+                    console.log('returning query from fetch', query);
+                    console.log('client.config', client.config());
                     cache.set(cacheKey, response);
                     resolve(response);
                 })
