@@ -23,7 +23,10 @@ const ArticlePage = (props: { page?: PageProps; article?: SanityArticle }) => {
                 <title>
                     {props.page.appTitle} - {props.page.title}
                 </title>
+                <meta property="og:title" content={`${props.page.appTitle} - ${props.page.title}`} />
                 <meta name="Description" content={props.page.metaDescription} />
+                <meta property="og:description" content={props.page.metaDescription} />
+                <meta property="og:locale" content="nb" />
             </Head>
             <Layout title={props.page.appTitle} isFrontPage={false} decoratorParts={props.page.decorator}>
                 <Article article={props.article} />

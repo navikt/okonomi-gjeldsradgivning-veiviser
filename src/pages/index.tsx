@@ -20,7 +20,10 @@ const Home = (props: {
             {
                 <Head>
                     <title>{props.page.appTitle}</title>
+                    <meta property="og:title" content={props.page.appTitle} />
                     <meta name="Description" content={props.page.metaDescription} />
+                    <meta property="og:description" content={props.page.metaDescription} />
+                    <meta property="og:locale" content="nb" />
                 </Head>
             }
             <Layout
