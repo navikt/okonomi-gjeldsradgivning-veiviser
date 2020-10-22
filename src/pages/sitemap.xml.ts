@@ -1,13 +1,14 @@
+import React from 'react';
 import { getAllArticlesWithSlug } from '../utils/sanity-fetch';
 
-const Sitemap = (props: { pages: Page[] }) =>
+const generateSitemap = (pages: Page[]): string =>
     `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-        ${props.pages
+        ${pages
             .map((page) => {
                 return `
                     <url>
-                        <loc>${`https://nav.no/okonomi-og-gjeld${page.path}/${page.slug}`}</loc>
+                        <loc>${`https://www.nav.no/okonomi-og-gjeld${page.path}${page.slug}`}</loc>
                     </url>
                 `;
             })
@@ -15,38 +16,32 @@ const Sitemap = (props: { pages: Page[] }) =>
     </urlset>
     `;
 
-interface StaticProps {
-    props: {
-        pages: Page[];
+class Sitemap extends React.Component {
+    static getInitialProps = async ({ res }) => {
+        const pages: Page[] = [];
+        // Add index to pages
+        pages.push({
+            path: '',
+            slug: '',
+        });
+        const articleSlugs = await getAllArticlesWithSlug();
+        articleSlugs.forEach((slug) => {
+            const page = {
+                path: '/artikkel',
+                slug: '/' + slug.slug,
+            };
+            pages.push(page);
+        });
+
+        res.setHeader('Content-Type', 'text/xml');
+        res.write(generateSitemap(pages));
+        res.end();
     };
-    revalidate: number;
 }
 
 interface Page {
     path: string;
     slug: string;
 }
-
-export const getStaticProps = async (): Promise<StaticProps> => {
-    const pages: Page[] = [];
-    // Add index to pages
-    pages.push({
-        path: '',
-        slug: '',
-    });
-    const articleSlugs = await getAllArticlesWithSlug();
-    articleSlugs.forEach((slug) => {
-        const page = {
-            path: '/artikkel',
-            slug: slug.slug,
-        };
-        pages.push(page);
-    });
-
-    return {
-        props: { pages },
-        revalidate: 60,
-    };
-};
 
 export default Sitemap;
