@@ -41,6 +41,7 @@ spec:
         - host: cxql1dm9.api.sanity.io
         - host: apicdn.sanity.io
         - host: cxql1dm9.apicdn.sanity.io
+        - host: cdn.sanity.io
   ingresses:
 {{#each ingresses}}
     - "{{this}}"
