@@ -22,7 +22,9 @@ export const getPageProps = async (
 ): Promise<PageProps> => {
     const frontPage = await fetchFrontpage();
     const breadcrumbs =
-        pageType === 'index' ? [] : [{ title: title, url: `${process.env.APP_URL}/${pageType}/${slug}` }];
+        pageType === 'index'
+            ? []
+            : [{ title: title.replace('?', ''), url: `${process.env.APP_URL}/${pageType}/${slug}` }];
     const cacheKey = pageType === 'index' ? 'index' : `${pageType}-${slug}`;
 
     const decorator = await fetchDecoratorParts({
