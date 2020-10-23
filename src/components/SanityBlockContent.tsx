@@ -13,7 +13,6 @@ const serializers = {
         },
         block: ({ node, children }) => {
             const style = node.style;
-
             if (style === 'normal') {
                 return <Normaltekst>{children}</Normaltekst>;
             }
@@ -27,7 +26,7 @@ const serializers = {
                 return <Ingress>{children}</Ingress>;
             }
 
-            console.error('unhandled style', style);
+            console.error('unhandled style', node);
             return children;
         },
     },
