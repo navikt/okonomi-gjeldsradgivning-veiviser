@@ -1,5 +1,0 @@
-{
-    "namespace": "teamdigisos",
-    "ingresses": ["https://okonomi-og-gjeldsradgivning-veiviser-q0.dev-sbs.nais.io/"],
-    "prometheusEnabled": false
-}

@@ -46,8 +46,3 @@ spec:
 {{#each ingresses}}
     - "{{this}}"
 {{/each}}
-  env:
-    - name: DECORATOR_URL
-      value: {{decoratorUrl}}
-    - name: APP_URL
-      value: {{appUrl}}
