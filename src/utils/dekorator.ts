@@ -40,8 +40,16 @@ const getDecoratorCached = async (decoratorParams: DecoratorParams) => {
                     return key + '=' + JSON.stringify(queryParams[key]);
                 })
                 .join('&');
-            fetch(process.env.DECORATOR_URL + '?' + queryString)
-                .then((res) => res.text())
+            const dekoratorUrl = process.env.DECORATOR_URL + '?' + queryString;
+            fetch(dekoratorUrl)
+                .then((res) => {
+                    if (!res.ok) {
+                        throw new Error(
+                            `Klarte ikke hente dekoratør fra URL ${dekoratorUrl}. Feilkode: ${res.status}, feilmelding: ${res.statusText}. URL `
+                        );
+                    }
+                    return res.text();
+                })
                 .then((body) => {
                     cache.set('decorator-cache', body);
                     resolve(body);
