@@ -24,7 +24,7 @@ export const getPageProps = async (
     const breadcrumbs =
         pageType === 'index'
             ? []
-            : [{ title: title.replace('?', ''), url: `${process.env.APP_URL}/${pageType}/${slug}` }];
+            : [{ title: encodeURIComponent(title), url: `${process.env.APP_URL}/${pageType}/${slug}` }];
     const cacheKey = pageType === 'index' ? 'index' : `${pageType}-${slug}`;
 
     const decorator = await fetchDecoratorParts({
