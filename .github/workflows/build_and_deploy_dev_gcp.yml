@@ -9,6 +9,8 @@ jobs:
   build:
     name: Build and push docker image
     runs-on: ubuntu-latest
+    outputs:
+      IMAGE_TAG: ${{ steps.docker-tag.outputs.IMAGE_TAG }}
     steps:
       - uses: actions/setup-node@v1
         with:
@@ -71,4 +73,4 @@ jobs:
           VARS: nais/dev/dev-gcp.json
           REF: ${{ github.sha }}
           PRINT_PAYLOAD: true
-          IMAGE: ${{ needs.build.outputs.IMAGE_TAG }}
+          IMAGE: ${{ needs.build.outputs.DOCKER_TAG }}
