@@ -1,5 +1,8 @@
-name: Build and deploy dev-gcp
-on: workflow_dispatch
+name: Build and deploy prod-gcp
+on:
+  push:
+    branches:
+      - "main"
 
 env:
   CI: true
@@ -59,18 +62,18 @@ jobs:
           echo "::set-output name=IMAGE_TAG::${{ env.DOCKER_TAG }}"
 
   deploy:
-    name: Deploy to dev-gcp
+    name: Deploy to prod-gcp
     needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Deploy til GCP
+      - name: Deploy til prod-gcp
         uses: nais/deploy/actions/deploy@v1
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           RESOURCE: nais.yaml
-          CLUSTER: dev-gcp
-          VARS: nais/dev/dev-gcp.json
+          CLUSTER: prod-gcp
+          VARS: nais/prod/prod-gcp.json
           REF: ${{ github.sha }}
           PRINT_PAYLOAD: true
           IMAGE: ${{ needs.build.outputs.IMAGE_TAG }}
