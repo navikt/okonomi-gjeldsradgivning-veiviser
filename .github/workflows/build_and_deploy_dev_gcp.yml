@@ -46,10 +46,10 @@ jobs:
       - name: Check if tag exists
         run: |
           echo "TAG_EXISTS_OUTPUT=$(git describe --exact-match --tags ${{ steps.artifact-version.outputs.version }} 2>&1)" >> $GITHUB_ENV
-          echo ${{ env.TAG_EXISTS_OUTPUT }}
+          echo $env.TAG_EXISTS_OUTPUT
       - name: Echo TAG_EXISTS_OUTPUT
         run: |
-          echo ${{ env.TAG_EXISTS_OUTPUT }}
+          echo $env.TAG_EXISTS_OUTPUT
 #      - name: Create tag and release
 #        if: ${{ env.DOCKER_TAG }} != ${{ env.TAG_EXISTS_OUTPUT }}
 #        uses: actions/create-release@v1.1.3
