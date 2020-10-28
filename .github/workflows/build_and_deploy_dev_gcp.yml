@@ -49,7 +49,7 @@ jobs:
           echo ${{ env.TAG_EXISTS_OUTPUT }}
       - name: Echo TAG_EXISTS_OUTPUT
         run: |
-@          echo ${{ env.TAG_EXISTS_OUTPUT }}
+          echo ${{ env.TAG_EXISTS_OUTPUT }}
 #      - name: Create tag and release
 #        if: ${{ env.DOCKER_TAG }} != ${{ env.TAG_EXISTS_OUTPUT }}
 #        uses: actions/create-release@v1.1.3
