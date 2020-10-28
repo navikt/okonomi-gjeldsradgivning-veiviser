@@ -37,9 +37,9 @@ jobs:
 #          echo ${GITHUB_TOKEN} | docker login -u ${GITHUB_REPOSITORY} --password-stdin docker.pkg.github.com
 #        env:
 #          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#      - name: Create artifact version
-#        id: artifact-version
-#        uses: navikt/sosialhjelp-ci/actions/create-artifact-version@master
+      - name: Create artifact version
+        id: artifact-version
+        uses: navikt/sosialhjelp-ci/actions/create-artifact-version@master
 #      - name: Create docker image tags
 #        run: |
 #          echo "DOCKER_TAG=${{ env.DOCKER_IMAGE }}:${{ steps.artifact-version.outputs.version }}" >> $GITHUB_ENV
