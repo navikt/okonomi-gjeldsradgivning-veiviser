@@ -1,8 +1,5 @@
 name: Build and deploy dev-gcp
-on:
-  push:
-    branches:
-      - "redeploy-fix"
+on: workflow_dispatch
 
 jobs:
   create-tag:
@@ -94,17 +91,14 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Echo output from build step
-        run: |
-          echo ${{ needs.build.outputs.image_tag }}
-#      - uses: actions/checkout@v1
-#      - name: Deploy til GCP
-#        uses: nais/deploy/actions/deploy@v1
-#        env:
-#          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-#          RESOURCE: nais.yaml
-#          CLUSTER: dev-gcp
-#          VARS: nais/dev/dev-gcp.json
-#          REF: ${{ github.sha }}
-#          PRINT_PAYLOAD: true
-#          IMAGE: ${{ needs.build.outputs.image_tag }}
+      - uses: actions/checkout@v1
+      - name: Deploy til GCP
+        uses: nais/deploy/actions/deploy@v1
+        env:
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          RESOURCE: nais.yaml
+          CLUSTER: dev-gcp
+          VARS: nais/dev/dev-gcp.json
+          REF: ${{ github.sha }}
+          PRINT_PAYLOAD: true
+          IMAGE: ${{ needs.build.outputs.image_tag }}
