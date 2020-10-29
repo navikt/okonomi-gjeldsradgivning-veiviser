@@ -21,7 +21,7 @@ jobs:
         run: |
           TAG_EXISTS_OUTPUT=$(git tag --list ${{ steps.artifact-version.outputs.version }})
           echo "TAG_EXISTS_OUTPUT = $TAG_EXISTS_OUTPUT"
-          if [ "${TAG_EXISTS_OUTPUT}" == "${{ steps.artifact-version.outputs.version }}" ] ; then
+          if [ "${{ TAG_EXISTS_OUTPUT }}" == "${{ steps.artifact-version.outputs.version }}" ] ; then
               echo "::set-output name=first_run::${{ false }}"
               echo "FIRST_RUN is false"
           else
