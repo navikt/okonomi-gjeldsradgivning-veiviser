@@ -27,8 +27,10 @@ jobs:
         run: |
           TAG_EXISTS_OUTPUT=$(git tag --list ${{ steps.artifact-version.outputs.version }})
           if [ "$TAG_EXISTS_OUTPUT" == ${{ steps.artifact-version.outputs.version }} ] ; then
+              echo "FIRST_RUN is false"
               echo "::set-output name=FIRST_RUN::${{ false }}"
           else
+              echo "FIRST_RUN is true"
               echo "::set-output name=FIRST_RUN::${{ true }}"
           fi
   build:
@@ -69,7 +71,7 @@ jobs:
 #        run: |
 #          echo "DOCKER_TAG=${{ env.DOCKER_IMAGE }}:${{ steps.artifact-version.outputs.version }}" >> $GITHUB_ENV
       - name: Run if first run
-        if: needs.check-tag.outputs.IS_FIRST_RUN
+        if: needs.check-tag.outputs.IS_FIRST_RUN == 'true'
         run: |
           echo "Job is running"
 #      - name: Create tag and release
