@@ -9,8 +9,26 @@ env:
   DOCKER_IMAGE: docker.pkg.github.com/${{ github.repository }}/${{ github.event.repository.name }}
 
 jobs:
+  check-tag:
+    name: Get git tag for commit
+    outputs:
+      TAG_EXISTS_OUTPUT: ${{ steps.check-tag.outputs.TAG_EXISTS_OUTPUT }}
+      ARTIFACT_VERSION: ${{ steps.artifact-version.outputs.version }}
+    steps:
+      - name: Create artifact version
+        id: artifact-version
+        run: |
+          echo "::set-output name=version::1.1_20200813.1617_84c8e46"
+      #        uses: navikt/sosialhjelp-ci/actions/create-artifact-version@master
+      - name: Check if tag exists
+        id: check-tag
+        run: |
+          echo "TAG_EXISTS_OUTPUT=$(git tag --list ${{ steps.artifact-version.outputs.version }})"
+          echo "::set-output name=TAG_EXISTS_OUTPUT::${{ TAG_EXISTS_OUTPUT }}"
   build:
     name: Build and push docker image
+    needs: check-tag
+    if: needs.check-tag.outputs.TAG_EXISTS_OUTPUT != needs.check-tag.outputs.ARTIFACT_VERSION
     runs-on: ubuntu-latest
     outputs:
       IMAGE_TAG: ${{ steps.docker-tag.outputs.IMAGE_TAG }}
@@ -37,22 +55,17 @@ jobs:
 #          echo ${GITHUB_TOKEN} | docker login -u ${GITHUB_REPOSITORY} --password-stdin docker.pkg.github.com
 #        env:
 #          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Create artifact version
-        id: artifact-version
-        run: |
-         echo "::set-output name=version::1.1_20200813.1617_84c8e46"
+#      - name: Create artifact version
+#        id: artifact-version
+#        run: |
+#         echo "::set-output name=version::1.1_20200813.1617_84c8e46"
 #        uses: navikt/sosialhjelp-ci/actions/create-artifact-version@master
-      - name: Create docker image tags
-        run: |
-          echo "DOCKER_TAG=${{ env.DOCKER_IMAGE }}:${{ steps.artifact-version.outputs.version }}" >> $GITHUB_ENV
-      - name: Check if tag exists
-        run: |
-          echo "TAG_EXISTS_OUTPUT=$(git tag --list ${{ steps.artifact-version.outputs.version }})" >> $GITHUB_ENV
-          echo $env.TAG_EXISTS_OUTPUT
+#      - name: Create docker image tags
+#        run: |
+#          echo "DOCKER_TAG=${{ env.DOCKER_IMAGE }}:${{ steps.artifact-version.outputs.version }}" >> $GITHUB_ENV
       - name: Echo TAG_EXISTS_OUTPUT if not existing
-        if: steps.artifact-version.outputs.version != env.TAG_EXISTS_OUTPUT
         run: |
-          echo $env.TAG_EXISTS_OUTPUT
+          echo "Job is running"
 #      - name: Create tag and release
 #        if: env.DOCKER_TAG != env.TAG_EXISTS_OUTPUT
 #        uses: actions/create-release@v1.1.3
