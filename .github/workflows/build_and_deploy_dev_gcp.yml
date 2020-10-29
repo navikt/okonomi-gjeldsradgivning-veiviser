@@ -22,8 +22,10 @@ jobs:
           TAG_EXISTS_OUTPUT=$(git tag --list ${{ steps.artifact-version.outputs.version }})
           if [ "$TAG_EXISTS_OUTPUT" == "${{ steps.artifact-version.outputs.version }}" ] ; then
               echo "::set-output name=first_run::${{ false }}"
+              echo "FIRST_RUN is false"
           else
               echo "::set-output name=first_run::${{ true }}"
+              echo "FIRST_RUN is true"
           fi
   build:
     name: Build and push docker image
@@ -36,6 +38,9 @@ jobs:
       ARTIFACT_VERSION: ${{ needs.create-tag.outputs.artifact_version }}
       DOCKER_IMAGE: docker.pkg.github.com/${{ github.repository }}/${{ github.event.repository.name }}
     steps:
+      - name: Run if first run
+        run: |
+          echo "Is first run? $env.IS_FIRST_RUN"
       - uses: actions/setup-node@v1
         with:
           node-version: "12.8.1"
