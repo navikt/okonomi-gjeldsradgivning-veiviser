@@ -42,14 +42,15 @@ jobs:
         run: |
          echo "::set-output name=version::1.1_20200813.1617_1cedfs7"
 #        uses: navikt/sosialhjelp-ci/actions/create-artifact-version@master
-#      - name: Create docker image tags
-#        run: |
-#          echo "DOCKER_TAG=${{ env.DOCKER_IMAGE }}:${{ steps.artifact-version.outputs.version }}" >> $GITHUB_ENV
+      - name: Create docker image tags
+        run: |
+          echo "DOCKER_TAG=${{ env.DOCKER_IMAGE }}:${{ steps.artifact-version.outputs.version }}" >> $GITHUB_ENV
       - name: Check if tag exists
         run: |
           echo "TAG_EXISTS_OUTPUT=$(git tag --list ${{ steps.artifact-version.outputs.version }})" >> $GITHUB_ENV
           echo $env.TAG_EXISTS_OUTPUT
-      - name: Echo TAG_EXISTS_OUTPUT
+      - name: Echo TAG_EXISTS_OUTPUT if not existing
+        if: steps.artifact-version.outputs.version != env.TAG_EXISTS_OUTPUT
         run: |
           echo $env.TAG_EXISTS_OUTPUT
 #      - name: Create tag and release
