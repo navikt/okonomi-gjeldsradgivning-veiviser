@@ -1,5 +1,8 @@
 name: Build and deploy dev-gcp
-on: workflow_dispatch
+on:
+  push:
+    branches:
+      - "redeploy-fix"
 
 jobs:
   create-tag:
