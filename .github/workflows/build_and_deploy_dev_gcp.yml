@@ -40,7 +40,7 @@ jobs:
     steps:
       - name: Run if first run
         run: |
-          echo "Is first run? $env.IS_FIRST_RUN"
+          echo "Is first run? ${{ env.IS_FIRST_RUN }}"
       - uses: actions/setup-node@v1
         with:
           node-version: "12.8.1"
@@ -99,7 +99,7 @@ jobs:
     steps:
       - name: Echo output from build step
         run: |
-          echo $${{ needs.build.outputs.image_tag }}
+          echo ${{ needs.build.outputs.image_tag }}
 #      - uses: actions/checkout@v1
 #      - name: Deploy til GCP
 #        uses: nais/deploy/actions/deploy@v1
