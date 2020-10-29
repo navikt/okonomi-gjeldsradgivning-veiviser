@@ -16,6 +16,7 @@ jobs:
       ARTIFACT_VERSION: ${{ steps.artifact-version.outputs.version }}
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v1
       - name: Create artifact version
         id: artifact-version
         run: |
