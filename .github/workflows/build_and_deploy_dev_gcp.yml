@@ -39,6 +39,8 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       IMAGE_TAG: ${{ steps.docker-tag.outputs.IMAGE_TAG }}
+    env:
+      IS_FIRST_RUN: ${{ needs.check-tag.outputs.IS_FIRST_RUN }}
     steps:
       - uses: actions/setup-node@v1
         with:
@@ -71,7 +73,7 @@ jobs:
 #        run: |
 #          echo "DOCKER_TAG=${{ env.DOCKER_IMAGE }}:${{ steps.artifact-version.outputs.version }}" >> $GITHUB_ENV
       - name: Run if first run
-        if: needs.check-tag.outputs.IS_FIRST_RUN == 'true'
+        if: env.IS_FIRST_RUN == 'true'
         run: |
           echo "Job is running"
 #      - name: Create tag and release
