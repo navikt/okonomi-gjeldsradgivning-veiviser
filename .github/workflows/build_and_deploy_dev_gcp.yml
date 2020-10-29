@@ -40,7 +40,7 @@ jobs:
       - name: Create artifact version
         id: artifact-version
         run: |
-         echo "::set-output name=version::1.1_20200813.1617_1cedfs7"
+         echo "::set-output name=version:: 1.1_20200813.1617_84c8e46"
 #        uses: navikt/sosialhjelp-ci/actions/create-artifact-version@master
       - name: Create docker image tags
         run: |
