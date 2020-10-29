@@ -20,7 +20,7 @@ jobs:
       - name: Create artifact version
         id: artifact-version
         run: |
-          echo "::set-output name=version::1.1_20200813.1617_84c8e46"
+          echo "::set-output name=version::1.1_20200813.1617_84c8e46dsf"
       #        uses: navikt/sosialhjelp-ci/actions/create-artifact-version@master
       - name: Check if tag exists
         id: check-tag
