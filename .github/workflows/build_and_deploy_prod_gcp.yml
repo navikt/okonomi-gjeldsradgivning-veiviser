@@ -49,7 +49,7 @@ jobs:
           restore-keys: ${{ runner.os }}-node-
       - name: Copy env-file
         if: env.IS_FIRST_RUN == 'true'
-        run: cp nais/dev/.env .env.local
+        run: cp nais/prod/.env .env.local
       - name: Install dependencies
         if: env.IS_FIRST_RUN == 'true'
         run: npm ci
