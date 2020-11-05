@@ -1,0 +1,5 @@
+{
+    "namespace": "teamdigisos",
+    "ingresses": ["https://www.nav.no/okonomi-og-gjeld/"],
+    "prometheusEnabled": false
+}
