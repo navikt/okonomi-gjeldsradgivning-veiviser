@@ -13,7 +13,7 @@
     },
     "dependencies": {
         "@sanity/block-content-to-react": "^2.0.7",
-        "@sanity/client": "^2.0.1",
+        "@sanity/client": "^2.0.9",
         "@u-wave/react-vimeo": "^0.9.1",
         "cheerio": "^1.0.0-rc.3",
         "classnames": "^2.2.6",
