@@ -85,19 +85,6 @@ export const fetchArticles = async (): Promise<SanityArticle[]> => {
     return fetchQueryWithCache(query, 'sanity-articles');
 };
 
-export const fetchLinkPanels = async (): Promise<SanityLinkPanel[]> => {
-    const query = `*[_type == "linkPanel"]
-    {
-        "id": _id,
-        title,
-        description,
-        "slug": article->slug.current,
-        "type": article->_type,
-        "iconUrl": icon.asset->url,
-    }`;
-    return fetchQueryWithCache(query, 'sanity-link-panels');
-};
-
 export const fetchArticlePanels = async (): Promise<SanityArticlePanel[]> => {
     const query = `*[_type == "articlePanel"]
     {
