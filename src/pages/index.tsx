@@ -1,9 +1,8 @@
 import Head from 'next/head';
 
-import { fetchLinkPanels, fetchFrontpage, fetchArticleGroups, fetchArticlePanels } from '../utils/sanity-fetch';
+import { fetchFrontpage, fetchArticleGroups, fetchArticlePanels } from '../utils/sanity-fetch';
 import { Layout } from '../components/Layout';
-import { SanityLinkPanel, SanityFrontpage, SanityArticleGroup, SanityArticlePanel } from '../sanityDocumentTypes';
-import { LinkPanel } from '../components/LinkPanel';
+import { SanityFrontpage, SanityArticleGroup, SanityArticlePanel } from '../sanityDocumentTypes';
 import { ArticleGroupPanel } from '../components/ArticleGroupPanel';
 import { ArticlePanel } from '../components/SituationPanel';
 import { getPageProps, PageProps } from '../pageProps';
@@ -13,7 +12,6 @@ const Home = (props: {
     frontpage: SanityFrontpage;
     articlePanels: SanityArticlePanel[];
     articleGroups: SanityArticleGroup[];
-    linkPanels: SanityLinkPanel[];
 }) => {
     return (
         <>
@@ -41,11 +39,6 @@ const Home = (props: {
                                     <ArticleGroupPanel key={panel._id} articleGroup={articleGroup} />
                                 ));
                         }
-                        if (panel._type === 'linkPanel') {
-                            return props.linkPanels
-                                .filter((linkPanel) => linkPanel.id === panel._id)
-                                .map((linkPanel) => <LinkPanel key={panel._id} linkPanel={linkPanel} />);
-                        }
                         if (panel._type === 'articlePanel') {
                             return props.articlePanels
                                 .filter((articlePanel) => articlePanel.id === panel._id)
@@ -64,7 +57,6 @@ interface StaticProps {
         frontpage: SanityFrontpage;
         articlePanels: SanityArticlePanel[];
         articleGroups: SanityArticleGroup[];
-        linkPanels: SanityLinkPanel[];
     };
     revalidate: number;
 }
@@ -73,11 +65,10 @@ export const getStaticProps = async (): Promise<StaticProps> => {
     const frontpage = await fetchFrontpage();
     const articlePanels = await fetchArticlePanels();
     const articleGroups = await fetchArticleGroups();
-    const linkPanels = await fetchLinkPanels();
     const page = await getPageProps(frontpage.title, frontpage.metaDescription, '/', 'index');
 
     return {
-        props: { page, frontpage, articlePanels, articleGroups, linkPanels },
+        props: { page, frontpage, articlePanels, articleGroups },
         revalidate: 60,
     };
 };
