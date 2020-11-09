@@ -137,6 +137,9 @@ const fetchQueryWithCache = async (query: string, cacheKey: string): Promise<any
             client
                 .fetch(query)
                 .then((response) => {
+                    if (response && Object.keys(response).length === 0) {
+                        console.log(`Spørring mot Sanity er tom. cacheKey: ${cacheKey}`);
+                    }
                     cache.set(cacheKey, response);
                     resolve(response);
                 })
@@ -157,6 +160,11 @@ const fetchQueryAndParamWithCache = async (query: string, params: {}, cacheKey: 
             client
                 .fetch(query, params)
                 .then((response) => {
+                    if (response && Object.keys(response).length === 0) {
+                        console.log(
+                            `Spørring mot Sanity er tom. cacheKey: ${cacheKey}, params: ${JSON.stringify(params)}`
+                        );
+                    }
                     cache.set(cacheKey, response);
                     resolve(response);
                 })
