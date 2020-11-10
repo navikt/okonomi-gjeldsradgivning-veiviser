@@ -1,5 +1,8 @@
-name: Build and deploy dev-gcp
-on: workflow_dispatch
+name: test fetch
+on:
+  push:
+    branches:
+      - "git-fetch-in-action"
 
 jobs:
   create-tag:
