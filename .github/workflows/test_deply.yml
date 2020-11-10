@@ -1,0 +1,48 @@
+name: Build and deploy dev-gcp
+on: workflow_dispatch
+
+jobs:
+  create-tag:
+    name: Get git tag for commit
+    runs-on: ubuntu-latest
+    outputs:
+      is_first_run: ${{ steps.check-tag.outputs.first_run }}
+      artifact_version: ${{ steps.artifact-version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Create artifact version
+        id: artifact-version
+        run: |
+          echo "::set-output name=version::1.1_20201109.1126_79d5617"
+      - name: Check if tag exists
+        id: check-tag
+        shell: bash
+        run: |
+          TAG_EXISTS_OUTPUT=$(git tag --list ${{ steps.artifact-version.outputs.version }})
+          ARTIFACT=${{ steps.artifact-version.outputs.version }}
+          if [ "$TAG_EXISTS_OUTPUT" == "$ARTIFACT" ] ; then
+              echo "::set-output name=first_run::${{ false }}"
+          else
+              echo "::set-output name=first_run::${{ true }}"
+          fi
+  build:
+    name: Build and push docker image
+    needs: create-tag
+    runs-on: ubuntu-latest
+    outputs:
+      image_tag: ${{ steps.docker-tag.outputs.image_tag }}
+    env:
+      IS_FIRST_RUN: ${{ needs.create-tag.outputs.is_first_run }}
+      ARTIFACT_VERSION: ${{ needs.create-tag.outputs.artifact_version }}
+      DOCKER_IMAGE: docker.pkg.github.com/${{ github.repository }}/${{ github.event.repository.name }}
+    steps:
+      - name: Echo
+        run: |
+          echo "Is first run? ${{ env.IS_FIRST_RUN }}".
+      - name: Output docker image tag
+        if: env.IS_FIRST_RUN == 'true'
+        id: docker-tag
+        run: |
+          echo "first run"
