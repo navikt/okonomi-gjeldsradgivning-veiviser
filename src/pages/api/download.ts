@@ -4,6 +4,9 @@ import { cache } from '../../utils/cache';
 import sanityConfig from '../../../sanity/sanity.json';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+    console.log(
+        `Spørring etter fil med id ${req.query['id']} og filnavn ${req.query['dl']} fra Sanity. Referer er ${req.headers.referer}`
+    );
     const file = await cache.get(`download-${req.query['id']}`);
     if (file) {
         res.setHeader('Content-Disposition', `attachment; filename="${req.query['dl']}"`);
