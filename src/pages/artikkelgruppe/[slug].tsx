@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import MediaQuery from 'react-responsive';
 
 import { Layout } from '../../components/Layout';
 import { fetchArticleGroupWithSlug, fetchFrontpage, getAllArticleGroupsWithSlug } from '../../utils/sanity-fetch';
