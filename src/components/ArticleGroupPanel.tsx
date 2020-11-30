@@ -12,7 +12,7 @@ export const ArticleGroupPanel = (props: { articleGroup: SanityArticleGroup }) =
             {props.articleGroup.articles?.map((article) => (
                 <div key={article.slug} className="section-article__article-box section-article__article-box-wrapper">
                     <div>
-                        <Link href="artikkel/[slug]" as={`artikkel/${article.slug}`}>
+                        <Link href="/artikkel/[slug]" as={`/artikkel/${article.slug}`}>
                             <a className="lenke">{article.title}</a>
                         </Link>
                         <Normaltekst>{article.description}</Normaltekst>
