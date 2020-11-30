@@ -1,5 +1,5 @@
 FROM navikt/common:0.1 AS navikt-common
-FROM node:12.2.0-alpine
+FROM node:12-alpine
 
 COPY --from=navikt-common /init-scripts /init-scripts
 COPY --from=navikt-common /entrypoint.sh /entrypoint.sh
