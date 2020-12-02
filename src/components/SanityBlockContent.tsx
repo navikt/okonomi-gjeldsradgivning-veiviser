@@ -32,12 +32,8 @@ const serializers = {
     },
     marks: {
         fileUpload: ({ mark, children }) => {
-            const { assetId, extension, originalFilename } = mark;
-            return (
-                <Lenke href={`/okonomi-og-gjeld/api/download?id=${assetId}.${extension}&dl=${originalFilename}`}>
-                    {children}
-                </Lenke>
-            );
+            const { slug } = mark;
+            return <Lenke href={`/okonomi-og-gjeld/api/download/${slug}`}>{children}</Lenke>;
         },
         link: ({ mark, children }) => {
             const { blank, href } = mark;
