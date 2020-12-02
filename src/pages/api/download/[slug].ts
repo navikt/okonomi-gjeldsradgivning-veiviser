@@ -12,42 +12,31 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const file = await cache.get(`download-${slug}`);
 
-    return new Promise((resolve) => {
-        // @ts-ignore
-        fetchFileWithSlug(slug)
-            .then((response) => {
-                if (file) {
-                    res.setHeader('Content-Disposition', `attachment; filename="${response.originalFilename}"`);
-                    res.send(file);
-                    resolve();
+    // @ts-ignore
+    const fileUpload = await fetchFileWithSlug(slug);
+
+    if (file) {
+        res.setHeader('Content-Disposition', `attachment; filename="${fileUpload.originalFilename}"`);
+        res.send(file);
+    } else {
+        await fetch(
+            `https://cdn.sanity.io/files/${sanityConfig.api.projectId}/${sanityConfig.api.dataset}/${fileUpload.assetId}.${fileUpload.extension}?dl=`
+        )
+            .then((fetchResponse) => {
+                if (fetchResponse.ok) {
+                    return fetchResponse.buffer();
                 } else {
-                    fetch(
-                        `https://cdn.sanity.io/files/${sanityConfig.api.projectId}/${sanityConfig.api.dataset}/${response.assetId}.${response.extension}?dl=`
-                    )
-                        .then((fetchResponse) => {
-                            if (fetchResponse.ok) {
-                                return fetchResponse.buffer();
-                            } else {
-                                throw new Error(`File not found, slug: ${slug}`);
-                            }
-                        })
-                        .then((buffer) => {
-                            cache.set(`download-${slug}`, buffer);
-                            res.setHeader('Content-Disposition', `attachment; filename="${response.originalFilename}"`);
-                            res.send(buffer);
-                            resolve();
-                        })
-                        .catch((e) => {
-                            console.warn(e);
-                            res.redirect('/okonomi-og-gjeld/filen-finnes-ikke');
-                            resolve();
-                        });
+                    throw new Error(`File not found, slug: ${slug}`);
                 }
+            })
+            .then((buffer) => {
+                cache.set(`download-${slug}`, buffer);
+                res.setHeader('Content-Disposition', `attachment; filename="${fileUpload.originalFilename}"`);
+                res.send(buffer);
             })
             .catch((e) => {
                 console.warn(e);
                 res.redirect('/okonomi-og-gjeld/filen-finnes-ikke');
-                resolve();
             });
-    });
+    }
 }
