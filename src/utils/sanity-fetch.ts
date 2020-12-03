@@ -5,6 +5,7 @@ import {
     SanityLinkPanel,
     SanityFrontpage,
     SanityArticlePanel,
+    SanityFileUpload,
 } from '../sanityDocumentTypes';
 import { cache } from './cache';
 
@@ -25,9 +26,7 @@ const articleSpec = `
                 "type": @.reference->_type,
             },
             _type == 'fileUpload' => {
-                "assetId": @.reference->file.asset->assetId,
-                "extension": @.reference->file.asset->extension,
-                "originalFilename": @.reference->file.asset->originalFilename,
+                "slug": @.reference->slug.current,
             },
         },
     },
@@ -50,6 +49,15 @@ const articleGroupSpec = `
         "iconUrl": icon.asset->url,
     }
 }`;
+
+const fileUploadSpec = `
+{
+    "assetId": file.asset->assetId,
+    "extension": file.asset->extension,
+    "originalFilename": file.asset->originalFilename,
+    "slug": slug.current,
+}
+`;
 
 export const getAllArticlesWithSlug = async (): Promise<[{ slug: string }]> => {
     return await client.fetch(`*[_type == "article"]{ 'slug': slug.current }`);
@@ -99,6 +107,13 @@ export const fetchArticlePanels = async (): Promise<SanityArticlePanel[]> => {
         }
     }`;
     return fetchQueryWithCache(query, 'sanity-article-panels');
+};
+
+export const fetchFileWithSlug = async (slug: string = ''): Promise<SanityFileUpload> => {
+    const query = `*[_type == "fileUpload" && slug.current == $slug][0]
+    ${fileUploadSpec}`;
+    const params = { slug: slug };
+    return fetchQueryAndParamWithCache(query, params, `fileupload-${slug}`);
 };
 
 export const fetchFrontpage = async (): Promise<SanityFrontpage> => {

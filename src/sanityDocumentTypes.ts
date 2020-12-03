@@ -87,6 +87,13 @@ export interface SanityArticlePanel {
     ];
 }
 
+export interface SanityFileUpload {
+    assetId: string;
+    extension: string;
+    originalFilename: string;
+    slug: string;
+}
+
 export interface SanityPanel {
     _id: string;
     _type: SanityDocumentType;
