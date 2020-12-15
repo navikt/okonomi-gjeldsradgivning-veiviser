@@ -28,6 +28,7 @@ const getDecoratorCached = async (decoratorParams: DecoratorParams) => {
         } else {
             const queryParams = {
                 feedback: false,
+                chatbot: false,
                 breadcrumbs: [
                     {
                         title: 'Økonomi- og gjeldsrådgivinig',
