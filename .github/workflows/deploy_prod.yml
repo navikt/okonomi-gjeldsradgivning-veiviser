@@ -27,7 +27,7 @@ jobs:
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           RESOURCE: nais.yaml
-          CLUSTER: prod-sbs
+          CLUSTER: prod-gcp
           VARS: nais/prod/prod-gcp.json
           REF: ${{ github.sha }}
           PRINT_PAYLOAD: true
