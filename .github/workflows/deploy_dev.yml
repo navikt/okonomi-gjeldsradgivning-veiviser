@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       config-file-name:
-        description: 'Config-fil (uten .json) som skal deployes
+        description: 'Config-fil (uten .json) som skal deployes'
         required: true
         default: 'dev-gcp'
       cluster:
