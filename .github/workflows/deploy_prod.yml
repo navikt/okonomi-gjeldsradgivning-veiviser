@@ -2,7 +2,7 @@ name: Deploy til prod-gcp
 on:
   workflow_run:
     workflows: ["Build image"]    # Venter på at bygget for prod er ferdig
-    branches: [master]
+    branches: [main]
     types:
       - completed
   repository_dispatch:
