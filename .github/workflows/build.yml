@@ -21,8 +21,12 @@ jobs:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
           restore-keys: ${{ runner.os }}-node-
-      - name: Copy env-file
+      - name: Copy env-file for prod
+        if: github.ref == 'refs/heads/main'
         run: cp nais/prod/.env .env.local
+      - name: Copy env-file for dev
+        if: github.ref != 'refs/heads/main'
+        run: cp nais/dev/.env .env.local
       - name: Install dependencies
         run: npm ci
       - name: Run tests
