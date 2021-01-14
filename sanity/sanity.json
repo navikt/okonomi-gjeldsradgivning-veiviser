@@ -1,8 +1,27 @@
 {
     "root": true,
     "project": {
-        "name": "Veiviser"
+        "name": "Veiviser for økonomi- og gjeldsrådgivning"
     },
+    "__experimental_spaces": [
+        {
+            "name": "production",
+            "title": "Prod",
+            "default": true,
+            "api": {
+                "projectId": "cxql1dm9",
+                "dataset": "production"
+            }
+        },
+        {
+            "name": "test",
+            "title": "Test",
+            "api": {
+                "projectId": "cxql1dm9",
+                "dataset": "test"
+            }
+        }
+    ],
     "api": {
         "projectId": "cxql1dm9",
         "dataset": "production"
