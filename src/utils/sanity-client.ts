@@ -3,6 +3,6 @@ import sanityConfig from '../../sanity/sanity.json';
 
 export default sanityClient({
     projectId: sanityConfig.api.projectId,
-    dataset: sanityConfig.api.dataset,
+    dataset: process.env.SANITY_DATASET,
     useCdn: true,
 });
