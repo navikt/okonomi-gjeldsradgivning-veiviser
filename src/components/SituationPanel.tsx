@@ -23,9 +23,9 @@ export const ArticlePanel = (props: { articlePanel: SanityArticlePanel }) => (
                                 className="lenkepanel lenkepanel--border situation-panel__link-panel"
                                 style={{ cursor: 'pointer' }}
                             >
-                                <div>
-                                    <Undertittel tag="p">{article.title}</Undertittel>
-                                </div>
+                                <Undertittel className="lenkepanel__heading" tag="p">
+                                    {article.title}
+                                </Undertittel>
                                 <span className="lenkepanel__indikator" />
                             </a>
                         </Link>
