@@ -9,7 +9,6 @@ export function reportWebVitals(metric: NextWebVitalsMetric) {
 
 const CustomApp = ({ Component, pageProps }: AppProps) => {
     useEffect(() => {
-        console.log('Init amplitude');
         initAmplitude();
     }, []);
 

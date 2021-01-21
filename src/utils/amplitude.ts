@@ -14,7 +14,6 @@ export const initAmplitude = () => {
 };
 
 export function logAmplitudeEvent(eventName: string, eventData?: any): void {
-    console.log(eventName, eventData);
     setTimeout(() => {
         try {
             if (amplitude) {
