@@ -4,6 +4,7 @@ import Lenke from 'nav-frontend-lenker';
 import Link from 'next/link';
 import Vimeo from '@u-wave/react-vimeo';
 import { Ingress, Normaltekst, Undertittel, Element } from 'nav-frontend-typografi';
+import { logAmplitudeEvent } from '../utils/amplitude';
 
 const serializers = {
     types: {
@@ -37,12 +38,22 @@ const serializers = {
         },
         link: ({ mark, children }) => {
             const { blank, href } = mark;
+            const handleOnClick = (event: any) => {
+                event.preventDefault();
+                logAmplitudeEvent('Trykk på ekstern lenke', {
+                    tittel: children[0],
+                    url: href,
+                });
+                window.location.assign(href);
+            };
             return blank ? (
-                <Lenke href={href} target="_blank" rel="noopener">
+                <Lenke href={href} onClick={(event) => handleOnClick(event)} target="_blank" rel="noopener">
                     {children}
                 </Lenke>
             ) : (
-                <Lenke href={href}>{children}</Lenke>
+                <Lenke href={href} onClick={(event) => handleOnClick(event)}>
+                    {children}
+                </Lenke>
             );
         },
         internalLink: ({ mark, children }) => {

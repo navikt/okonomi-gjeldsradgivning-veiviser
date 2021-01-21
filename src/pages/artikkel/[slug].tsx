@@ -17,6 +17,7 @@ const ArticlePage = (props: { page?: PageProps; article?: SanityArticle }) => {
     if (!router.isFallback && Object.keys(props.article).length === 0) {
         return <Custom404 page={props.page} />;
     }
+
     return (
         <>
             <Head>
