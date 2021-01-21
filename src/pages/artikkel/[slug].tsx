@@ -1,12 +1,13 @@
-import { useRouter } from 'next/router';
-import { fetchArticleWithSlug, fetchFrontpage, getAllArticlesWithSlug } from '../../utils/sanity-fetch';
-import { Layout } from '../../components/Layout';
 import Head from 'next/head';
-import { SanityArticle } from '../../sanityDocumentTypes';
+import { useRouter } from 'next/router';
+
 import { Article } from '../../components/Article';
-import Custom404 from '../404';
-import { getPageProps, PageProps, StaticPathProps } from '../../pageProps';
+import { Layout } from '../../components/Layout';
 import { LoadingPage } from '../../components/LoadingPage';
+import { getPageProps, PageProps, StaticPathProps } from '../../pageProps';
+import { SanityArticle } from '../../sanityDocumentTypes';
+import { fetchArticleWithSlug, fetchFrontpage, getAllArticlesWithSlug } from '../../utils/sanity-fetch';
+import Custom404 from '../404';
 
 const ArticlePage = (props: { page?: PageProps; article?: SanityArticle }) => {
     const router = useRouter();
@@ -17,13 +18,14 @@ const ArticlePage = (props: { page?: PageProps; article?: SanityArticle }) => {
     if (!router.isFallback && Object.keys(props.article).length === 0) {
         return <Custom404 page={props.page} />;
     }
+
     return (
         <>
             <Head>
                 <title>
-                    {props.page.appTitle} - {props.page.title}
+                    {props.page.title} - {props.page.appTitle}
                 </title>
-                <meta property="og:title" content={`${props.page.appTitle} - ${props.page.title}`} />
+                <meta property="og:title" content={`${props.page.title} - ${props.page.appTitle}`} />
                 <meta name="Description" content={props.page.metaDescription} />
                 <meta property="og:description" content={props.page.metaDescription} />
                 <meta property="og:locale" content="nb" />
