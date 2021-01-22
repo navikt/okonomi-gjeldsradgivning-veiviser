@@ -17,7 +17,7 @@ export const Layout = (props: {
             <Head>
                 {props.decoratorParts?.linkTags.map((attrs, index) => {
                     attrs.key = 'props.linkTags' + index;
-                    return <link {...attrs} />;
+                    return <link key={index} {...attrs} />;
                 })}
             </Head>
             <DecoratorHeader html={props.decoratorParts?.decoratorHeader} />

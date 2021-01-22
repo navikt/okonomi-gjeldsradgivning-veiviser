@@ -32,7 +32,7 @@ interface StaticProps {
     };
 }
 
-export async function getStaticProps(props: { params: { slug: string } }): Promise<StaticProps> {
+export async function getStaticProps(): Promise<StaticProps> {
     const frontpage = await fetchFrontpage();
     const page = await getPageProps(frontpage.title, frontpage.metaDescription, '/', 'index');
 

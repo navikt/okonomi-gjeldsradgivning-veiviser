@@ -1,4 +1,4 @@
-import {NextPageContext} from "next";
+import { NextPageContext } from 'next';
 
 export interface Context extends NextPageContext {
     query: {
