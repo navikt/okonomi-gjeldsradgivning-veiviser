@@ -109,7 +109,7 @@ export const fetchArticlePanels = async (): Promise<SanityArticlePanel[]> => {
     return fetchQueryWithCache(query, 'sanity-article-panels');
 };
 
-export const fetchFileWithSlug = async (slug = ''): Promise<SanityFileUpload> => {
+export const fetchFileWithSlug = async (slug: string | string[] = ''): Promise<SanityFileUpload> => {
     const query = `*[_type == "fileUpload" && slug.current == $slug][0]
     ${fileUploadSpec}`;
     const params = { slug: slug };
