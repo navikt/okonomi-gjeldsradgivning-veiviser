@@ -11,14 +11,13 @@ export const DecoratorEnv = (props: { env?: { dataSrc: string; scriptUrl: string
         return () => {
             const ps = document.querySelector('script[src$="ps.js"]');
             if (ps) {
-                /* @ts-ignore */
-                window.psPlugin = undefined;
+                window['psPlugin'] = undefined;
                 document.body.removeChild(ps);
             }
 
             document.body.removeChild(script);
         };
-    }, []);
+    }, [props.env?.scriptUrl]);
 
     return (
         <div id="scripts">

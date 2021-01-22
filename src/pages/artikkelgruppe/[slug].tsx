@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 
 import { Layout } from '../../components/Layout';
-import { fetchArticleGroupWithSlug, fetchFrontpage, getAllArticleGroupsWithSlug } from '../../utils/sanity-fetch';
+import { fetchArticleGroupWithSlug, getAllArticleGroupsWithSlug } from '../../utils/sanity-fetch';
 import { SanityArticleGroup, SanityArticle } from '../../sanityDocumentTypes';
 import { Article } from '../../components/Article';
 import { Sidebar } from '../../components/Sidebar';
@@ -11,11 +11,11 @@ import { MobileMenu } from '../../components/MobileMenu';
 import { getPageProps, PageProps, StaticPathProps } from '../../pageProps';
 
 const ArticleGroupPage = (props: { page: PageProps; articleGroup: SanityArticleGroup; statusCode: number }) => {
+    const router = useRouter();
+
     if (props.statusCode === 404) {
         return <Error />;
     }
-
-    const router = useRouter();
 
     if (router.isFallback) {
         return (

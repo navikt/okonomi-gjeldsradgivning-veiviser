@@ -12,7 +12,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const file = await cache.get(`download-${slug}`);
 
-    // @ts-ignore
     const fileUpload = await fetchFileWithSlug(slug);
 
     if (file) {

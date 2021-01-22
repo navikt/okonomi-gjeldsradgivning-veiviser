@@ -67,7 +67,7 @@ export const getAllArticleGroupsWithSlug = async (): Promise<[{ slug: string }]>
     return await client.fetch(`*[_type == "articleGroup"]{ 'slug': slug.current }`);
 };
 
-export const fetchArticleWithSlug = async (slug: string = ''): Promise<SanityArticle> => {
+export const fetchArticleWithSlug = async (slug = ''): Promise<SanityArticle> => {
     const query = `*[_type == "article" && slug.current == $slug][0]
     ${articleSpec}`;
     const params = { slug: slug };
@@ -80,7 +80,7 @@ export const fetchArticleGroups = async (): Promise<SanityArticleGroup[]> => {
     return fetchQueryWithCache(query, 'sanity-article-groups');
 };
 
-export const fetchArticleGroupWithSlug = async (slug: string = ''): Promise<SanityArticleGroup> => {
+export const fetchArticleGroupWithSlug = async (slug = ''): Promise<SanityArticleGroup> => {
     const query = `*[_type == "articleGroup" && slug.current == $slug][0]
     ${articleGroupSpec}`;
     const params = { slug: slug };
@@ -109,7 +109,7 @@ export const fetchArticlePanels = async (): Promise<SanityArticlePanel[]> => {
     return fetchQueryWithCache(query, 'sanity-article-panels');
 };
 
-export const fetchFileWithSlug = async (slug: string = ''): Promise<SanityFileUpload> => {
+export const fetchFileWithSlug = async (slug: string | string[] = ''): Promise<SanityFileUpload> => {
     const query = `*[_type == "fileUpload" && slug.current == $slug][0]
     ${fileUploadSpec}`;
     const params = { slug: slug };
