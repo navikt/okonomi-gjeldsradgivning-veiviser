@@ -1,4 +1,5 @@
 import Panel from 'nav-frontend-paneler';
+
 import { PageProps } from '../pageProps';
 import { Lastestriper } from './lastestriper/Lastestriper';
 import { Layout } from './Layout';

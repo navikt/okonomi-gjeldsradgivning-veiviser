@@ -1,10 +1,11 @@
 import BlockContent from '@sanity/block-content-to-react';
-import client from '../utils/sanity-client';
-import Lenke from 'nav-frontend-lenker';
-import Link from 'next/link';
 import Vimeo from '@u-wave/react-vimeo';
-import { Ingress, Normaltekst, Undertittel, Element } from 'nav-frontend-typografi';
+import Lenke from 'nav-frontend-lenker';
+import { Element, Ingress, Normaltekst, Undertittel } from 'nav-frontend-typografi';
+import Link from 'next/link';
+
 import { logAmplitudeEvent } from '../utils/amplitude';
+import client from '../utils/sanity-client';
 
 const serializers = {
     types: {

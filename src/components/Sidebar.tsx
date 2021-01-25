@@ -1,12 +1,12 @@
+import Lenke from 'nav-frontend-lenker';
 import Panel from 'nav-frontend-paneler';
 import { Ingress, Normaltekst } from 'nav-frontend-typografi';
-import Lenke from 'nav-frontend-lenker';
-
-import { SanityArticleGroup, SanityArticle } from '../sanityDocumentTypes';
-import { PanelIcon } from './PanelIcon';
-import { useEffect, useState } from 'react';
-import { getArticleOffsets, getFirstIdAfterCurrentOffset } from '../utils/scrollUtils';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+
+import { SanityArticle, SanityArticleGroup } from '../sanityDocumentTypes';
+import { getArticleOffsets, getFirstIdAfterCurrentOffset } from '../utils/scrollUtils';
+import { PanelIcon } from './PanelIcon';
 
 export const Sidebar = (props: { articleGroup: SanityArticleGroup }) => {
     const [currentArticle, setCurrentArticle] = useState('');
