@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { getAllArticlesWithSlug } from '../utils/sanity-fetch';
 
 const generateSitemap = (pages: Page[]): string =>

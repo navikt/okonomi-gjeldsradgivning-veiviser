@@ -1,14 +1,15 @@
-import fetch from 'node-fetch';
 import * as cheerio from 'cheerio';
 import { createHash } from 'crypto';
+import fetch from 'node-fetch';
+
 import { cache } from './cache';
 
 export interface DecoratorParts {
     decoratorHeader: string;
     decoratorFooter: string;
     decoratorEnv: { dataSrc: string; scriptUrl: string };
-    linkTags: any[];
-    scriptTags: any[];
+    linkTags: { rel: string; type: string; sizes?: string; href: string; key: string }[];
+    scriptTags: { src: string; key: string; defer: boolean }[];
 }
 
 export interface DecoratorParams {
@@ -63,7 +64,7 @@ const getDecoratorCached = async (decoratorParams: DecoratorParams) => {
     });
 };
 
-const objHash = (obj: any): string => {
+const objHash = (obj: Record<string, unknown>): string => {
     const str = JSON.stringify(obj);
     return createHash('md5').update(str).digest('hex');
 };

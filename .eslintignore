@@ -1,3 +1,6 @@
 node_modules
 sanity
 next.config.js
+
+// Foreløpig ikke i bruk
+src/components/MobileMenu.tsx

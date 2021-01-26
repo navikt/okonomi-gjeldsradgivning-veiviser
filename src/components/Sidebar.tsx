@@ -1,32 +1,31 @@
+import Lenke from 'nav-frontend-lenker';
 import Panel from 'nav-frontend-paneler';
 import { Ingress, Normaltekst } from 'nav-frontend-typografi';
-import Lenke from 'nav-frontend-lenker';
-
-import { SanityArticleGroup, SanityArticle } from '../sanityDocumentTypes';
-import { PanelIcon } from './PanelIcon';
-import { useEffect, useState } from 'react';
-import { getArticleOffsets, getFirstIdAfterCurrentOffset } from '../utils/scrollUtils';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+
+import { SanityArticle, SanityArticleGroup } from '../sanityDocumentTypes';
+import { getArticleOffsets, getFirstIdAfterCurrentOffset } from '../utils/scrollUtils';
+import { PanelIcon } from './PanelIcon';
 
 export const Sidebar = (props: { articleGroup: SanityArticleGroup }) => {
     const [currentArticle, setCurrentArticle] = useState('');
 
     useEffect(() => {
+        const handleScroll = () => {
+            const articleOffsets = getArticleOffsets(props.articleGroup.articles ?? []);
+            const currentOffset = window.pageYOffset;
+
+            if (articleOffsets) {
+                const nextArticle = getFirstIdAfterCurrentOffset(currentOffset, articleOffsets);
+                setCurrentArticle(nextArticle);
+            }
+        };
         window.addEventListener('scroll', handleScroll);
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, []);
-
-    const handleScroll = () => {
-        const articleOffsets = getArticleOffsets(props.articleGroup.articles ?? []);
-        const currentOffset = window.pageYOffset;
-
-        if (articleOffsets) {
-            const nextArticle = getFirstIdAfterCurrentOffset(currentOffset, articleOffsets);
-            setCurrentArticle(nextArticle);
-        }
-    };
+    }, [props.articleGroup.articles]);
 
     return (
         <aside className="sidebar">

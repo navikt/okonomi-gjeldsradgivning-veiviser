@@ -1,9 +1,10 @@
-import { PageBanner } from './PageBanner';
-import { DecoratorHeader } from './decorator/DecoratorHeader';
-import { DecoratorFooter } from './decorator/DecoratorFooter';
 import Head from 'next/head';
+
 import { DecoratorParts } from '../utils/dekorator';
 import { DecoratorEnv } from './decorator/DecoratorEnv';
+import { DecoratorFooter } from './decorator/DecoratorFooter';
+import { DecoratorHeader } from './decorator/DecoratorHeader';
+import { PageBanner } from './PageBanner';
 
 export const Layout = (props: {
     title: string;
@@ -17,7 +18,7 @@ export const Layout = (props: {
             <Head>
                 {props.decoratorParts?.linkTags.map((attrs, index) => {
                     attrs.key = 'props.linkTags' + index;
-                    return <link {...attrs} />;
+                    return <link key={index} {...attrs} />;
                 })}
             </Head>
             <DecoratorHeader html={props.decoratorParts?.decoratorHeader} />

@@ -1,7 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import fetch from 'node-fetch';
-import { cache } from '../../../utils/cache';
+
 import sanityConfig from '../../../../sanity/sanity.json';
+import { cache } from '../../../utils/cache';
 import { fetchFileWithSlug } from '../../../utils/sanity-fetch';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -12,7 +13,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const file = await cache.get(`download-${slug}`);
 
-    // @ts-ignore
     const fileUpload = await fetchFileWithSlug(slug);
 
     if (file) {

@@ -1,12 +1,12 @@
-import { SanityArticleGroup, SanityLink, SanityArticle } from '../sanityDocumentTypes';
-import { useState, useEffect } from 'react';
-import { Element, Normaltekst } from 'nav-frontend-typografi';
 import NavFrontendChevron from 'nav-frontend-chevron';
-
-import { getArticleOffsets, getFirstIdAfterCurrentOffset } from '../utils/scrollUtils';
-import Panel from 'nav-frontend-paneler';
 import Lenke from 'nav-frontend-lenker';
+import Panel from 'nav-frontend-paneler';
+import { Element, Normaltekst } from 'nav-frontend-typografi';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+
+import { SanityArticle, SanityArticleGroup } from '../sanityDocumentTypes';
+import { getArticleOffsets, getFirstIdAfterCurrentOffset } from '../utils/scrollUtils';
 
 export const MobileMenu = (props: { articleGroup: SanityArticleGroup }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -14,23 +14,22 @@ export const MobileMenu = (props: { articleGroup: SanityArticleGroup }) => {
     const [articleTitle, setArticleTitle] = useState('');
 
     useEffect(() => {
+        const handleScroll = () => {
+            const articleOffsets = getArticleOffsets(props.articleGroup.articles ?? []);
+            const currentOffset = window.pageYOffset;
+
+            if (articleOffsets) {
+                const nextArticle = getFirstIdAfterCurrentOffset(currentOffset, articleOffsets);
+                const articleTitles = props.articleGroup.articles?.filter((article) => article.slug === nextArticle);
+                setCurrentArticle(nextArticle);
+                setArticleTitle(articleTitles && articleTitles.length > 0 ? articleTitles.shift().title : '');
+            }
+        };
         window.addEventListener('scroll', handleScroll);
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, []);
-
-    const handleScroll = () => {
-        const articleOffsets = getArticleOffsets(props.articleGroup.articles ?? []);
-        const currentOffset = window.pageYOffset;
-
-        if (articleOffsets) {
-            const nextArticle = getFirstIdAfterCurrentOffset(currentOffset, articleOffsets);
-            const articleTitles = props.articleGroup.articles?.filter((article) => article.slug === nextArticle);
-            setCurrentArticle(nextArticle);
-            setArticleTitle(articleTitles && articleTitles.length > 0 ? articleTitles.shift().title : '');
-        }
-    };
+    }, [props.articleGroup.articles]);
 
     return (
         <nav className="mobile-menu">

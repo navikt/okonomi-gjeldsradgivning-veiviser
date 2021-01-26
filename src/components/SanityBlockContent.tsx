@@ -1,18 +1,19 @@
 import BlockContent from '@sanity/block-content-to-react';
-import client from '../utils/sanity-client';
-import Lenke from 'nav-frontend-lenker';
-import Link from 'next/link';
 import Vimeo from '@u-wave/react-vimeo';
-import { Ingress, Normaltekst, Undertittel, Element } from 'nav-frontend-typografi';
+import Lenke from 'nav-frontend-lenker';
+import { Element, Ingress, Normaltekst, Undertittel } from 'nav-frontend-typografi';
+import Link from 'next/link';
+
 import { logAmplitudeEvent } from '../utils/amplitude';
+import client from '../utils/sanity-client';
 
 const serializers = {
     types: {
-        vimeo: ({ node }) => {
+        vimeo: function renderVimeo({ node }) {
             const { url } = node;
             return <Vimeo responsive video={url} />;
         },
-        block: ({ node, children }) => {
+        block: function renderBlock({ node, children }) {
             const style = node.style;
             if (style === 'normal') {
                 return <Normaltekst>{children}</Normaltekst>;
@@ -32,13 +33,13 @@ const serializers = {
         },
     },
     marks: {
-        fileUpload: ({ mark, children }) => {
+        fileUpload: function renderFileUpload({ mark, children }) {
             const { slug } = mark;
             return <Lenke href={`/okonomi-og-gjeld/api/download/${slug}`}>{children}</Lenke>;
         },
-        link: ({ mark, children }) => {
+        link: function renderLink({ mark, children }) {
             const { blank, href } = mark;
-            const handleOnClick = (event: any) => {
+            const handleOnClick = (event) => {
                 event.preventDefault();
                 logAmplitudeEvent('Trykk på ekstern lenke', {
                     tittel: children[0],
@@ -56,7 +57,7 @@ const serializers = {
                 </Lenke>
             );
         },
-        internalLink: ({ mark, children }) => {
+        internalLink: function renderInternalLink({ mark, children }) {
             const { slug = {}, type } = mark;
             const href = `/${slug.current}`;
             return (

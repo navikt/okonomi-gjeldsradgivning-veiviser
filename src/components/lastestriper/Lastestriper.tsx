@@ -6,10 +6,6 @@ export interface NavFrontendLastestriperProps {
      */
     linjer?: number;
     /**
-     * Inline stiling
-     */
-    style?: object;
-    /**
      * Egendefinert klassenavn.
      */
     className?: string;
@@ -39,9 +35,5 @@ const lastestriper = (linjer: number): React.ReactNode[] => {
 export const Lastestriper = (props: NavFrontendLastestriperProps) => {
     const { linjer = 3 } = props;
 
-    return (
-        <div className={`lastestriper ${props.className && props.className}`} style={props.style}>
-            {lastestriper(linjer)}
-        </div>
-    );
+    return <div className={`lastestriper ${props.className && props.className}`}>{lastestriper(linjer)}</div>;
 };

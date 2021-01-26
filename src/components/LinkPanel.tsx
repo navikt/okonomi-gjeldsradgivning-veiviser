@@ -1,9 +1,9 @@
-import Link from 'next/link';
-import { Innholdstittel } from 'nav-frontend-typografi';
 import { LenkepanelBase } from 'nav-frontend-lenkepanel';
+import { Innholdstittel } from 'nav-frontend-typografi';
+import Link from 'next/link';
 
-import { SanityBlockContent } from './SanityBlockContent';
 import { SanityLinkPanel } from '../sanityDocumentTypes';
+import { SanityBlockContent } from './SanityBlockContent';
 
 export const LinkPanel = (props: { linkPanel: SanityLinkPanel }) => (
     <LenkepanelBase

@@ -1,8 +1,9 @@
-import { Layout } from '../components/Layout';
-import Head from 'next/head';
 import Panel from 'nav-frontend-paneler';
 import { Innholdstittel } from 'nav-frontend-typografi';
+import Head from 'next/head';
 import Link from 'next/link';
+
+import { Layout } from '../components/Layout';
 import { getPageProps, PageProps } from '../pageProps';
 import { fetchFrontpage } from '../utils/sanity-fetch';
 
@@ -32,7 +33,7 @@ interface StaticProps {
     };
 }
 
-export async function getStaticProps(props: { params: { slug: string } }): Promise<StaticProps> {
+export async function getStaticProps(): Promise<StaticProps> {
     const frontpage = await fetchFrontpage();
     const page = await getPageProps(frontpage.title, frontpage.metaDescription, '/', 'index');
 

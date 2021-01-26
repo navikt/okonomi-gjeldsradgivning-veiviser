@@ -13,7 +13,7 @@ export const initAmplitude = () => {
     }
 };
 
-export function logAmplitudeEvent(eventName: string, eventData?: any): void {
+export function logAmplitudeEvent(eventName: string, eventData?: Record<string, unknown>): void {
     setTimeout(() => {
         try {
             if (amplitude) {

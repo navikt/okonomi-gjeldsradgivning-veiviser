@@ -1,21 +1,21 @@
-import { useRouter } from 'next/router';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 
-import { Layout } from '../../components/Layout';
-import { fetchArticleGroupWithSlug, fetchFrontpage, getAllArticleGroupsWithSlug } from '../../utils/sanity-fetch';
-import { SanityArticleGroup, SanityArticle } from '../../sanityDocumentTypes';
 import { Article } from '../../components/Article';
-import { Sidebar } from '../../components/Sidebar';
-import Error from '../_error';
+import { Layout } from '../../components/Layout';
 import { MobileMenu } from '../../components/MobileMenu';
+import { Sidebar } from '../../components/Sidebar';
 import { getPageProps, PageProps, StaticPathProps } from '../../pageProps';
+import { SanityArticle, SanityArticleGroup } from '../../sanityDocumentTypes';
+import { fetchArticleGroupWithSlug, getAllArticleGroupsWithSlug } from '../../utils/sanity-fetch';
+import Error from '../_error';
 
 const ArticleGroupPage = (props: { page: PageProps; articleGroup: SanityArticleGroup; statusCode: number }) => {
+    const router = useRouter();
+
     if (props.statusCode === 404) {
         return <Error />;
     }
-
-    const router = useRouter();
 
     if (router.isFallback) {
         return (

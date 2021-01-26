@@ -1,10 +1,10 @@
-import Link from 'next/link';
-import { SanityArticlePanel } from '../sanityDocumentTypes';
-
-import { Systemtittel, Undertittel } from 'nav-frontend-typografi';
-import Panel from 'nav-frontend-paneler';
-import React from 'react';
 import { LenkepanelBase } from 'nav-frontend-lenkepanel';
+import Panel from 'nav-frontend-paneler';
+import { Systemtittel, Undertittel } from 'nav-frontend-typografi';
+import Link from 'next/link';
+import React from 'react';
+
+import { SanityArticlePanel } from '../sanityDocumentTypes';
 
 export const ArticlePanel = (props: { articlePanel: SanityArticlePanel }) => (
     <Panel className={`section-panel section-panel__frontpage situation-panel`}>

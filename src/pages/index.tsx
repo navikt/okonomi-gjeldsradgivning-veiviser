@@ -1,12 +1,12 @@
 import Head from 'next/head';
 
-import { fetchFrontpage, fetchArticleGroups, fetchArticlePanels, fetchLinkPanels } from '../utils/sanity-fetch';
-import { Layout } from '../components/Layout';
-import { SanityFrontpage, SanityArticleGroup, SanityArticlePanel, SanityLinkPanel } from '../sanityDocumentTypes';
 import { ArticleGroupPanel } from '../components/ArticleGroupPanel';
+import { Layout } from '../components/Layout';
+import { LinkPanel } from '../components/LinkPanel';
 import { ArticlePanel } from '../components/SituationPanel';
 import { getPageProps, PageProps } from '../pageProps';
-import { LinkPanel } from '../components/LinkPanel';
+import { SanityArticleGroup, SanityArticlePanel, SanityFrontpage, SanityLinkPanel } from '../sanityDocumentTypes';
+import { fetchArticleGroups, fetchArticlePanels, fetchFrontpage, fetchLinkPanels } from '../utils/sanity-fetch';
 
 const Home = (props: {
     page: PageProps;
