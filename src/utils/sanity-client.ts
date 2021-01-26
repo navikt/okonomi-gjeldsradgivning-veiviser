@@ -1,4 +1,5 @@
 import sanityClient from '@sanity/client';
+
 import sanityConfig from '../../sanity/sanity.json';
 
 export default sanityClient({

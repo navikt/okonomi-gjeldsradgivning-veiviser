@@ -1,8 +1,9 @@
-import { Layout } from '../components/Layout';
-import Head from 'next/head';
 import Panel from 'nav-frontend-paneler';
 import { Innholdstittel } from 'nav-frontend-typografi';
+import Head from 'next/head';
 import Link from 'next/link';
+
+import { Layout } from '../components/Layout';
 
 const Custom404 = () => (
     <>

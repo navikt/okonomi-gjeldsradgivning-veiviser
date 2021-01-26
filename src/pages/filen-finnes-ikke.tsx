@@ -1,10 +1,10 @@
-import Head from 'next/head';
-import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
 import Panel from 'nav-frontend-paneler';
+import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
+import Head from 'next/head';
 
-import { fetchFrontpage } from '../utils/sanity-fetch';
 import { Layout } from '../components/Layout';
 import { getPageProps, PageProps } from '../pageProps';
+import { fetchFrontpage } from '../utils/sanity-fetch';
 
 const Home = (props: { page: PageProps }) => {
     return (

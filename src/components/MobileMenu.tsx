@@ -1,12 +1,12 @@
-import { SanityArticleGroup, SanityLink, SanityArticle } from '../sanityDocumentTypes';
-import { useState, useEffect } from 'react';
-import { Element, Normaltekst } from 'nav-frontend-typografi';
 import NavFrontendChevron from 'nav-frontend-chevron';
-
-import { getArticleOffsets, getFirstIdAfterCurrentOffset } from '../utils/scrollUtils';
-import Panel from 'nav-frontend-paneler';
 import Lenke from 'nav-frontend-lenker';
+import Panel from 'nav-frontend-paneler';
+import { Element, Normaltekst } from 'nav-frontend-typografi';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+
+import { SanityArticle, SanityArticleGroup, SanityLink } from '../sanityDocumentTypes';
+import { getArticleOffsets, getFirstIdAfterCurrentOffset } from '../utils/scrollUtils';
 
 export const MobileMenu = (props: { articleGroup: SanityArticleGroup }) => {
     const [isOpen, setIsOpen] = useState(false);

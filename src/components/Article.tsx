@@ -1,8 +1,9 @@
-import { SanityArticle } from '../sanityDocumentTypes';
 import Panel from 'nav-frontend-paneler';
 import { Innholdstittel } from 'nav-frontend-typografi';
-import { SanityBlockContent } from './SanityBlockContent';
+
+import { SanityArticle } from '../sanityDocumentTypes';
 import { PanelIcon } from './PanelIcon';
+import { SanityBlockContent } from './SanityBlockContent';
 
 export const Article = (props: { article: SanityArticle }) => (
     <article>

@@ -1,7 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import fetch from 'node-fetch';
-import { cache } from '../../utils/cache';
+
 import sanityConfig from '../../../sanity/sanity.json';
+import { cache } from '../../utils/cache';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     console.log(

@@ -1,8 +1,8 @@
-import { SanityArticleGroup } from '../sanityDocumentTypes';
-
-import { Ingress, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import Panel from 'nav-frontend-paneler';
+import { Ingress, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import Link from 'next/link';
+
+import { SanityArticleGroup } from '../sanityDocumentTypes';
 
 export const ArticleGroupPanel = (props: { articleGroup: SanityArticleGroup }) => (
     <Panel className="section-panel section-panel__frontpage">

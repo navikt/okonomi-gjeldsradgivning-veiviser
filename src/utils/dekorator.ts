@@ -1,6 +1,7 @@
-import fetch from 'node-fetch';
 import * as cheerio from 'cheerio';
 import { createHash } from 'crypto';
+import fetch from 'node-fetch';
+
 import { cache } from './cache';
 
 export interface DecoratorParts {

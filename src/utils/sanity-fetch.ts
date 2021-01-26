@@ -1,13 +1,13 @@
-import client from './sanity-client';
 import {
     SanityArticle,
     SanityArticleGroup,
-    SanityLinkPanel,
-    SanityFrontpage,
     SanityArticlePanel,
     SanityFileUpload,
+    SanityFrontpage,
+    SanityLinkPanel,
 } from '../sanityDocumentTypes';
 import { cache } from './cache';
+import client from './sanity-client';
 
 const articleSpec = `
 {
