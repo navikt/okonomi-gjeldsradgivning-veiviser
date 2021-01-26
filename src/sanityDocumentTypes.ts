@@ -13,7 +13,7 @@ export interface SanityArticle {
     description: string;
     metaDescription: string;
     categories: string[];
-    body: object[]; // Sanity content
+    body: Record<string, unknown>[]; // Sanity content
     iconUrl?: string;
 }
 
@@ -22,7 +22,7 @@ export interface SanityArticleGroup {
     type: SanityDocumentType;
     title: string;
     slug: string;
-    description: object[]; // Sanity content
+    description: Record<string, unknown>[]; // Sanity content
     metaDescription: string;
     articles?: SanityArticle[];
     links?: SanityLink[];
@@ -68,7 +68,7 @@ export interface SanityLinkPanel {
     id: string;
     type: SanityDocumentType;
     title: string;
-    description: object;
+    description: Record<string, unknown>;
     slug: string;
     iconUrl?: string;
 }

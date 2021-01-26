@@ -130,11 +130,11 @@ export const fetchFrontpage = async (): Promise<SanityFrontpage> => {
     return fetchQueryWithCache(query, 'sanity-frontpage');
 };
 
-const fetchQueryWithCache = async (query: string, cacheKey: string): Promise<any> => {
+const fetchQueryWithCache = async <T>(query: string, cacheKey: string): Promise<T> => {
     return new Promise((resolve, reject) => {
         const cachedResponse = cache.get(cacheKey);
         if (cachedResponse) {
-            resolve(cachedResponse);
+            Promise.resolve(cachedResponse);
         } else {
             client
                 .fetch(query)
@@ -153,11 +153,15 @@ const fetchQueryWithCache = async (query: string, cacheKey: string): Promise<any
     });
 };
 
-const fetchQueryAndParamWithCache = async (query: string, params: {}, cacheKey: string): Promise<any> => {
+const fetchQueryAndParamWithCache = async <T>(
+    query: string,
+    params: Record<string, unknown>,
+    cacheKey: string
+): Promise<T> => {
     return new Promise((resolve, reject) => {
         const cachedResponse = cache.get(cacheKey);
         if (cachedResponse) {
-            resolve(cachedResponse);
+            Promise.resolve(cachedResponse);
         } else {
             client
                 .fetch(query, params)

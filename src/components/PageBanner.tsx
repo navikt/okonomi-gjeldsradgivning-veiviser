@@ -1,7 +1,5 @@
 import { Sidetittel, Systemtittel } from 'nav-frontend-typografi';
 
-import { HeaderIcon } from '../icons/HeaderIcon';
-
 export const PageBanner = (props: { isFrontPage: boolean; title: string; iconUrl: string }) => {
     const bannerClassNames = `banner ${props.isFrontPage ? 'banner__frontpage' : 'banner__article'}`;
     return (
