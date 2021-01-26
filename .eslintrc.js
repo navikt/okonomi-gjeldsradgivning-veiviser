@@ -31,6 +31,7 @@ module.exports = {
     ],
     rules: {
         'react/react-in-jsx-scope': 'off',
+        '@typescript-eslint/explicit-module-boundary-types': 'off',
         'jsx-a11y/anchor-is-valid': [
             'error',
             {

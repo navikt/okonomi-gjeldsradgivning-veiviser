@@ -153,7 +153,11 @@ const fetchQueryWithCache = async (query: string, cacheKey: string): Promise<any
     });
 };
 
-const fetchQueryAndParamWithCache = async (query: string, params: {}, cacheKey: string): Promise<any> => {
+const fetchQueryAndParamWithCache = async (
+    query: string,
+    params: Record<string, unknown>,
+    cacheKey: string
+): Promise<any> => {
     return new Promise((resolve, reject) => {
         const cachedResponse = cache.get(cacheKey);
         if (cachedResponse) {
