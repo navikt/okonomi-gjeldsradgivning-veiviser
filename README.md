@@ -16,21 +16,19 @@ Konfigurasjon og kildekode for next appen ligger i rotmappen.
 
 Opprett en `.env.local` fil på root folder der du legger inn
 ønskede environment-variable. Feks:
-`DECORATOR_URL="https://www.nav.no/dekoratoren/"
-APP_URL="https://www.nav.no/okonomi-og-gjeld"
-SANITY_DATASET="test"`
+`DECORATOR_URL="https://www.nav.no/dekoratoren/" APP_URL="https://www.nav.no/okonomi-og-gjeld" SANITY_DATASET="test"`
 
 Sanity Studio ligger i mappen `/sanity`
 
 For å starte Sanity studio lokalt:
 
-`npm install -g @sanity/cli` installerer Sanity CLI
-
 `cd sanity`  
 `npm install`  
-`sanity start`
+`npm run sanity start`
 
-TODO: Fylle inn med informasjon om bygg og deploy når dette er på plass
+## Bygg og deploy
+
+Det er satt opp automatisk bygg og deploy til produksjon ved fletting til `main`.
 
 ## Kodekvalitet
 
