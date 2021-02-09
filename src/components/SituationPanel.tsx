@@ -3,37 +3,68 @@ import Panel from 'nav-frontend-paneler';
 import { Systemtittel, Undertittel } from 'nav-frontend-typografi';
 import Link from 'next/link';
 import React from 'react';
+import styled from 'styled-components';
 
 import { SanityArticlePanel } from '../sanityDocumentTypes';
 
+const ArticleWrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+`;
+
+const HeaderWrapper = styled.div`
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+`;
+
+const Divider = styled.div`
+    width: 100px;
+    margin: 1rem 0rem 2rem 0rem;
+    border: 1px solid #79706b;
+`;
+
+const LinkPanel = styled.a`
+    width: 26.375rem;
+    padding: 2rem 1rem !important;
+    cursor: pointer;
+
+    @media screen and (min-width: 1024px) {
+        width: 26.375rem;
+    }
+
+    @media screen and (max-width: 1023px) {
+        width: 100%;
+    }
+`;
+
 export const ArticlePanel = (props: { articlePanel: SanityArticlePanel }) => (
-    <Panel className={`section-panel section-panel__frontpage situation-panel`}>
-        <div className="header-wrapper">
+    <Panel className={`section-panel section-panel__frontpage`}>
+        <HeaderWrapper>
             <Systemtittel>{props.articlePanel.title}</Systemtittel>
-            <div className="divider" />
-        </div>
-        <div className="section-article__wrapper">
+            <Divider />
+        </HeaderWrapper>
+        <ArticleWrapper>
             {props.articlePanel.articles.map((article) => (
                 <LenkepanelBase
                     key={article.slug}
                     href={`/artikkel/${article.slug}`}
                     linkCreator={(linkProps) => (
                         <Link href="/artikkel/[slug]" as={linkProps.href}>
-                            <a
-                                className="lenkepanel lenkepanel--border situation-panel__link-panel"
-                                style={{ cursor: 'pointer' }}
-                            >
+                            <LinkPanel className="lenkepanel lenkepanel--border">
                                 <Undertittel className="lenkepanel__heading" tag="p">
                                     {article.title}
                                 </Undertittel>
                                 <span className="lenkepanel__indikator" />
-                            </a>
+                            </LinkPanel>
                         </Link>
                     )}
                 >
                     <></>
                 </LenkepanelBase>
             ))}
-        </div>
+        </ArticleWrapper>
     </Panel>
 );
