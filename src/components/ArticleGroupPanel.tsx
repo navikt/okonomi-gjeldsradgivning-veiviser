@@ -1,9 +1,9 @@
-import Panel from 'nav-frontend-paneler';
 import { Ingress, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import Link from 'next/link';
 import styled from 'styled-components';
 
 import { SanityArticleGroup } from '../sanityDocumentTypes';
+import { FrontpagePanel } from './FrontpagePanel';
 
 const ArticleWrapper = styled.div`
     display: flex;
@@ -28,7 +28,7 @@ const ArticleBoxWrapper = styled.div`
 `;
 
 export const ArticleGroupPanel = (props: { articleGroup: SanityArticleGroup }) => (
-    <Panel className="section-panel section-panel__frontpage">
+    <FrontpagePanel>
         <Systemtittel>{props.articleGroup.title}</Systemtittel>
         <Ingress>{props.articleGroup.description}</Ingress>
         <ArticleWrapper>
@@ -43,5 +43,5 @@ export const ArticleGroupPanel = (props: { articleGroup: SanityArticleGroup }) =
                 </ArticleBoxWrapper>
             ))}
         </ArticleWrapper>
-    </Panel>
+    </FrontpagePanel>
 );

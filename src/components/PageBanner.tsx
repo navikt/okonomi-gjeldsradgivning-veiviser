@@ -1,9 +1,11 @@
 import { Sidetittel, Systemtittel } from 'nav-frontend-typografi';
 import styled from 'styled-components';
 
-const Banner = styled.div.attrs((props) => ({
-    height: props.height || '70px',
-}))`
+interface BannerProps {
+    height: string;
+}
+
+const Banner = styled.div<BannerProps>`
     background-color: #9bd0b0;
     border-bottom: 4px solid #38a161;
     width: 100%;
@@ -31,7 +33,7 @@ const BannerIcon = styled.img`
 
 export const PageBanner = (props: { isFrontPage: boolean; title: string; iconUrl: string }) => {
     return (
-        <Banner>
+        <Banner height={props.isFrontPage ? '190px' : '70px'}>
             <BannerContent>
                 {props.isFrontPage ? (
                     <Sidetittel tag="h1">{props.title}</Sidetittel>

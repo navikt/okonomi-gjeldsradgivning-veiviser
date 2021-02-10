@@ -1,8 +1,8 @@
-import Panel from 'nav-frontend-paneler';
 import { Innholdstittel } from 'nav-frontend-typografi';
 import Head from 'next/head';
 import Link from 'next/link';
 
+import { FrontpagePanel } from '../components/FrontpagePanel';
 import { Layout } from '../components/Layout';
 import { getPageProps, PageProps } from '../pageProps';
 import { fetchFrontpage } from '../utils/sanity-fetch';
@@ -13,7 +13,7 @@ const Custom404 = (props: { page?: PageProps }) => (
             <title>Økonomi- og gjeldsrådgivning</title>
         </Head>
         <Layout title="Økonomi- og gjeldsrådgivning" isFrontPage={false} decoratorParts={props.page?.decorator}>
-            <Panel className="section-panel section-panel__noIcon">
+            <FrontpagePanel>
                 <Innholdstittel>Denne siden finnes ikke</Innholdstittel>
                 <p>
                     Prøv å gå tilbake til{' '}
@@ -22,7 +22,7 @@ const Custom404 = (props: { page?: PageProps }) => (
                     </Link>
                     .
                 </p>
-            </Panel>
+            </FrontpagePanel>
         </Layout>
     </>
 );

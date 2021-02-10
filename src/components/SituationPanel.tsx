@@ -6,6 +6,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { SanityArticlePanel } from '../sanityDocumentTypes';
+import { FrontpagePanel } from './FrontpagePanel';
 
 const ArticleWrapper = styled.div`
     display: flex;
@@ -41,7 +42,7 @@ const LinkPanel = styled.a`
 `;
 
 export const ArticlePanel = (props: { articlePanel: SanityArticlePanel }) => (
-    <Panel className={`section-panel section-panel__frontpage`}>
+    <FrontpagePanel>
         <HeaderWrapper>
             <Systemtittel>{props.articlePanel.title}</Systemtittel>
             <Divider />
@@ -66,5 +67,5 @@ export const ArticlePanel = (props: { articlePanel: SanityArticlePanel }) => (
                 </LenkepanelBase>
             ))}
         </ArticleWrapper>
-    </Panel>
+    </FrontpagePanel>
 );
