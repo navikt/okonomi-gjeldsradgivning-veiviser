@@ -1,5 +1,4 @@
 import { LenkepanelBase } from 'nav-frontend-lenkepanel';
-import Panel from 'nav-frontend-paneler';
 import { Systemtittel, Undertittel } from 'nav-frontend-typografi';
 import Link from 'next/link';
 import React from 'react';
@@ -39,9 +38,13 @@ const LinkPanel = styled.a`
     @media screen and (max-width: 1023px) {
         width: 100%;
     }
+
+    .typo-undertittel {
+        margin-block-start: 0rem;
+    }
 `;
 
-export const ArticlePanel = (props: { articlePanel: SanityArticlePanel }) => (
+export const SituationPanel = (props: { articlePanel: SanityArticlePanel }) => (
     <FrontpagePanel>
         <HeaderWrapper>
             <Systemtittel>{props.articlePanel.title}</Systemtittel>
