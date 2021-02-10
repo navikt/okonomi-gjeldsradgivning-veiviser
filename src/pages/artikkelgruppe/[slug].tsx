@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import styled from 'styled-components';
 
 import { Article } from '../../components/Article';
 import { Layout } from '../../components/Layout';
@@ -9,6 +10,17 @@ import { getPageProps, PageProps, StaticPathProps } from '../../pageProps';
 import { SanityArticle, SanityArticleGroup } from '../../sanityDocumentTypes';
 import { fetchArticleGroupWithSlug, getAllArticleGroupsWithSlug } from '../../utils/sanity-fetch';
 import Error from '../_error';
+
+const GroupContent = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0 1rem;
+`;
+
+const GroupArticles = styled.div`
+    display: block;
+`;
 
 const ArticleGroupPage = (props: { page: PageProps; articleGroup: SanityArticleGroup; statusCode: number }) => {
     const router = useRouter();
@@ -39,17 +51,17 @@ const ArticleGroupPage = (props: { page: PageProps; articleGroup: SanityArticleG
                 <meta property="og:locale" content="nb" />
             </Head>
             <Layout title={props.page.appTitle} isFrontPage={false} decoratorParts={props.page.decorator}>
-                <div className="group-content">
+                <GroupContent>
                     <Sidebar articleGroup={props.articleGroup} />
 
                     <MobileMenu articleGroup={props.articleGroup} />
 
-                    <div className="group-articles">
+                    <GroupArticles>
                         {props.articleGroup.articles?.map((article: SanityArticle) => (
                             <Article key={article.slug} article={article} />
                         ))}
-                    </div>
-                </div>
+                    </GroupArticles>
+                </GroupContent>
             </Layout>
         </>
     );

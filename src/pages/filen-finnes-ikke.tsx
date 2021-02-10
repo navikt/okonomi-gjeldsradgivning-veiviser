@@ -1,7 +1,7 @@
-import Panel from 'nav-frontend-paneler';
 import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
 import Head from 'next/head';
 
+import { FrontpagePanel } from '../components/FrontpagePanel';
 import { Layout } from '../components/Layout';
 import { getPageProps, PageProps } from '../pageProps';
 import { fetchFrontpage } from '../utils/sanity-fetch';
@@ -16,10 +16,10 @@ const Home = (props: { page: PageProps }) => {
                 </Head>
             }
             <Layout title={props.page.title} isFrontPage={false} decoratorParts={props.page.decorator}>
-                <Panel className="section-panel section-panel__noIcon">
+                <FrontpagePanel>
                     <Innholdstittel>Filen finnes ikke</Innholdstittel>
                     <Normaltekst>Fant ikke filen</Normaltekst>
-                </Panel>
+                </FrontpagePanel>
             </Layout>
         </>
     );
