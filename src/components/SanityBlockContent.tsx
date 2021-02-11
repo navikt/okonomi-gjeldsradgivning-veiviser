@@ -73,8 +73,6 @@ const getFullPathForInternalLink = (type: string, href: string): string => {
     switch (type) {
         case 'article':
             return '/artikkel' + href;
-        case 'articleGroup':
-            return '/artikkelgruppe' + href;
         default:
             return href;
     }

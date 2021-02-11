@@ -63,10 +63,6 @@ export const getAllArticlesWithSlug = async (): Promise<[{ slug: string }]> => {
     return await client.fetch(`*[_type == "article"]{ 'slug': slug.current }`);
 };
 
-export const getAllArticleGroupsWithSlug = async (): Promise<[{ slug: string }]> => {
-    return await client.fetch(`*[_type == "articleGroup"]{ 'slug': slug.current }`);
-};
-
 export const fetchArticleWithSlug = async (slug = ''): Promise<SanityArticle> => {
     const query = `*[_type == "article" && slug.current == $slug][0]
     ${articleSpec}`;
@@ -78,13 +74,6 @@ export const fetchArticleGroups = async (): Promise<SanityArticleGroup[]> => {
     const query = `*[_type == "articleGroup"]
     ${articleGroupSpec}`;
     return fetchQueryWithCache(query, 'sanity-article-groups');
-};
-
-export const fetchArticleGroupWithSlug = async (slug = ''): Promise<SanityArticleGroup> => {
-    const query = `*[_type == "articleGroup" && slug.current == $slug][0]
-    ${articleGroupSpec}`;
-    const params = { slug: slug };
-    return fetchQueryAndParamWithCache(query, params, `article-group-${slug}`);
 };
 
 export const fetchArticles = async (): Promise<SanityArticle[]> => {
