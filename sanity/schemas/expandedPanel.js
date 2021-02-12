@@ -9,6 +9,7 @@ const Preview = ({ value }) => (
     </>
 );
 
+
 export default {
     name: 'expandedPanel',
     title: 'Expanded Panel',
