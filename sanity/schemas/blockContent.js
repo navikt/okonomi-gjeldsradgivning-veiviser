@@ -117,5 +117,6 @@ export default {
         {
             type: 'vimeo',
         },
+        { type: 'expandedPanel'}
     ],
 };

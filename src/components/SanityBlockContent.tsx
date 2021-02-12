@@ -16,7 +16,7 @@ const serializers = {
         },
         expandedPanel: function renderExpandedPanel({ node }) {
             return (
-                <Ekspanderbartpanel tittel={node.title}>
+                <Ekspanderbartpanel tittel={node.title} apen={node.defaultOpen}>
                     <SanityBlockContent blocks={node.body} />
                 </Ekspanderbartpanel>
             );
