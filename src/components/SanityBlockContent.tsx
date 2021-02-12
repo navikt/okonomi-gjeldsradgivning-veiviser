@@ -1,5 +1,6 @@
 import BlockContent from '@sanity/block-content-to-react';
 import Vimeo from '@u-wave/react-vimeo';
+import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import Lenke from 'nav-frontend-lenker';
 import { Element, Ingress, Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import Link from 'next/link';
@@ -12,6 +13,13 @@ const serializers = {
         vimeo: function renderVimeo({ node }) {
             const { url } = node;
             return <Vimeo responsive video={url} />;
+        },
+        expandedPanel: function renderExpandedPanel({ node }) {
+            return (
+                <Ekspanderbartpanel tittel={node.title}>
+                    <SanityBlockContent blocks={node.body} />
+                </Ekspanderbartpanel>
+            );
         },
         block: function renderBlock({ node, children }) {
             const style = node.style;
