@@ -1,12 +1,12 @@
 import React from 'react';
 
 const Preview = ({ value }) => (
-    <div>
+    <>
         <div>
         <strong>{value.title}</strong>
         </div>
         {value.body}
-    </div>
+    </>
 );
 
 export default {
@@ -23,6 +23,11 @@ export default {
             name: 'body',
             title: 'Body',
             type: 'blockContent'
+        },
+        {
+            name: 'defaultOpen',
+            title: 'Open by default',
+            type: 'boolean'
         }
     ],
     preview: {
