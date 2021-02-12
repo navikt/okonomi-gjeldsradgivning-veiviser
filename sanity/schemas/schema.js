@@ -15,6 +15,7 @@ import fileUpload from './fileUpload';
 import frontpage from './frontpage';
 import linkPanel from './linkPanel';
 import vimeo from './vimeo';
+import expandedPanel from './expandedPanel';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -28,6 +29,7 @@ export default createSchema({
         article,
         articleGroup,
         articlePanel,
+        expandedPanel,
         blockContent,
         category,
         externalLink,
