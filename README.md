@@ -4,7 +4,7 @@ Ny veiviser for økonomi- og gjeldsrådgivning
 
 Veiviseren bruker nextjs for server side rendring av innhold. Innholdet hentes fra Sanity
 
-TODO: Mer oppdatert informasjon over sommeren
+TODO: Mer oppdatert informasjon kommer kanskje en gang
 
 ## Komme i gang
 
