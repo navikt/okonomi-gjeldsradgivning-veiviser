@@ -26,6 +26,11 @@ const StyledSectionPanel = styled(Panel)`
     .typo-undertittel {
         margin: 1.75rem 0 0.6875rem;
     }
+
+    // Når h3 kommer rett etter h2, ikke ha margin-top på h3'en
+    h2 + h3 {
+        margin-top: 0;
+    }
 `;
 
 export const SectionPanel = (props: { id?: string; className?: string; children }) => {
