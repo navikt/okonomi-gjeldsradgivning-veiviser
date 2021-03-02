@@ -25,7 +25,7 @@
     "prop-types": "^15.6",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-icons": "^4.1.0"
+    "react-icons": "^4.2.0"
   },
   "devDependencies": {
     "@sanity/cli": "^2.4.0"
