@@ -1,4 +1,4 @@
-import { Ingress, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
+import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import Link from 'next/link';
 import styled from 'styled-components';
 
