@@ -30,7 +30,6 @@ const ArticleBoxWrapper = styled.div`
 export const ArticleGroupPanel = (props: { articleGroup: SanityArticleGroup }) => (
     <FrontpagePanel>
         <Systemtittel>{props.articleGroup.title}</Systemtittel>
-        <Ingress>{props.articleGroup.description}</Ingress>
         <ArticleWrapper>
             {props.articleGroup.articles?.map((article) => (
                 <ArticleBoxWrapper key={article.slug}>
