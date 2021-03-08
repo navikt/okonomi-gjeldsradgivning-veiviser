@@ -1,4 +1,4 @@
-import { Ingress, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
+import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import Link from 'next/link';
 import styled from 'styled-components';
 
@@ -30,7 +30,6 @@ const ArticleBoxWrapper = styled.div`
 export const ArticleGroupPanel = (props: { articleGroup: SanityArticleGroup }) => (
     <FrontpagePanel>
         <Systemtittel>{props.articleGroup.title}</Systemtittel>
-        <Ingress>{props.articleGroup.description}</Ingress>
         <ArticleWrapper>
             {props.articleGroup.articles?.map((article) => (
                 <ArticleBoxWrapper key={article.slug}>
