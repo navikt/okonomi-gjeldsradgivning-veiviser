@@ -8,7 +8,7 @@ export const FrontpagePanel = styled(Panel)`
     position: relative;
 
     h2 {
-        margin: 1.75rem 0 0.6875rem;
+        margin: 0.5rem 0 1.5rem;
     }
 
     .typo-normal {
