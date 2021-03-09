@@ -28,4 +28,8 @@ export const FrontpagePanel = styled(Panel)`
     .typo-innholdstittel {
         margin-block-end: 1rem;
     }
+
+    .dummy {
+        margin: 1rem;
+    }
 `;
