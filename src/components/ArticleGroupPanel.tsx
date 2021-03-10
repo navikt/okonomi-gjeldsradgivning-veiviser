@@ -35,7 +35,7 @@ export const ArticleGroupPanel = (props: { articleGroup: SanityArticleGroup }) =
                 <ArticleBoxWrapper key={article.slug}>
                     <div>
                         <Link href="/artikkel/[slug]" as={`/artikkel/${article.slug}`}>
-                            <a className="lenke">{article.title}</a>
+                            <a className="lenke typo-undertittel">{article.title}</a>
                         </Link>
                         <Normaltekst>{article.description}</Normaltekst>
                     </div>
