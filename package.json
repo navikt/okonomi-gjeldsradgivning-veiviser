@@ -13,12 +13,13 @@
         "test": "jest"
     },
     "dependencies": {
+        "@navikt/nav-dekoratoren-moduler": "^1.2.9",
         "@sanity/block-content-to-react": "^2.0.7",
         "@sanity/client": "^2.2.6",
         "@u-wave/react-vimeo": "^0.9.2",
         "amplitude-js": "^7.4.2",
-        "cheerio": "^1.0.0-rc.3",
         "classnames": "^2.2.6",
+        "html-react-parser": "^1.2.4",
         "nav-frontend-chevron": "^1.0.28",
         "nav-frontend-chevron-style": "^1.0.4",
         "nav-frontend-core": "^5.0.11",
@@ -31,6 +32,8 @@
         "nav-frontend-lenker-style": "^1.0.2",
         "nav-frontend-paneler": "^2.0.32",
         "nav-frontend-paneler-style": "^1.0.2",
+        "nav-frontend-spinner": "^2.0.16",
+        "nav-frontend-spinner-style": "^1.0.2",
         "nav-frontend-typografi": "^3.0.4",
         "nav-frontend-typografi-style": "^1.0.35",
         "next": "^10.0.8",
@@ -43,7 +46,6 @@
         "webpack": "^4.46.0"
     },
     "devDependencies": {
-        "@types/cheerio": "^0.22.22",
         "@types/jest": "^26.0.20",
         "@types/node": "^14.14.28",
         "@types/node-fetch": "^2.5.8",

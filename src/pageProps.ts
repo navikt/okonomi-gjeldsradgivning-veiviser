@@ -1,4 +1,5 @@
-import { DecoratorParts, fetchDecoratorParts } from './utils/dekorator';
+import { Breadcrumb } from '@navikt/nav-dekoratoren-moduler';
+
 import { fetchFrontpage } from './utils/sanity-fetch';
 
 export interface StaticPathProps {
@@ -11,7 +12,7 @@ export interface PageProps {
     title: string;
     metaDescription: string;
     slug: string;
-    decorator: DecoratorParts;
+    breadcrumbs?: Breadcrumb;
 }
 
 export const getPageProps = async (
@@ -21,23 +22,14 @@ export const getPageProps = async (
     pageType: 'index' | 'article' | 'group'
 ): Promise<PageProps> => {
     const frontPage = await fetchFrontpage();
-    const breadcrumbs =
-        pageType === 'index'
-            ? []
-            : [{ title: encodeURIComponent(title), url: `${process.env.APP_URL}/${pageType}/${slug}` }];
-    const cacheKey = pageType === 'index' ? 'index' : `${pageType}-${slug}`;
-
-    const decorator = await fetchDecoratorParts({
-        siteTitle: frontPage.title,
-        cacheKey,
-        breadcrumbs,
-    });
+    const breadcrumbs: Breadcrumb =
+        pageType === 'article' ? { title: title, url: `${process.env.NEXT_PUBLIC_APP_URL}/${pageType}/${slug}` } : null;
 
     return {
         appTitle: frontPage.title,
         title,
         metaDescription,
         slug,
-        decorator,
+        breadcrumbs,
     };
 };

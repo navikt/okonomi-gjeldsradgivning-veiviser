@@ -15,7 +15,7 @@ const Home = (props: { page: PageProps }) => {
                     <meta name="Description" content={props.page.metaDescription} />
                 </Head>
             }
-            <Layout title={props.page.title} isFrontPage={false} decoratorParts={props.page.decorator}>
+            <Layout title={props.page.title} isFrontPage={false} breadcrumbs={props.page.breadcrumbs}>
                 <FrontpagePanel>
                     <Innholdstittel>Filen finnes ikke</Innholdstittel>
                     <Normaltekst>Fant ikke filen</Normaltekst>

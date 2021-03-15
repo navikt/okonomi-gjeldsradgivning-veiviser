@@ -30,7 +30,7 @@ const Home = (props: {
                 title={props.page.title}
                 isFrontPage={true}
                 bannerIconUrl={props.frontpage.bannerIconUrl}
-                decoratorParts={props.page.decorator}
+                breadcrumbs={props.page.breadcrumbs}
             >
                 <>
                     {props.frontpage.panels.map((panel) => {

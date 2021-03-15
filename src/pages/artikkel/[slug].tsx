@@ -30,7 +30,7 @@ const ArticlePage = (props: { page?: PageProps; article?: SanityArticle }) => {
                 <meta property="og:description" content={props.page.metaDescription} />
                 <meta property="og:locale" content="nb" />
             </Head>
-            <Layout title={props.page.appTitle} isFrontPage={false} decoratorParts={props.page.decorator}>
+            <Layout title={props.page.appTitle} isFrontPage={false} breadcrumbs={props.page.breadcrumbs}>
                 <Article article={props.article} />
             </Layout>
         </>
