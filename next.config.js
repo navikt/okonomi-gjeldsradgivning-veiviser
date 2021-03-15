@@ -5,6 +5,9 @@ Object.keys(packageJson.dependencies).forEach((key) => {
     if (key.startsWith('nav-frontend-')) {
         navFrontendModuler.push(key);
     }
+    if (key.startsWith('@navikt')) {
+        navFrontendModuler.push(key);
+    }
 });
 const withTranspileModules = require('next-transpile-modules')(navFrontendModuler);
 module.exports = withTranspileModules(

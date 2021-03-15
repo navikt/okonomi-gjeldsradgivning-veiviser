@@ -16,7 +16,7 @@ Konfigurasjon og kildekode for next appen ligger i rotmappen.
 
 Opprett en `.env.local` fil på root folder der du legger inn
 ønskede environment-variable. Feks:
-`DECORATOR_URL="https://www.nav.no/dekoratoren/" APP_URL="https://www.nav.no/okonomi-og-gjeld" SANITY_DATASET="test"`
+`DECORATOR_ENV="dev" NEXT_PUBLIC_APP_URL="https://www.nav.no/okonomi-og-gjeld" SANITY_DATASET="test"`
 
 Sanity Studio ligger i mappen `/sanity`
 

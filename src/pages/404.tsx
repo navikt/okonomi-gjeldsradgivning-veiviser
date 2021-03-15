@@ -12,7 +12,7 @@ const Custom404 = (props: { page?: PageProps }) => (
         <Head>
             <title>Økonomi- og gjeldsrådgivning</title>
         </Head>
-        <Layout title="Økonomi- og gjeldsrådgivning" isFrontPage={false} decoratorParts={props.page?.decorator}>
+        <Layout title="Økonomi- og gjeldsrådgivning" isFrontPage={false} breadcrumbs={props.page.breadcrumbs}>
             <FrontpagePanel>
                 <Innholdstittel>Denne siden finnes ikke</Innholdstittel>
                 <p>

@@ -1,10 +1,7 @@
-import Head from 'next/head';
+import { Breadcrumb } from '@navikt/nav-dekoratoren-moduler';
 import styled from 'styled-components';
 
-import { DecoratorParts } from '../utils/dekorator';
-import { DecoratorEnv } from './decorator/DecoratorEnv';
-import { DecoratorFooter } from './decorator/DecoratorFooter';
-import { DecoratorHeader } from './decorator/DecoratorHeader';
+import { useDecorator } from '../utils/useDecorator';
 import { PageBanner } from './PageBanner';
 
 const StyledLayout = styled.div`
@@ -38,24 +35,17 @@ export const Layout = (props: {
     title: string;
     isFrontPage: boolean;
     bannerIconUrl?: string;
-    decoratorParts?: DecoratorParts;
+    breadcrumbs?: Breadcrumb;
     children: React.ReactChild;
 }) => {
+    useDecorator(props.breadcrumbs);
+
     return (
         <StyledLayout>
-            <Head>
-                {props.decoratorParts?.linkTags.map((attrs, index) => {
-                    attrs.key = 'props.linkTags' + index;
-                    return <link key={index} {...attrs} />;
-                })}
-            </Head>
-            <DecoratorHeader html={props.decoratorParts?.decoratorHeader} />
             <App className="app" id="app">
                 <PageBanner isFrontPage={props.isFrontPage} title={props.title} iconUrl={props.bannerIconUrl} />
                 <Content>{props.children}</Content>
             </App>
-            <DecoratorFooter html={props.decoratorParts?.decoratorFooter} />
-            <DecoratorEnv env={props.decoratorParts?.decoratorEnv} />
         </StyledLayout>
     );
 };
