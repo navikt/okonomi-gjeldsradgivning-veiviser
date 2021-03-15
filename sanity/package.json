@@ -14,12 +14,12 @@
     "sanity"
   ],
   "dependencies": {
-    "@sanity/base": "^2.4.1",
+    "@sanity/base": "^2.6.0",
     "@sanity/components": "^2.2.6",
-    "@sanity/core": "^2.4.0",
-    "@sanity/default-layout": "^2.4.1",
+    "@sanity/core": "^2.6.1",
+    "@sanity/default-layout": "^2.6.0",
     "@sanity/default-login": "^2.2.6",
-    "@sanity/desk-tool": "^2.4.2",
+    "@sanity/desk-tool": "^2.6.1",
     "@sanity/vision": "^2.2.6",
     "@u-wave/react-vimeo": "^0.9.2",
     "prop-types": "^15.6",
@@ -28,6 +28,6 @@
     "react-icons": "^4.2.0"
   },
   "devDependencies": {
-    "@sanity/cli": "^2.4.0"
+    "@sanity/cli": "^2.6.0"
   }
 }
