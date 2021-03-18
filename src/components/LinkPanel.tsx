@@ -48,7 +48,7 @@ export const LinkPanel = (props: { linkPanel: SanityLinkPanel }) => (
     <LenkepanelBase
         href={`/artikkel/${props.linkPanel.slug}`}
         linkCreator={(linkProps) => (
-            <Link href="/artikkel/[slug]" as={linkProps.href}>
+            <Link href="/artikkel/[slug]" as={linkProps.href} passHref>
                 <FrontpageLinkPanel className="lenkepanel">
                     {props.linkPanel.iconUrl && (
                         <LinkPanelImage>

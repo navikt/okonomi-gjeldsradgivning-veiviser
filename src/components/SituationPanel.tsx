@@ -56,7 +56,7 @@ export const SituationPanel = (props: { articlePanel: SanityArticlePanel }) => (
                     key={article.slug}
                     href={`/artikkel/${article.slug}`}
                     linkCreator={(linkProps) => (
-                        <Link href="/artikkel/[slug]" as={linkProps.href}>
+                        <Link href="/artikkel/[slug]" as={linkProps.href} passHref>
                             <LinkPanel className="lenkepanel lenkepanel--border">
                                 <Undertittel className="lenkepanel__heading" tag="p">
                                     {article.title}
