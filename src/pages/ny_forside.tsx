@@ -1,10 +1,9 @@
-import { Button, Cell, ContentContainer, Grid } from '@navikt/ds-react';
+import { Cell, ContentContainer, Grid } from '@navikt/ds-react';
 import { LenkepanelBase } from 'nav-frontend-lenkepanel';
 import Panel from 'nav-frontend-paneler';
 import { Systemtittel } from 'nav-frontend-typografi';
 import Head from 'next/head';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components/macro';
 
@@ -34,13 +33,6 @@ const Home = (props: {
 }) => {
     useDecorator();
 
-    const router = useRouter();
-
-    const handleButtonClick = (e: any, slug: string) => {
-        e.preventDefault();
-        router.push(`artikkel/${slug}`);
-    };
-
     return (
         <div id="app" className="app">
             {
@@ -64,12 +56,11 @@ const Home = (props: {
                                             <div>
                                                 <Systemtittel>{panel.title}</Systemtittel>
                                                 <SanityBlockContent blocks={panel.description} />
-                                                <Button
-                                                    onClick={(event) => handleButtonClick(event, panel.slug)}
-                                                    variant="action"
-                                                >
-                                                    Gjeldsrådgivning fra NAV
-                                                </Button>
+                                                <Link href={`artikkel/${panel.slug}`}>
+                                                    <a className="navds-button navds-button--action navds-button--medium">
+                                                        Gjeldsrådgivning fra NAV
+                                                    </a>
+                                                </Link>
                                             </div>
                                             <PanelImageContainer>
                                                 <img src={panel.iconUrl} alt="" />
