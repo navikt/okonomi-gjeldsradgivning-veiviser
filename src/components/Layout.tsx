@@ -38,7 +38,7 @@ export const Layout = (props: {
     breadcrumbs?: Breadcrumb;
     children: React.ReactChild;
 }) => {
-    useDecorator(props.breadcrumbs);
+    //useDecorator(props.breadcrumbs);
 
     return (
         <StyledLayout>
