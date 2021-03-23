@@ -36,7 +36,7 @@
         "nav-frontend-spinner-style": "^1.0.2",
         "nav-frontend-typografi": "^3.0.4",
         "nav-frontend-typografi-style": "^1.0.35",
-        "next": "^10.0.8",
+        "next": "^10.0.9",
         "node-cache": "^5.1.2",
         "prop-types": "^15.7.2",
         "react": "^17.0.1",
