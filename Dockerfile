@@ -1,9 +1,8 @@
-FROM navikt/common:0.1 AS navikt-common
 FROM node:14-alpine
 
-COPY --from=navikt-common /init-scripts /init-scripts
-COPY --from=navikt-common /entrypoint.sh /entrypoint.sh
-COPY --from=navikt-common /dumb-init /dumb-init
+COPY --from=redboxoss/scuttle:latest /scuttle /bin/scuttle
+ENV ENVOY_ADMIN_API=http://127.0.0.1:15000
+ENV ISTIO_QUIT_API=http://127.0.0.1:15020
 
 ENV NODE_ENV production
 
@@ -16,4 +15,4 @@ COPY next.config.js .
 COPY node_modules/ node_modules/
 
 EXPOSE 3000
-CMD npm run start
+ENTRYPOINT ["scuttle", "npm", "start"]
