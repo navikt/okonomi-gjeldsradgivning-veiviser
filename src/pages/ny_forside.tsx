@@ -141,6 +141,10 @@ const Line = styled.span`
     }
 `;
 
+const StyledFrontPageLinkPanel = styled.div`
+    align-self: start;
+`;
+
 const FrontPageLinkPanel = (article: { title: string; slug: string; description: string }) => {
     return (
         <LenkepanelBase
@@ -149,12 +153,12 @@ const FrontPageLinkPanel = (article: { title: string; slug: string; description:
             linkCreator={(linkProps) => (
                 <Link href="/artikkel/[slug]" as={linkProps.href} passHref>
                     <LinkPanel className="lenkepanel">
-                        <div>
+                        <StyledFrontPageLinkPanel>
                             <Systemtittel className="lenkepanel__heading" tag="p">
                                 {article.title}
                             </Systemtittel>
                             <p>{article.description}</p>
-                        </div>
+                        </StyledFrontPageLinkPanel>
                         <span className="lenkepanel__indikator" />
                     </LinkPanel>
                 </Link>
