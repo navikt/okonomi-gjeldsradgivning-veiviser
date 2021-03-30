@@ -19,6 +19,10 @@ module.exports = withTranspileModules(
             trailingSlash: false,
             reactStrictMode: true,
 
+            eslint: {
+                build: true,
+            },
+
             async redirects() {
                 return [
                     {
