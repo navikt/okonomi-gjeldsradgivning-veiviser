@@ -7,6 +7,9 @@ module.exports = {
         ecmaFeatures: {
             jsx: true, // Enable JSX since we're using React
         },
+        babelOptions: {
+            presets: ['next/babel'],
+        },
     },
     plugins: ['simple-import-sort'],
     settings: {
@@ -20,6 +23,7 @@ module.exports = {
         node: true, // Enables Node.js global variables and Node.js scoping.
     },
     extends: [
+        'plugin:@next/next/recommended',
         'eslint:recommended',
         'plugin:react/recommended',
         'plugin:react-hooks/recommended',
