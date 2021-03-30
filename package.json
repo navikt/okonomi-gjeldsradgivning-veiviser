@@ -13,6 +13,10 @@
         "test": "jest"
     },
     "dependencies": {
+        "@navikt/ds-css": "^0.2.4",
+        "@navikt/ds-icons": "^0.2.0",
+        "@navikt/ds-react": "^0.2.5",
+        "@navikt/ds-tokens": "^0.1.2",
         "@navikt/nav-dekoratoren-moduler": "^1.2.9",
         "@sanity/block-content-to-react": "^2.0.7",
         "@sanity/client": "^2.2.6",
@@ -54,6 +58,7 @@
         "@types/styled-components": "^5.1.7",
         "@typescript-eslint/eslint-plugin": "^4.15.0",
         "@typescript-eslint/parser": "^4.15.0",
+        "@zeit/next-css": "^1.0.1",
         "@zeit/next-less": "^1.0.1",
         "babel-plugin-macros": "^3.0.1",
         "babel-plugin-styled-components": "^1.12.0",

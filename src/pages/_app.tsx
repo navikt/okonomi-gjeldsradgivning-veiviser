@@ -1,3 +1,5 @@
+import '@navikt/ds-css';
+
 import { AppProps, NextWebVitalsMetric } from 'next/app';
 import { useEffect } from 'react';
 
