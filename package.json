@@ -40,7 +40,7 @@
         "nav-frontend-spinner-style": "^1.0.2",
         "nav-frontend-typografi": "^3.0.4",
         "nav-frontend-typografi-style": "^1.0.35",
-        "next": "^10.0.9",
+        "next": "^10.1.1",
         "node-cache": "^5.1.2",
         "prop-types": "^15.7.2",
         "react": "^17.0.1",
@@ -50,6 +50,7 @@
         "webpack": "^4.46.0"
     },
     "devDependencies": {
+        "@babel/core": "^7.13.14",
         "@types/jest": "^26.0.20",
         "@types/node": "^14.14.28",
         "@types/node-fetch": "^2.5.8",
@@ -62,7 +63,6 @@
         "@zeit/next-less": "^1.0.1",
         "babel-plugin-macros": "^3.0.1",
         "babel-plugin-styled-components": "^1.12.0",
-        "eslint": "^7.20.0",
         "eslint-config-prettier": "^7.2.0",
         "eslint-plugin-jsx-a11y": "^6.4.1",
         "eslint-plugin-prettier": "^3.3.1",
