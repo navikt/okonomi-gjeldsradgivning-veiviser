@@ -16,7 +16,7 @@ const Custom404 = () => (
                 <p>
                     Prøv å gå tilbake til{' '}
                     <Link href="/">
-                        <a className="lenke">forsiden</a>
+                        <a className="navds-link">forsiden</a>
                     </Link>
                     .
                 </p>

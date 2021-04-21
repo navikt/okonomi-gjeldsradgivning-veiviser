@@ -1,7 +1,6 @@
+import { Accordion, Link as NavDSLink } from '@navikt/ds-react';
 import BlockContent from '@sanity/block-content-to-react';
 import Vimeo from '@u-wave/react-vimeo';
-import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
-import Lenke from 'nav-frontend-lenker';
 import { Element, Ingress, Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import Link from 'next/link';
 
@@ -16,9 +15,9 @@ const serializers = {
         },
         expandedPanel: function renderExpandedPanel({ node }) {
             return (
-                <Ekspanderbartpanel tittel={node.title} apen={node.defaultOpen}>
+                <Accordion heading={node.title} open={node.defaultOpen}>
                     <SanityBlockContent blocks={node.body} />
-                </Ekspanderbartpanel>
+                </Accordion>
             );
         },
         block: function renderBlock({ node, children }) {
@@ -43,7 +42,7 @@ const serializers = {
     marks: {
         fileUpload: function renderFileUpload({ mark, children }) {
             const { slug } = mark;
-            return <Lenke href={`/okonomi-og-gjeld/api/download/${slug}`}>{children}</Lenke>;
+            return <NavDSLink href={`/okonomi-og-gjeld/api/download/${slug}`}>{children}</NavDSLink>;
         },
         link: function renderLink({ mark, children }) {
             const { blank, href } = mark;
@@ -56,13 +55,13 @@ const serializers = {
                 window.location.assign(href);
             };
             return blank ? (
-                <Lenke href={href} onClick={(event) => handleOnClick(event)} target="_blank" rel="noopener">
+                <NavDSLink href={href} onClick={(event) => handleOnClick(event)} target="_blank" rel="noopener">
                     {children}
-                </Lenke>
+                </NavDSLink>
             ) : (
-                <Lenke href={href} onClick={(event) => handleOnClick(event)}>
+                <NavDSLink href={href} onClick={(event) => handleOnClick(event)}>
                     {children}
-                </Lenke>
+                </NavDSLink>
             );
         },
         internalLink: function renderInternalLink({ mark, children }) {
@@ -70,7 +69,7 @@ const serializers = {
             const href = `/${slug.current}`;
             return (
                 <Link href={getFullPathForInternalLink(type, href)}>
-                    <a className="lenke">{children}</a>
+                    <a className="navds-link">{children}</a>
                 </Link>
             );
         },
