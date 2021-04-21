@@ -1,5 +1,4 @@
 import { Cell, ContentContainer, Grid } from '@navikt/ds-react';
-import { LenkepanelBase } from 'nav-frontend-lenkepanel';
 import Panel from 'nav-frontend-paneler';
 import { Systemtittel } from 'nav-frontend-typografi';
 import Head from 'next/head';
@@ -7,6 +6,7 @@ import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components/macro';
 
+import { FrontPageLinkPanel } from '../components/FrontPageLinkPanel';
 import { PageBannerNewGrid } from '../components/PageBannerNewGrid';
 import { SanityBlockContent } from '../components/SanityBlockContent';
 import { getPageProps, PageProps } from '../pageProps';
@@ -18,6 +18,10 @@ import { useDecorator } from '../utils/useDecorator';
 const StyledApp = styled.div`
     background-color: ${digisosColors.navGraa};
     padding-bottom: 5.625rem;
+
+    .typo-normal {
+        font-size: 18px;
+    }
 `;
 
 const FrontPagePanel = styled(Panel)`
@@ -107,17 +111,6 @@ const Home = (props: {
     );
 };
 
-const LinkPanel = styled.a`
-    padding: 1.25rem;
-    cursor: pointer;
-    margin-bottom: 0;
-    height: calc(100% - 2.5rem);
-
-    /*.typo-systemtittel {
-        color: #0067c5;
-    }*/
-`;
-
 const HeadingWithLine = styled.div`
     display: flex;
     flex-direction: row;
@@ -140,34 +133,6 @@ const Line = styled.span`
         border: 1px solid #78706a;
     }
 `;
-
-const StyledFrontPageLinkPanel = styled.div`
-    align-self: start;
-`;
-
-const FrontPageLinkPanel = (article: { title: string; slug: string; description: string }) => {
-    return (
-        <LenkepanelBase
-            key={article.slug}
-            href={`/artikkel/${article.slug}`}
-            linkCreator={(linkProps) => (
-                <Link href="/artikkel/[slug]" as={linkProps.href} passHref>
-                    <LinkPanel className="lenkepanel">
-                        <StyledFrontPageLinkPanel>
-                            <Systemtittel className="lenkepanel__heading" tag="p">
-                                {article.title}
-                            </Systemtittel>
-                            <p>{article.description}</p>
-                        </StyledFrontPageLinkPanel>
-                        <span className="lenkepanel__indikator" />
-                    </LinkPanel>
-                </Link>
-            )}
-        >
-            <></>
-        </LenkepanelBase>
-    );
-};
 
 const FlexContainer = styled.div`
     display: flex;
