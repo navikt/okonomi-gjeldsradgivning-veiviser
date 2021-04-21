@@ -51,7 +51,7 @@ const serializers = {
                 event.preventDefault();
                 logAmplitudeEvent('Trykk på ekstern lenke', {
                     tittel: children[0],
-                    url: href,
+                    href: href,
                 });
                 window.location.assign(href);
             };
