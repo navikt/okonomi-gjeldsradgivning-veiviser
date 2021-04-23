@@ -11,7 +11,7 @@ const StyledLayout = styled.div`
         background-color: #fff;
     }
 
-    .lenke {
+    .navds-link {
         img + span:not(.sr-only),
         span:not(.sr-only) + img {
             margin-left: 0.25em;

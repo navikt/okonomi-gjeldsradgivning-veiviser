@@ -18,7 +18,7 @@ const Custom404 = (props: { page?: PageProps }) => (
                 <p>
                     Prøv å gå tilbake til{' '}
                     <Link href="/">
-                        <a className="lenke">forsiden</a>
+                        <a className="navds-link">forsiden</a>
                     </Link>
                     .
                 </p>
