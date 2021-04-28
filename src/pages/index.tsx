@@ -1,12 +1,32 @@
+import { Cell, ContentContainer, Grid } from '@navikt/ds-react';
+import Panel from 'nav-frontend-paneler';
+import { Systemtittel } from 'nav-frontend-typografi';
 import Head from 'next/head';
+import Link from 'next/link';
+import React from 'react';
+import styled from 'styled-components/macro';
 
-import { ArticleGroupPanel } from '../components/ArticleGroupPanel';
-import { Layout } from '../components/Layout';
-import { LinkPanel } from '../components/LinkPanel';
-import { SituationPanel } from '../components/SituationPanel';
+import { FrontPageLinkPanel } from '../components/FrontPageLinkPanel';
+import { PageBannerNewGrid } from '../components/PageBannerNewGrid';
+import { SanityBlockContent } from '../components/SanityBlockContent';
 import { getPageProps, PageProps } from '../pageProps';
 import { SanityArticleGroup, SanityArticlePanel, SanityFrontpage, SanityLinkPanel } from '../sanityDocumentTypes';
+import { digisosColors } from '../utils/colors';
 import { fetchArticleGroups, fetchArticlePanels, fetchFrontpage, fetchLinkPanels } from '../utils/sanity-fetch';
+import { useDecorator } from '../utils/useDecorator';
+
+const StyledApp = styled.div`
+    background-color: ${digisosColors.navGraa};
+    padding-bottom: 5.625rem;
+
+    .typo-normal {
+        font-size: 18px;
+    }
+`;
+
+const FrontPagePanel = styled(Panel)`
+    padding: 1.5rem;
+`;
 
 const Home = (props: {
     page: PageProps;
@@ -15,8 +35,10 @@ const Home = (props: {
     articleGroups: SanityArticleGroup[];
     linkPanels: SanityLinkPanel[];
 }) => {
+    useDecorator();
+
     return (
-        <>
+        <div id="app" className="app">
             {
                 <Head>
                     <title>{props.page.appTitle}</title>
@@ -26,37 +48,127 @@ const Home = (props: {
                     <meta property="og:locale" content="nb" />
                 </Head>
             }
-            <Layout
-                title={props.page.title}
-                isFrontPage={true}
-                bannerIconUrl={props.frontpage.bannerIconUrl}
-                breadcrumbs={props.page.breadcrumbs}
-            >
-                <>
-                    {props.frontpage.panels.map((panel) => {
-                        if (panel._type === 'articleGroup') {
-                            return props.articleGroups
-                                .filter((articleGroup) => articleGroup.id === panel._id)
-                                .map((articleGroup) => (
-                                    <ArticleGroupPanel key={panel._id} articleGroup={articleGroup} />
-                                ));
-                        }
-                        if (panel._type === 'articlePanel') {
-                            return props.articlePanels
-                                .filter((articlePanel) => articlePanel.id === panel._id)
-                                .map((articlePanel) => <SituationPanel key={panel._id} articlePanel={articlePanel} />);
-                        }
-                        if (panel._type === 'linkPanel') {
-                            return props.linkPanels
-                                .filter((linkPanel) => linkPanel.id === panel._id)
-                                .map((linkPanel) => <LinkPanel key={panel._id} linkPanel={linkPanel} />);
-                        }
-                    })}
-                </>
-            </Layout>
-        </>
+            <StyledApp>
+                <PageBannerNewGrid title={props.page.title} iconUrl={props.frontpage.bannerIconUrl} />
+                <ContentContainer>
+                    <Grid>
+                        {props.linkPanels.map((panel) => {
+                            return (
+                                <Cell xs={12} key={panel.id}>
+                                    <FrontPagePanel>
+                                        <FlexContainer>
+                                            <div>
+                                                <Systemtittel>{panel.title}</Systemtittel>
+                                                <SanityBlockContent blocks={panel.description} />
+                                                <Link href={`artikkel/${panel.slug}`}>
+                                                    <a className="navds-button navds-button--action navds-button--medium">
+                                                        Gjeldsrådgivning fra NAV
+                                                    </a>
+                                                </Link>
+                                            </div>
+                                            <PanelImageContainer>
+                                                <img src={panel.iconUrl} alt="" />
+                                            </PanelImageContainer>
+                                        </FlexContainer>
+                                    </FrontPagePanel>
+                                </Cell>
+                            );
+                        })}
+                        {props.articlePanels.map((panel) => {
+                            return panel.articles.map((article) => {
+                                return (
+                                    <Cell xs={12} lg={4} key={article.slug}>
+                                        <FrontPageLinkPanel {...article} />
+                                    </Cell>
+                                );
+                            });
+                        })}
+
+                        {props.articleGroups.map((articleGroup) => {
+                            return (
+                                <React.Fragment key={articleGroup.id}>
+                                    <Cell xs={12}>
+                                        <HeadingWithLine>
+                                            <Line />
+                                            <Systemtittel>{articleGroup.title}</Systemtittel>
+                                            <Line />
+                                        </HeadingWithLine>
+                                    </Cell>
+                                    {articleGroup.articles.map((article) => {
+                                        return (
+                                            <Cell xs={12} lg={6} key={article.slug}>
+                                                <FrontPageLinkPanel {...article} />
+                                            </Cell>
+                                        );
+                                    })}
+                                </React.Fragment>
+                            );
+                        })}
+                    </Grid>
+                </ContentContainer>
+            </StyledApp>
+        </div>
     );
 };
+
+const HeadingWithLine = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    margin-top: 2rem;
+
+    @media screen and (min-width: 480px) {
+        .typo-systemtittel {
+            margin: 0 2rem;
+        }
+    }
+`;
+
+const Line = styled.span`
+    @media screen and (min-width: 480px) {
+        flex: 1;
+        height: 0px;
+        border: 1px solid #78706a;
+    }
+`;
+
+const FlexContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    p {
+        max-width: 80ch;
+        max-width: 51rem;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+`;
+
+const PanelImageContainer = styled.div`
+    @media screen and (max-width: 470px) {
+        display: none;
+    }
+    background-color: ${digisosColors.digisosLysGronn};
+    border-radius: 50%;
+    overflow: hidden;
+
+    height: 8.25rem;
+    width: 8.25rem;
+    min-width: 8.25rem;
+
+    img {
+        min-width: 8.25rem;
+        width: 8.25rem;
+        height: 8.25rem;
+        align-self: center;
+    }
+`;
 
 interface StaticProps {
     props: {
