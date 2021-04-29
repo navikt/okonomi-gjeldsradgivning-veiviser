@@ -1,5 +1,5 @@
 {
     "namespace": "teamdigisos",
-    "ingresses": ["https://okonomi-gjeldsradgivning-veiviser.dev.nav.no/"],
+    "ingresses": ["https://okonomi-gjeldsradgivning-veiviser.dev.nav.no"],
     "prometheusEnabled": false
 }
