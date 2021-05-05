@@ -60,7 +60,7 @@ const Home = (props: {
                                             <div>
                                                 <Systemtittel>{panel.title}</Systemtittel>
                                                 <SanityBlockContent blocks={panel.description} />
-                                                <Link href={`artikkel/${panel.slug}`}>
+                                                <Link href={`/artikkel/${panel.slug}`}>
                                                     <a className="navds-button navds-button--action navds-button--medium">
                                                         Gjeldsrådgivning fra NAV
                                                     </a>
