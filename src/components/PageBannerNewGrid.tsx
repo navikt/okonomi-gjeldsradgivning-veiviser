@@ -4,12 +4,13 @@ import styled from 'styled-components/macro';
 import { digisosColors } from '../utils/colors';
 
 const Banner = styled.div`
-    height: 200px;
+    height: calc(200px - 1rem);
     background-color: ${digisosColors.digisosLysGronn};
     border-bottom: 4px solid ${digisosColors.digisosMorkGronn};
     display: flex;
     justify-content: center;
     margin-bottom: 2rem;
+    padding: 1rem 1rem 0 1rem;
 `;
 
 const BannerContent = styled.div`
