@@ -35,7 +35,6 @@ const serializers = {
                 return <Ingress>{children}</Ingress>;
             }
 
-            console.error('unhandled style', node);
             return children;
         },
     },
