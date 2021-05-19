@@ -4,7 +4,7 @@ import styled from 'styled-components/macro';
 import { digisosColors } from '../utils/colors';
 
 const Banner = styled.div`
-    height: calc(200px - 1rem);
+    min-height: calc(200px - 1rem);
     background-color: ${digisosColors.digisosLysGronn};
     border-bottom: 4px solid ${digisosColors.digisosMorkGronn};
     display: flex;
@@ -14,11 +14,17 @@ const Banner = styled.div`
 `;
 
 const BannerContent = styled.div`
+    width: 100%;
+    max-width: 1024px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
+
+    h1 {
+        margin: 0.5rem 1rem;
+    }
 `;
 
 const BannerIcon = styled.img`
