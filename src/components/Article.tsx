@@ -1,4 +1,3 @@
-import Panel from 'nav-frontend-paneler';
 import { Innholdstittel } from 'nav-frontend-typografi';
 
 import { SanityArticle } from '../sanityDocumentTypes';
