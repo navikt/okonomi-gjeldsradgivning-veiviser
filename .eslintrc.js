@@ -30,7 +30,7 @@ module.exports = {
         'plugin:jsx-a11y/recommended',
         'plugin:@typescript-eslint/eslint-recommended',
         'plugin:@typescript-eslint/recommended',
-        'prettier/@typescript-eslint',
+        'prettier',
         'plugin:prettier/recommended', // Make this the last element so prettier config overrides other formatting rules
     ],
     rules: {

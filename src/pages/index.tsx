@@ -63,7 +63,7 @@ const Home = (props: {
                                                 <SanityBlockContent blocks={panel.description} />
                                                 <Link href={`/artikkel/${panel.slug}`}>
                                                     <a className="navds-button navds-button--action navds-button--medium">
-                                                        Gjeldsrådgivning fra NAV
+                                                        Kontakt oss
                                                     </a>
                                                 </Link>
                                             </div>
