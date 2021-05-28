@@ -1,6 +1,5 @@
-import { Cell, ContentContainer, Grid } from '@navikt/ds-react';
+import { Cell, ContentContainer, Grid, Panel } from '@navikt/ds-react';
 import { NavdsColorGray10 } from '@navikt/ds-tokens/dist/tokens';
-import Panel from 'nav-frontend-paneler';
 import { Systemtittel } from 'nav-frontend-typografi';
 import Head from 'next/head';
 import Link from 'next/link';

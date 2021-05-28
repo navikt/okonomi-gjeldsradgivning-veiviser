@@ -1,4 +1,4 @@
-import Panel from 'nav-frontend-paneler';
+import { Panel } from '@navikt/ds-react';
 import styled from 'styled-components';
 
 export const FrontpagePanel = styled(Panel)`
