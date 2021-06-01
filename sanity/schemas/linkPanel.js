@@ -21,6 +21,11 @@ export default {
             type: 'image',
         },
         {
+            name: 'buttonText',
+            title: 'Button text',
+            type: 'string'
+        },
+        {
             name: 'article',
             title: 'Article',
             type: 'reference',

@@ -104,6 +104,7 @@ export const fetchLinkPanels = async (): Promise<SanityLinkPanel[]> => {
         "id": _id,
         title,
         description,
+        buttonText,
         "iconUrl": icon.asset->url,
         "slug": article->slug.current,
     }`;
