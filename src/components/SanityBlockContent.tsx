@@ -27,14 +27,14 @@ const serializers = {
             }
             if (style === 'h2') {
                 return (
-                    <Title level={2} size="l" spacing>
+                    <Title level={2} size="m" spacing>
                         {children}
                     </Title>
                 );
             }
             if (style === 'h3') {
                 return (
-                    <Title level={3} size="m" spacing>
+                    <Title level={3} size="s" spacing>
                         {children}
                     </Title>
                 );
