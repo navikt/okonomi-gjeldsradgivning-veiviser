@@ -1,4 +1,4 @@
-import { Sidetittel } from 'nav-frontend-typografi';
+import { Title } from '@navikt/ds-react';
 import styled from 'styled-components/macro';
 
 import { digisosColors } from '../utils/colors';
@@ -36,7 +36,9 @@ export const PageBannerNewGrid = (props: { title: string; iconUrl: string }) => 
     return (
         <Banner>
             <BannerContent>
-                <Sidetittel>{props.title}</Sidetittel>
+                <Title level={1} size="2xl">
+                    {props.title}
+                </Title>
                 <BannerIcon src={props.iconUrl} alt="" />
             </BannerContent>
         </Banner>

@@ -1,6 +1,7 @@
-import { Innholdstittel } from 'nav-frontend-typografi';
+import { BodyLong, Title } from '@navikt/ds-react';
 import Head from 'next/head';
 import Link from 'next/link';
+import React from 'react';
 
 import { FrontpagePanel } from '../components/FrontpagePanel';
 import { Layout } from '../components/Layout';
@@ -14,14 +15,16 @@ const Custom404 = (props: { page?: PageProps }) => (
         </Head>
         <Layout title="Økonomi- og gjeldsrådgivning" isFrontPage={false} breadcrumbs={props.page.breadcrumbs}>
             <FrontpagePanel>
-                <Innholdstittel>Denne siden finnes ikke</Innholdstittel>
-                <p>
+                <Title level={1} size="xl" spacing>
+                    Denne siden finnes ikke
+                </Title>
+                <BodyLong spacing>
                     Prøv å gå tilbake til{' '}
                     <Link href="/">
                         <a className="navds-link">forsiden</a>
                     </Link>
                     .
-                </p>
+                </BodyLong>
             </FrontpagePanel>
         </Layout>
     </>

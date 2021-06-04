@@ -1,5 +1,4 @@
-import { LinkPanel } from '@navikt/ds-react';
-import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
+import { BodyShort, LinkPanel, Title } from '@navikt/ds-react';
 import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
@@ -23,8 +22,10 @@ export const FrontPageLinkPanel = (article: { title: string; slug: string; descr
     return (
         <Link href="/artikkel/[slug]" as={`/artikkel/${article.slug}`} passHref>
             <StyledLinkPanel href="#" border={false}>
-                <Systemtittel tag="p">{article.title}</Systemtittel>
-                <Normaltekst>{article.description}</Normaltekst>
+                <Title level={2} size="m" spacing>
+                    {article.title}
+                </Title>
+                <BodyShort>{article.description}</BodyShort>
             </StyledLinkPanel>
         </Link>
     );

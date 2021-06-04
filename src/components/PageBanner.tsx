@@ -1,4 +1,4 @@
-import { Sidetittel, Systemtittel } from 'nav-frontend-typografi';
+import { Title } from '@navikt/ds-react';
 import styled from 'styled-components';
 
 interface BannerProps {
@@ -15,10 +15,13 @@ const Banner = styled.div<BannerProps>`
     min-height: ${(props) => props.height};
 `;
 
-const BannerContent = styled.div`
+interface BannerContentProps {
+    isFrontpage: boolean;
+}
+const BannerContent = styled.div<BannerContentProps>`
     width: 100%;
     max-width: 1024px;
-    margin-top: 1rem;
+    margin-top: ${(props) => (props.isFrontpage ? '1rem' : '0')};
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -34,11 +37,15 @@ const BannerIcon = styled.img`
 export const PageBanner = (props: { isFrontPage: boolean; title: string; iconUrl: string }) => {
     return (
         <Banner height={props.isFrontPage ? '190px' : '70px'}>
-            <BannerContent>
+            <BannerContent isFrontpage={props.isFrontPage}>
                 {props.isFrontPage ? (
-                    <Sidetittel tag="h1">{props.title}</Sidetittel>
+                    <Title level={1} size="xl">
+                        {props.title}
+                    </Title>
                 ) : (
-                    <Systemtittel tag="h1">{props.title}</Systemtittel>
+                    <Title level={1} size="l">
+                        {props.title}
+                    </Title>
                 )}
                 {props.isFrontPage && <BannerIcon alt="" src={props.iconUrl} />}
             </BannerContent>
