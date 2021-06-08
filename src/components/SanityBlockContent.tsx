@@ -1,8 +1,8 @@
-import { Accordion, Link as NavDSLink } from '@navikt/ds-react';
+import { Accordion, BodyLong, Ingress, Link as NavDSLink, Title } from '@navikt/ds-react';
 import BlockContent from '@sanity/block-content-to-react';
 import Vimeo from '@u-wave/react-vimeo';
-import { Element, Ingress, Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import Link from 'next/link';
+import React from 'react';
 
 import { logAmplitudeEvent } from '../utils/amplitude';
 import client from '../utils/sanity-client';
@@ -23,16 +23,24 @@ const serializers = {
         block: function renderBlock({ node, children }) {
             const style = node.style;
             if (style === 'normal') {
-                return <Normaltekst>{children}</Normaltekst>;
+                return <BodyLong spacing>{children}</BodyLong>;
             }
             if (style === 'h2') {
-                return <Undertittel>{children}</Undertittel>;
+                return (
+                    <Title level={2} size="m" spacing>
+                        {children}
+                    </Title>
+                );
             }
             if (style === 'h3') {
-                return <Element tag="h3">{children}</Element>;
+                return (
+                    <Title level={3} size="s" spacing>
+                        {children}
+                    </Title>
+                );
             }
             if (style === 'ingress') {
-                return <Ingress>{children}</Ingress>;
+                return <Ingress spacing>{children}</Ingress>;
             }
 
             return children;

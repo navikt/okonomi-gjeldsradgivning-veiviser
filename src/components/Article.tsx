@@ -1,4 +1,4 @@
-import { Innholdstittel } from 'nav-frontend-typografi';
+import { Title } from '@navikt/ds-react';
 
 import { SanityArticle } from '../sanityDocumentTypes';
 import { ArticlePanel } from './ArticlePanel';
@@ -9,7 +9,9 @@ export const Article = (props: { article: SanityArticle }) => (
     <article>
         <ArticlePanel>
             <PanelIcon imageUrl={props.article.iconUrl} />
-            <Innholdstittel>{props.article.title}</Innholdstittel>
+            <Title level={1} size="2xl" spacing>
+                {props.article.title}
+            </Title>
             <SanityBlockContent blocks={props.article.body} />
         </ArticlePanel>
     </article>

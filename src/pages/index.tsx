@@ -1,6 +1,5 @@
-import { Cell, ContentContainer, Grid, Panel } from '@navikt/ds-react';
+import { BodyShort, Cell, ContentContainer, Grid, Panel, Title } from '@navikt/ds-react';
 import { NavdsColorGray10 } from '@navikt/ds-tokens/dist/tokens';
-import { Systemtittel } from 'nav-frontend-typografi';
 import Head from 'next/head';
 import Link from 'next/link';
 import React from 'react';
@@ -18,10 +17,6 @@ import { useDecorator } from '../utils/useDecorator';
 const StyledApp = styled.div`
     background-color: ${NavdsColorGray10};
     padding-bottom: 5.625rem;
-
-    .typo-normal {
-        font-size: 18px;
-    }
 `;
 
 const FrontPagePanel = styled(Panel)`
@@ -58,11 +53,13 @@ const Home = (props: {
                                     <FrontPagePanel>
                                         <FlexContainer>
                                             <div>
-                                                <Systemtittel>{panel.title}</Systemtittel>
+                                                <Title level={2} size="m" spacing>
+                                                    {panel.title}
+                                                </Title>
                                                 <SanityBlockContent blocks={panel.description} />
                                                 <Link href={`/artikkel/${panel.slug}`}>
                                                     <a className="navds-button navds-button--action navds-button--medium">
-                                                        Kontakt oss
+                                                        <BodyShort size="m">Kontakt oss</BodyShort>
                                                     </a>
                                                 </Link>
                                             </div>
@@ -90,7 +87,9 @@ const Home = (props: {
                                     <Cell xs={12}>
                                         <HeadingWithLine>
                                             <Line />
-                                            <Systemtittel>{articleGroup.title}</Systemtittel>
+                                            <Title level={2} size="m">
+                                                {articleGroup.title}
+                                            </Title>
                                             <Line />
                                         </HeadingWithLine>
                                     </Cell>
@@ -121,7 +120,7 @@ const HeadingWithLine = styled.div`
     margin-top: 2rem;
 
     @media screen and (min-width: 480px) {
-        .typo-systemtittel {
+        .navds-title {
             margin: 0 2rem;
         }
     }
@@ -145,8 +144,6 @@ const FlexContainer = styled.div`
     p {
         max-width: 80ch;
         max-width: 51rem;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
     }
 `;
 

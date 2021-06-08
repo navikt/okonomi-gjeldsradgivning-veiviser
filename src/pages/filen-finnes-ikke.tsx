@@ -1,4 +1,4 @@
-import { Innholdstittel, Normaltekst } from 'nav-frontend-typografi';
+import { BodyLong, Title } from '@navikt/ds-react';
 import Head from 'next/head';
 
 import { FrontpagePanel } from '../components/FrontpagePanel';
@@ -17,8 +17,10 @@ const Home = (props: { page: PageProps }) => {
             }
             <Layout title={props.page.title} isFrontPage={false} breadcrumbs={props.page.breadcrumbs}>
                 <FrontpagePanel>
-                    <Innholdstittel>Filen finnes ikke</Innholdstittel>
-                    <Normaltekst>Fant ikke filen</Normaltekst>
+                    <Title level={1} size="xl" spacing>
+                        Filen finnes ikke
+                    </Title>
+                    <BodyLong spacing>Fant ikke filen</BodyLong>
                 </FrontpagePanel>
             </Layout>
         </>
