@@ -1,8 +1,7 @@
 name: Build image
 on:
   push:
-    branches:
-      - '**'
+    branches: [main]
     tags-ignore:
       - '**'
   workflow_dispatch:
