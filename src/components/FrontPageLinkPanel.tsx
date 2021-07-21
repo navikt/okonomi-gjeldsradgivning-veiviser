@@ -7,7 +7,7 @@ const StyledLinkPanel = styled(LinkPanel)`
     padding: 1.25rem;
     cursor: pointer;
     margin-bottom: 0;
-    height: calc(100% - 2.5rem);
+    height: 100%;
 
     .navds-link-panel__content {
         align-self: start;
