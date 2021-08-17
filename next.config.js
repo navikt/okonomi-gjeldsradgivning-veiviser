@@ -1,12 +1,4 @@
-const packageJson = require('./package.json');
-const navFrontendModuler = [];
-Object.keys(packageJson.dependencies).forEach((key) => {
-    if (key.startsWith('@navikt')) {
-        navFrontendModuler.push(key);
-    }
-});
-const withTranspileModules = require('next-transpile-modules')(navFrontendModuler);
-module.exports = withTranspileModules({
+module.exports = {
     basePath: '/okonomi-og-gjeld',
     target: 'server',
     trailingSlash: false,
@@ -25,4 +17,4 @@ module.exports = withTranspileModules({
             },
         ];
     },
-});
+};
