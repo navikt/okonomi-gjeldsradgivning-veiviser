@@ -1,5 +1,4 @@
 import { BodyShort, Cell, ContentContainer, Grid, Panel, Title } from '@navikt/ds-react';
-import { NavdsColorGray10 } from '@navikt/ds-tokens/dist/tokens';
 import Head from 'next/head';
 import Link from 'next/link';
 import React from 'react';
@@ -15,7 +14,7 @@ import { fetchArticleGroups, fetchArticlePanels, fetchFrontpage, fetchLinkPanels
 import { useDecorator } from '../utils/useDecorator';
 
 const StyledApp = styled.div`
-    background-color: ${NavdsColorGray10};
+    background-color: var(--navds-color-gray-10);
     padding-bottom: 5.625rem;
 `;
 

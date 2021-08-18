@@ -13,10 +13,9 @@
         "test": "jest"
     },
     "dependencies": {
-        "@navikt/ds-css": "^0.6.14",
-        "@navikt/ds-icons": "^0.3.3",
-        "@navikt/ds-react": "^0.6.9",
-        "@navikt/ds-tokens": "^0.4.3",
+        "@navikt/ds-css": "^0.6.18",
+        "@navikt/ds-icons": "^0.5.1",
+        "@navikt/ds-react": "^0.7.1",
         "@navikt/nav-dekoratoren-moduler": "^1.4.0",
         "@sanity/block-content-to-react": "^3.0.0",
         "@sanity/client": "^2.8.0",
@@ -56,7 +55,6 @@
         "husky": "^4.3.8",
         "jest": "^27.0.6",
         "lint-staged": "^10.5.4",
-        "next-transpile-modules": "^8.0.0",
         "prettier": "^2.3.2",
         "typescript": "^4.3.5"
     },

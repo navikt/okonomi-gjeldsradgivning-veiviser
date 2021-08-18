@@ -1,4 +1,3 @@
-import { NavdsColorGray10, NavdsColorWhite } from '@navikt/ds-tokens/dist/tokens';
 import { Breadcrumb } from '@navikt/nav-dekoratoren-moduler';
 import styled from 'styled-components';
 
@@ -6,10 +5,10 @@ import { useDecorator } from '../utils/useDecorator';
 import { PageBanner } from './PageBanner';
 
 const StyledLayout = styled.div`
-    background-color: ${NavdsColorGray10};
+    background-color: var(--navds-color-gray-10);
 
     .decorator-utils-container {
-        background-color: ${NavdsColorWhite};
+        background-color: var(--navds-color-white);
     }
 
     .navds-link {
