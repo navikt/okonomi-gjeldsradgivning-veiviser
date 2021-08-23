@@ -19,7 +19,7 @@ export const getPageProps = async (
     title: string,
     metaDescription: string,
     slug: string,
-    pageType: 'index' | 'article' | 'group'
+    pageType: 'index' | 'article'
 ): Promise<PageProps> => {
     const frontPage = await fetchFrontpage();
     const breadcrumbs: Breadcrumb =

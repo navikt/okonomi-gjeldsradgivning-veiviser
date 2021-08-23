@@ -1,11 +1,3 @@
-export type SanityDocumentType =
-    | 'article'
-    | 'articleGroup'
-    | 'linkPanel'
-    | 'articlePanel'
-    | 'externalLink'
-    | 'frontpage';
-
 export interface SanityArticle {
     id: string;
     title: string;
@@ -19,14 +11,8 @@ export interface SanityArticle {
 
 export interface SanityArticleGroup {
     id: string;
-    type: SanityDocumentType;
     title: string;
-    slug: string;
-    description: Record<string, unknown>[]; // Sanity content
-    metaDescription: string;
-    articles?: SanityArticle[];
-    links?: SanityLink[];
-    iconUrl: string;
+    articles?: { title: string; slug: string; description: string }[];
 }
 
 export interface SanityLink {
@@ -46,27 +32,10 @@ export interface SanityFrontpage {
     title: string;
     metaDescription: string;
     bannerIconUrl: string;
-    panels: SanityPanel[];
-}
-
-export interface SanityFrontPageArticleGroup {
-    id: string;
-    title: string;
-    slug: string;
-    description?: string; // Sanity content
-    articles: [
-        {
-            title: string;
-            slug: string;
-            description: string;
-            iconUrl: string;
-        }
-    ];
 }
 
 export interface SanityLinkPanel {
     id: string;
-    type: SanityDocumentType;
     title: string;
     description: Record<string, unknown>;
     slug: string;
@@ -92,9 +61,4 @@ export interface SanityFileUpload {
     extension: string;
     originalFilename: string;
     slug: string;
-}
-
-export interface SanityPanel {
-    _id: string;
-    _type: SanityDocumentType;
 }
