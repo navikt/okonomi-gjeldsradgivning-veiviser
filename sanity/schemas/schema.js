@@ -14,16 +14,12 @@ import frontpage from './frontpage';
 import linkPanel from './linkPanel';
 import vimeo from './vimeo';
 import expandedPanel from './expandedPanel';
+import localeString from './locale/localeString';
+import localeBlockContent from './locale/localeBlockContent';
 
-// Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
-    // We name our schema
     name: 'default',
-    // Then proceed to concatenate our document type
-    // to the ones provided by any plugins that are installed
     types: schemaTypes.concat([
-        // The following are document types which will appear
-        // in the studio.
         article,
         articleGroup,
         articlePanel,
@@ -33,7 +29,7 @@ export default createSchema({
         frontpage,
         linkPanel,
         vimeo,
-        // When added to this list, object types can be used as
-        // { type: 'typename' } in other document schemas
+        localeString,
+        localeBlockContent,
     ]),
 });
