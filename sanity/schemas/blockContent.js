@@ -64,9 +64,6 @@ export default {
                                     {
                                         type: 'article',
                                     },
-                                    {
-                                        type: 'articleGroup',
-                                    },
                                 ],
                             },
                         ],

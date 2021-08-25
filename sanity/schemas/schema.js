@@ -9,8 +9,6 @@ import article from './article';
 import articleGroup from './articleGroup';
 import articlePanel from './articlePanel';
 import blockContent from './blockContent';
-import category from './category';
-import externalLink from './externalLink';
 import fileUpload from './fileUpload';
 import frontpage from './frontpage';
 import linkPanel from './linkPanel';
@@ -27,8 +25,6 @@ export default createSchema({
         articlePanel,
         expandedPanel,
         blockContent,
-        category,
-        externalLink,
         fileUpload,
         frontpage,
         linkPanel,

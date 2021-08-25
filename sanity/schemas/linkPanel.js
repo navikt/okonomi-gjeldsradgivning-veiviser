@@ -33,9 +33,6 @@ export default {
                 {
                     type: 'article',
                 },
-                {
-                    type: 'articleGroup',
-                },
             ],
             validation: (Rule) => Rule.required(),
         },
