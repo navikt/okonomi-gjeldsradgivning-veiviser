@@ -11,15 +11,11 @@ jobs:
     env:
       DOCKER_IMAGE: docker.pkg.github.com/${{ github.repository }}/${{ github.event.repository.name }}
     steps:
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
         with:
           node-version: '14'
-      - uses: actions/checkout@v2
-      - uses: actions/cache@v1.1.2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
-          restore-keys: ${{ runner.os }}-node-
+          cache: 'npm'
       - name: Copy env-file for prod-gcp
         run: cp nais/prod/prod-gcp.env .env.local
       - name: Install dependencies
