@@ -22,6 +22,12 @@ const FrontPagePanel = styled(Panel)`
     padding: 1.5rem;
 `;
 
+const columnLayoutToColumn = (layout: number) => {
+    if (layout === 2) return 6;
+    if (layout === 3) return 4;
+    return 12;
+};
+
 const Home = (props: {
     page: PageProps;
     frontpage: SanityFrontpage;
@@ -121,7 +127,11 @@ const Home = (props: {
                                         )}
                                         {frontpagePanel.articles.map((article) => {
                                             return (
-                                                <Cell xs={12} lg={12 / frontpagePanel.columnLayout} key={article.slug}>
+                                                <Cell
+                                                    xs={12}
+                                                    lg={columnLayoutToColumn(frontpagePanel.columnLayout)}
+                                                    key={article.slug}
+                                                >
                                                     <FrontPageLinkPanel {...article} />
                                                 </Cell>
                                             );
