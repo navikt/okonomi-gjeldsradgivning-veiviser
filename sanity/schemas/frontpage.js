@@ -22,14 +22,5 @@ export default {
             type: 'image',
             validation: (Rule) => Rule.required(),
         },
-        {
-            name: 'panels',
-            title: 'Panels',
-            type: 'array',
-            of: [
-                { type: 'reference', to: [{ type: 'articlePanel' }, { type: 'articleGroup' }, { type: 'linkPanel' }] },
-            ],
-            validation: (Rule) => Rule.required(),
-        },
     ],
 };

@@ -37,17 +37,12 @@ const articleGroupSpec = `
 {
     "id": _id,
     title,
-    "slug": slug.current,
-    description,
-    metaDescription,
-    "articles": articles[]-> ${articleSpec},
-    "iconUrl": icon.asset->url,
-    "links": externalLinks[]->
+    "articles": articles[]->
     {
-        title, 
-        href,
-        "iconUrl": icon.asset->url,
-    }
+        title,
+        "slug": slug.current,
+        description
+    },
 }`;
 
 const fileUploadSpec = `
@@ -124,10 +119,6 @@ export const fetchFrontpage = async (): Promise<SanityFrontpage> => {
         title,
         metaDescription,
         "bannerIconUrl": bannerIcon.asset->url,
-        "panels": panels[]->{
-            _type,
-            _id,
-        },
     }`;
     return fetchQueryWithCache(query, 'sanity-frontpage');
 };
