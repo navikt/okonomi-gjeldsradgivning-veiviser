@@ -13,6 +13,10 @@ const StyledLinkPanel = styled(LinkPanel)`
         align-self: start;
     }
 
+    .navds-link-panel__chevron {
+        flex-shrink: 0;
+    }
+
     .typo-systemtittel {
         margin-bottom: 0.75rem;
     }
