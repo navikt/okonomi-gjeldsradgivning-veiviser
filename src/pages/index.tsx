@@ -70,38 +70,65 @@ const Home = (props: {
                                 </Cell>
                             );
                         })}
-                        {props.articlePanels.map((panel) => {
-                            return panel.articles.map((article) => {
-                                return (
-                                    <Cell xs={12} lg={4} key={article.slug}>
-                                        <FrontPageLinkPanel {...article} />
-                                    </Cell>
-                                );
-                            });
-                        })}
+                        {!props.frontpage.useLocalizedFrontpagePanels &&
+                            props.articlePanels.map((panel) => {
+                                return panel.articles.map((article) => {
+                                    return (
+                                        <Cell xs={12} lg={4} key={article.slug}>
+                                            <FrontPageLinkPanel {...article} />
+                                        </Cell>
+                                    );
+                                });
+                            })}
 
-                        {props.articleGroups.map((articleGroup) => {
-                            return (
-                                <React.Fragment key={articleGroup.id}>
-                                    <Cell xs={12}>
-                                        <HeadingWithLine>
-                                            <Line />
-                                            <Title level={2} size="m">
-                                                {articleGroup.title}
-                                            </Title>
-                                            <Line />
-                                        </HeadingWithLine>
-                                    </Cell>
-                                    {articleGroup.articles.map((article) => {
-                                        return (
-                                            <Cell xs={12} lg={6} key={article.slug}>
-                                                <FrontPageLinkPanel {...article} />
+                        {!props.frontpage.useLocalizedFrontpagePanels &&
+                            props.articleGroups.map((articleGroup) => {
+                                return (
+                                    <React.Fragment key={articleGroup.id}>
+                                        <Cell xs={12}>
+                                            <HeadingWithLine>
+                                                <Line />
+                                                <Title level={2} size="m">
+                                                    {articleGroup.title}
+                                                </Title>
+                                                <Line />
+                                            </HeadingWithLine>
+                                        </Cell>
+                                        {articleGroup.articles.map((article) => {
+                                            return (
+                                                <Cell xs={12} lg={6} key={article.slug}>
+                                                    <FrontPageLinkPanel {...article} />
+                                                </Cell>
+                                            );
+                                        })}
+                                    </React.Fragment>
+                                );
+                            })}
+                        {props.frontpage.useLocalizedFrontpagePanels &&
+                            props.frontpage.frontpagePanels?.map((frontpagePanel) => {
+                                return (
+                                    <React.Fragment key={frontpagePanel.id}>
+                                        {frontpagePanel.withTitle && (
+                                            <Cell xs={12}>
+                                                <HeadingWithLine>
+                                                    <Line />
+                                                    <Title level={2} size="m">
+                                                        {frontpagePanel.title}
+                                                    </Title>
+                                                    <Line />
+                                                </HeadingWithLine>
                                             </Cell>
-                                        );
-                                    })}
-                                </React.Fragment>
-                            );
-                        })}
+                                        )}
+                                        {frontpagePanel.articles.map((article) => {
+                                            return (
+                                                <Cell xs={12} lg={12 / frontpagePanel.columnLayout} key={article.slug}>
+                                                    <FrontPageLinkPanel {...article} />
+                                                </Cell>
+                                            );
+                                        })}
+                                    </React.Fragment>
+                                );
+                            })}
                     </Grid>
                 </ContentContainer>
             </StyledApp>

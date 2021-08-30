@@ -28,10 +28,20 @@ export interface SanityFrontPageArticle {
     slug: string;
 }
 
+export interface SanityFrontpagePanel {
+    id: string;
+    withTitle: boolean;
+    title?: string;
+    columnLayout: 1 | 2 | 3;
+    articles: SanityArticle[];
+}
+
 export interface SanityFrontpage {
     title: string;
     metaDescription: string;
     bannerIconUrl: string;
+    useLocalizedFrontpagePanels?: boolean;
+    frontpagePanels?: SanityFrontpagePanel[];
 }
 
 export interface SanityLinkPanel {

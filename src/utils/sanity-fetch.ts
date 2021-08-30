@@ -119,6 +119,20 @@ export const fetchFrontpage = async (): Promise<SanityFrontpage> => {
         title,
         metaDescription,
         "bannerIconUrl": bannerIcon.asset->url,
+        useLocalizedFrontpagePanels,
+        ...select(useLocalizedFrontpagePanels == 'true' => {
+            "frontpagePanels": frontpagePanels[]{
+                "id": _key,
+                withTitle,
+                title,
+                columnLayout,
+                "articles": articles[]->{
+                    title,
+                    "slug": slug.current,
+                    description
+                }
+            },
+        }) 
     }`;
     return fetchQueryWithCache(query, 'sanity-frontpage');
 };

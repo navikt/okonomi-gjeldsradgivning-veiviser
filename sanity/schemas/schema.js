@@ -16,6 +16,7 @@ import vimeo from './vimeo';
 import expandedPanel from './expandedPanel';
 import localeString from './locale/localeString';
 import localeBlockContent from './locale/localeBlockContent';
+import frontpagePanel from './frontpage/frontpagePanel';
 
 export default createSchema({
     name: 'default',
@@ -27,6 +28,7 @@ export default createSchema({
         blockContent,
         fileUpload,
         frontpage,
+        frontpagePanel,
         linkPanel,
         vimeo,
         localeString,

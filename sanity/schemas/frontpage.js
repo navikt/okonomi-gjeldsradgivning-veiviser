@@ -22,5 +22,17 @@ export default {
             type: 'image',
             validation: (Rule) => Rule.required(),
         },
+        {
+            name:'useLocalizedFrontpagePanels',
+            title: 'Use new panels (In development',
+            type: 'boolean',
+        },
+        {
+            name: 'frontpagePanels',
+            title: 'Panels',
+            type: 'array',
+            of: [{type: 'frontpagePanel'}],
+            hidden: ({document}) =>  !document?.useLocalizedFrontpagePanels
+        }
     ],
 };
