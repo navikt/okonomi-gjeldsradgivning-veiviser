@@ -8,6 +8,12 @@ module.exports = {
         build: true,
     },
 
+    i18n: {
+        locales: ['nb'],
+        defaultLocale: 'nb',
+        localeDetection: false,
+    },
+
     async redirects() {
         return [
             {
