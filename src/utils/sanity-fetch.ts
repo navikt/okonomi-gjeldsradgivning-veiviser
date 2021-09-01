@@ -15,7 +15,7 @@ const articleSpec = `
     "slug": slug.current,
     "description": coalesce(description[$locale], description),
     "metaDescription": coalesce(metaDescription[$locale], metaDescription),
-    "body": coalesce(body[$locale], body.nb)[]{
+    "body": coalesce(body[$locale], body)[]{
         ...,
         markDefs[]{
             ...,
