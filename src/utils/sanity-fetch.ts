@@ -55,14 +55,14 @@ const fileUploadSpec = `
 
 export const getAllArticlesWithSlug = async (): Promise<[{ slug: string }]> => {
     const query = `*[_type == "article"]{ 'slug': slug.current }`;
-    return await client.fetch(query);
+    return client.fetch(query);
 };
 
 export const fetchArticleWithSlug = async (slug = ''): Promise<SanityArticle> => {
     const query = `*[_type == "article" && slug.current == $slug][0]
     ${articleSpec}`;
     const params = { slug: slug };
-    return await client.fetch(query, params);
+    return client.fetch(query, params);
 };
 
 export const fetchArticleGroups = async (): Promise<SanityArticleGroup[]> => {
@@ -110,7 +110,7 @@ export const fetchFileWithSlug = async (slug: string | string[] = ''): Promise<S
     const query = `*[_type == "fileUpload" && slug.current == $slug][0]
     ${fileUploadSpec}`;
     const params = { slug: slug };
-    return await client.fetch(query, params);
+    return client.fetch(query, params);
 };
 
 export const fetchFrontpage = async (): Promise<SanityFrontpage> => {
