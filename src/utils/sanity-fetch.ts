@@ -113,28 +113,27 @@ export const fetchFileWithSlug = async (slug: string | string[] = ''): Promise<S
     return fetchQueryAndParamWithCache(query, params, `fileupload-${slug}`);
 };
 
-export const fetchFrontpage = async (): Promise<SanityFrontpage> => {
+export const fetchFrontpage = async (locale = 'nb'): Promise<SanityFrontpage> => {
     const query = `*[_id == "frontpage"][0]
     {
         title,
         metaDescription,
         "bannerIconUrl": bannerIcon.asset->url,
         useLocalizedFrontpagePanels,
-        ...select(useLocalizedFrontpagePanels == 'true' => {
-            "frontpagePanels": frontpagePanels[]{
-                "id": _key,
-                withTitle,
+        "frontpagePanels": frontpagePanels[]{
+            "id": _key,
+            withTitle,
+            "title": coalesce(title[$locale], title.nb),
+            columnLayout,
+            "articles": articles[]->{
                 title,
-                columnLayout,
-                "articles": articles[]->{
-                    title,
-                    "slug": slug.current,
-                    description
-                }
-            },
-        }) 
+                "slug": slug.current,
+                description
+            }
+        },
     }`;
-    return fetchQueryWithCache(query, 'sanity-frontpage');
+    const params = { locale };
+    return client.fetch(query, params);
 };
 
 const fetchQueryWithCache = async (query: string, cacheKey: string): Promise<any> => {
