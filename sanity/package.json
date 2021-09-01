@@ -8,7 +8,8 @@
   "scripts": {
     "start": "sanity start",
     "test": "sanity check",
-    "deploy": "sanity deploy"
+    "deploy": "sanity deploy",
+    "migrate": "sanity exec --with-user-token"
   },
   "keywords": [
     "sanity"
