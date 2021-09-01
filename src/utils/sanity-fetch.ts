@@ -6,7 +6,6 @@ import {
     SanityFrontpage,
     SanityLinkPanel,
 } from '../sanityDocumentTypes';
-import { cache } from './cache';
 import client from './sanity-client';
 
 const articleSpec = `
@@ -55,26 +54,27 @@ const fileUploadSpec = `
 `;
 
 export const getAllArticlesWithSlug = async (): Promise<[{ slug: string }]> => {
-    return await client.fetch(`*[_type == "article"]{ 'slug': slug.current }`);
+    const query = `*[_type == "article"]{ 'slug': slug.current }`;
+    return client.fetch(query);
 };
 
 export const fetchArticleWithSlug = async (slug = ''): Promise<SanityArticle> => {
     const query = `*[_type == "article" && slug.current == $slug][0]
     ${articleSpec}`;
     const params = { slug: slug };
-    return fetchQueryAndParamWithCache(query, params, `article-${slug}`);
+    return client.fetch(query, params);
 };
 
 export const fetchArticleGroups = async (): Promise<SanityArticleGroup[]> => {
     const query = `*[_type == "articleGroup"]
     ${articleGroupSpec}`;
-    return fetchQueryWithCache(query, 'sanity-article-groups');
+    return client.fetch(query);
 };
 
 export const fetchArticles = async (): Promise<SanityArticle[]> => {
     const query = `*[_type == "article"]
     ${articleSpec}`;
-    return fetchQueryWithCache(query, 'sanity-articles');
+    return client.fetch(query);
 };
 
 export const fetchArticlePanels = async (): Promise<SanityArticlePanel[]> => {
@@ -90,7 +90,7 @@ export const fetchArticlePanels = async (): Promise<SanityArticlePanel[]> => {
             description
         }
     }`;
-    return fetchQueryWithCache(query, 'sanity-article-panels');
+    return client.fetch(query);
 };
 
 export const fetchLinkPanels = async (): Promise<SanityLinkPanel[]> => {
@@ -103,14 +103,14 @@ export const fetchLinkPanels = async (): Promise<SanityLinkPanel[]> => {
         "iconUrl": icon.asset->url,
         "slug": article->slug.current,
     }`;
-    return fetchQueryWithCache(query, 'sanity-link-panels');
+    return client.fetch(query);
 };
 
 export const fetchFileWithSlug = async (slug: string | string[] = ''): Promise<SanityFileUpload> => {
     const query = `*[_type == "fileUpload" && slug.current == $slug][0]
     ${fileUploadSpec}`;
     const params = { slug: slug };
-    return fetchQueryAndParamWithCache(query, params, `fileupload-${slug}`);
+    return client.fetch(query, params);
 };
 
 export const fetchFrontpage = async (): Promise<SanityFrontpage> => {
@@ -120,57 +120,5 @@ export const fetchFrontpage = async (): Promise<SanityFrontpage> => {
         metaDescription,
         "bannerIconUrl": bannerIcon.asset->url,
     }`;
-    return fetchQueryWithCache(query, 'sanity-frontpage');
-};
-
-const fetchQueryWithCache = async (query: string, cacheKey: string): Promise<any> => {
-    return new Promise((resolve, reject) => {
-        const cachedResponse = cache.get(cacheKey);
-        if (cachedResponse) {
-            resolve(cachedResponse);
-        } else {
-            client
-                .fetch(query)
-                .then((response) => {
-                    if (response && Object.keys(response).length === 0) {
-                        console.log(`Spørring mot Sanity er tom. cacheKey: ${cacheKey}`);
-                    }
-                    cache.set(cacheKey, response);
-                    resolve(response);
-                })
-                .catch((err) => {
-                    console.error('Klarte ikke hente data fra Sanity med query', query, err);
-                    reject(err);
-                });
-        }
-    });
-};
-
-const fetchQueryAndParamWithCache = async (
-    query: string,
-    params: Record<string, unknown>,
-    cacheKey: string
-): Promise<any> => {
-    return new Promise((resolve, reject) => {
-        const cachedResponse = cache.get(cacheKey);
-        if (cachedResponse) {
-            resolve(cachedResponse);
-        } else {
-            client
-                .fetch(query, params)
-                .then((response) => {
-                    if (response && Object.keys(response).length === 0) {
-                        console.log(
-                            `Spørring mot Sanity er tom. cacheKey: ${cacheKey}, params: ${JSON.stringify(params)}`
-                        );
-                    }
-                    cache.set(cacheKey, response);
-                    resolve(response);
-                })
-                .catch((err) => {
-                    console.error('Klarte ikke hente data fra Sanity med query', query, err);
-                    reject(err);
-                });
-        }
-    });
+    return client.fetch(query);
 };
