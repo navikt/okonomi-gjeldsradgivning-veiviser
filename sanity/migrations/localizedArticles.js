@@ -1,6 +1,6 @@
 import sanityClient from 'part:@sanity/base/client';
 
-const client = sanityClient.withConfig({ apiVersion: '2021-09-01', dataset: 'migrations' });
+const client = sanityClient.withConfig({ apiVersion: '2021-09-01', dataset: 'test' });
 
 const patchArticles = async () => {
     const articles = await client.fetch(`*[_type == 'article' && !defined(migrationComplete)][0...100] 
@@ -19,10 +19,10 @@ const patchArticles = async () => {
             .patch(article._id)
             .ifRevisionId(article._rev)
             .set({
-                title: { nb: article.title },
-                description: { nb: article.description },
-                metaDescription: { nb: article.metaDescription },
-                body: { nb: article.body },
+                title: { _type: 'localeString', nb: article.title },
+                description: { _type: 'localeString', nb: article.description },
+                metaDescription: { _type: 'localeString', nb: article.metaDescription },
+                body: { _type: 'localeBlockContent', nb: article.body },
                 migrationComplete: true,
             })
             .commit()
@@ -37,7 +37,7 @@ const patchFrontpage = async () => {
     await client
         .patch(frontpage._id)
         .ifRevisionId(frontpage._rev)
-        .set({ title: { nb: frontpage.title }, metaDescription: { nb: frontpage.metaDescription } })
+        .set({ title: { _type: 'localeString', nb: frontpage.title }, metaDescription: { _type: 'localeString', nb: frontpage.metaDescription } })
         .commit();
 };
 
@@ -54,7 +54,7 @@ const patchArticleGroups = async () => {
             .patch(article._id)
             .ifRevisionId(article._rev)
             .set({
-                title: { nb: article.title },
+                title: { _type: 'localeString', nb: article.title },
             })
             .commit()
     );
@@ -74,8 +74,8 @@ const patchArticlePanel = async () => {
             .patch(article._id)
             .ifRevisionId(article._rev)
             .set({
-                title: { nb: article.title },
-                description: { nb: article.description },
+                title: { _type: 'localeString', nb: article.title },
+                description: { _type: 'localeString', nb: article.description },
             })
             .commit()
     );
@@ -96,9 +96,9 @@ const patchLinkPanel = async () => {
             .patch(article._id)
             .ifRevisionId(article._rev)
             .set({
-                title: { nb: article.title },
-                description: { nb: article.description },
-                buttonText: { nb: article.buttonText },
+                title: { _type: 'localeString', nb: article.title },
+                description: { _type: 'localeBlockContent', nb: article.description },
+                buttonText: { _type: 'localeString', nb: article.buttonText },
             })
             .commit()
     );
