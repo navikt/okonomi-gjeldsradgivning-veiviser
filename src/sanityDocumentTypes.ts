@@ -4,7 +4,6 @@ export interface SanityArticle {
     slug: string;
     description: string;
     metaDescription: string;
-    categories: string[];
     body: Record<string, unknown>[]; // Sanity content
     iconUrl?: string;
 }
@@ -24,7 +23,6 @@ export interface SanityLink {
 export interface SanityFrontPageArticle {
     title: string;
     description: string;
-    categories: string[];
     slug: string;
 }
 
