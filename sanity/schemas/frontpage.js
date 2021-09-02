@@ -1,18 +1,25 @@
+import { defaultLanguage } from './locale/lang';
+
 export default {
     name: 'frontpage',
     title: 'Frontpage',
     type: 'document',
+    preview: {
+        select: {
+            title: `title.${defaultLanguage.id}`,
+        },
+    },
     fields: [
         {
             name: 'title',
             title: 'Title',
-            type: 'string',
+            type: 'localeString',
             validation: (Rule) => Rule.required(),
         },
         {
             name: 'metaDescription',
             title: 'Meta description',
-            type: 'string',
+            type: 'localeString',
             description: 'Dette er teksten som vil vises for søkeresultater på eks. Google',
             validation: (Rule) => Rule.required(),
         },

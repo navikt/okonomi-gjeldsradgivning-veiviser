@@ -1,12 +1,19 @@
+import { defaultLanguage } from './locale/lang';
+
 export default {
     name: 'article',
     title: 'Article',
     type: 'document',
+    preview: {
+        select: {
+            title: `title.${defaultLanguage.id}`,
+        },
+    },
     fields: [
         {
             name: 'title',
             title: 'Title',
-            type: 'string',
+            type: 'localeString',
             validation: (Rule) => Rule.required(),
         },
         {
@@ -22,13 +29,13 @@ export default {
         {
             name: 'description',
             title: 'Description',
-            type: 'string',
+            type: 'localeString',
             validation: (Rule) => Rule.required(),
         },
         {
             name: 'metaDescription',
             title: 'Meta description',
-            type: 'string',
+            type: 'localeString',
             description: 'Dette er teksten som vil vises for søkeresultater på eks. Google',
             validation: (Rule) => Rule.required(),
         },
@@ -40,8 +47,13 @@ export default {
         {
             name: 'body',
             title: 'Body',
-            type: 'blockContent',
+            type: 'localeBlockContent',
             validation: (Rule) => Rule.required(),
+        },
+        {
+            name: 'migrationComplete',
+            title: 'Migrering fullført',
+            type: 'boolean',
         },
     ],
 };

@@ -1,18 +1,25 @@
+import { defaultLanguage } from './locale/lang';
+
 export default {
     name: 'linkPanel',
     title: 'Link panel',
     type: 'document',
+    preview: {
+        select: {
+            title: `title.${defaultLanguage.id}`,
+        },
+    },
     fields: [
         {
             name: 'title',
             title: 'Title',
-            type: 'string',
+            type: 'localeString',
             validation: (Rule) => Rule.required(),
         },
         {
             name: 'description',
             title: 'Description',
-            type: 'blockContent',
+            type: 'localeBlockContent',
             validation: (Rule) => Rule.required(),
         },
         {
@@ -23,7 +30,7 @@ export default {
         {
             name: 'buttonText',
             title: 'Button text',
-            type: 'string'
+            type: 'localeString',
         },
         {
             name: 'article',
