@@ -17,6 +17,20 @@ export default {
             validation: (Rule) => Rule.required(),
         },
         {
+            name: "languages",
+            title: "Tilgjengelige språk",
+            description: "Disse språkene vil være synlig i språkvelgeren på siden",
+            type: "array",
+            of: [{type: "string"}],
+            options: {
+                list: [
+                    {title: "Bokmål", value: "nb"},
+                    {title: "Nynorsk", value: "nn"},
+                    {title: "Engelsk", value: "en"},
+                ],
+            },
+        },
+        {
             name: 'metaDescription',
             title: 'Meta description',
             type: 'localeString',
