@@ -36,9 +36,9 @@ interface StaticProps {
     };
 }
 
-export async function getStaticProps(): Promise<StaticProps> {
-    const frontpage = await fetchFrontpage();
-    const page = await getPageProps(frontpage.title, frontpage.metaDescription, '/', 'index');
+export async function getStaticProps({ locale }): Promise<StaticProps> {
+    const frontpage = await fetchFrontpage(locale);
+    const page = await getPageProps(frontpage.title, frontpage.metaDescription, '/', 'index', locale);
 
     return {
         props: {

@@ -30,7 +30,12 @@ const ArticlePage = (props: { page?: PageProps; article?: SanityArticle }) => {
                 <meta property="og:description" content={props.page.metaDescription} />
                 <meta property="og:locale" content="nb" />
             </Head>
-            <Layout title={props.page.appTitle} isFrontPage={false} breadcrumbs={props.page.breadcrumbs}>
+            <Layout
+                title={props.page.appTitle}
+                isFrontPage={false}
+                breadcrumbs={props.page.breadcrumbs}
+                locales={props.article.languages}
+            >
                 <Article article={props.article} />
             </Layout>
         </>
@@ -59,13 +64,13 @@ interface StaticProps {
     revalidate: number;
 }
 
-export async function getStaticProps(props: { params: { slug: string } }): Promise<StaticProps> {
-    const frontpage = await fetchFrontpage();
-    const article = await fetchArticleWithSlug(props.params.slug);
+export async function getStaticProps(props: { locale: string; params: { slug: string } }): Promise<StaticProps> {
+    const frontpage = await fetchFrontpage(props.locale);
+    const article = await fetchArticleWithSlug(props.params.slug, props.locale);
     const page =
         Object.keys(article).length > 0
-            ? await getPageProps(article.title, article.metaDescription, article.slug, 'article')
-            : await getPageProps(frontpage.title, frontpage.metaDescription, '/', 'index');
+            ? await getPageProps(article.title, article.metaDescription, article.slug, 'article', props.locale)
+            : await getPageProps(frontpage.title, frontpage.metaDescription, '/', 'index', props.locale);
 
     return {
         props: {

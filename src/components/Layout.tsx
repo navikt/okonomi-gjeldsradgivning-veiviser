@@ -36,9 +36,10 @@ export const Layout = (props: {
     isFrontPage: boolean;
     bannerIconUrl?: string;
     breadcrumbs?: Breadcrumb;
+    locales?: string[];
     children: React.ReactChild;
 }) => {
-    useDecorator(props.breadcrumbs);
+    useDecorator(props.breadcrumbs, props.locales);
 
     return (
         <StyledLayout>

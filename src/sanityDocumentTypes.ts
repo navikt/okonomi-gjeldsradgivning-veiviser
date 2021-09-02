@@ -1,6 +1,7 @@
 export interface SanityArticle {
     id: string;
     title: string;
+    languages?: string[];
     slug: string;
     description: string;
     metaDescription: string;
@@ -28,6 +29,7 @@ export interface SanityFrontPageArticle {
 
 export interface SanityFrontpage {
     title: string;
+    languages?: string[];
     metaDescription: string;
     bannerIconUrl: string;
 }
