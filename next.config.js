@@ -9,7 +9,7 @@ module.exports = {
     },
 
     i18n: {
-        locales: ['nb'],
+        locales: ['nb', 'nn', 'en'],
         defaultLocale: 'nb',
         localeDetection: false,
     },

@@ -1,6 +1,7 @@
 import { BodyShort, Cell, ContentContainer, Grid, Panel, Title } from '@navikt/ds-react';
 import Head from 'next/head';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
 import styled from 'styled-components/macro';
 
@@ -29,7 +30,7 @@ const Home = (props: {
     articleGroups: SanityArticleGroup[];
     linkPanels: SanityLinkPanel[];
 }) => {
-    useDecorator();
+    useDecorator(undefined, props.frontpage.languages);
 
     return (
         <div id="app" className="app">
@@ -177,12 +178,12 @@ interface StaticProps {
     revalidate: number;
 }
 
-export const getStaticProps = async (): Promise<StaticProps> => {
-    const frontpage = await fetchFrontpage();
-    const articlePanels = await fetchArticlePanels();
-    const articleGroups = await fetchArticleGroups();
-    const linkPanels = await fetchLinkPanels();
-    const page = await getPageProps(frontpage.title, frontpage.metaDescription, '/', 'index');
+export const getStaticProps = async ({ locale }): Promise<StaticProps> => {
+    const frontpage = await fetchFrontpage(locale);
+    const articlePanels = await fetchArticlePanels(locale);
+    const articleGroups = await fetchArticleGroups(locale);
+    const linkPanels = await fetchLinkPanels(locale);
+    const page = await getPageProps(frontpage.title, frontpage.metaDescription, '/', 'index', locale);
 
     return {
         props: { page, frontpage, articlePanels, articleGroups, linkPanels },

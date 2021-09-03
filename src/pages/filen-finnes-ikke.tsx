@@ -34,9 +34,15 @@ interface StaticProps {
     revalidate: number;
 }
 
-export const getStaticProps = async (): Promise<StaticProps> => {
-    const frontpage = await fetchFrontpage();
-    const page = await getPageProps('Filen finnes ikke', frontpage.metaDescription, '/filen-finnes-ikke', 'article');
+export const getStaticProps = async ({ locale }): Promise<StaticProps> => {
+    const frontpage = await fetchFrontpage(locale);
+    const page = await getPageProps(
+        'Filen finnes ikke',
+        frontpage.metaDescription,
+        '/filen-finnes-ikke',
+        'article',
+        locale
+    );
 
     return {
         props: { page },

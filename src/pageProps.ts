@@ -19,11 +19,14 @@ export const getPageProps = async (
     title: string,
     metaDescription: string,
     slug: string,
-    pageType: 'index' | 'article'
+    pageType: 'index' | 'article',
+    locale: string
 ): Promise<PageProps> => {
-    const frontPage = await fetchFrontpage();
+    const frontPage = await fetchFrontpage(locale);
     const breadcrumbs: Breadcrumb =
-        pageType === 'article' ? { title: title, url: `${process.env.NEXT_PUBLIC_APP_URL}/${pageType}/${slug}` } : null;
+        pageType === 'article'
+            ? { title: title, url: `${process.env.NEXT_PUBLIC_APP_URL}/${locale}/${pageType}/${slug}` }
+            : null;
 
     return {
         appTitle: frontPage.title,
