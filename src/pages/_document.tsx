@@ -42,6 +42,7 @@ async function renderServersideStyledComponentsStylesheet(ctx: DocumentContext) 
     try {
         ctx.renderPage = () =>
             originalRenderPage({
+                // eslint-disable-next-line react/display-name
                 enhanceApp: (App) => (props) => sheet.collectStyles(<App {...props} />),
             });
         const initialProps = await Document.getInitialProps(ctx);
