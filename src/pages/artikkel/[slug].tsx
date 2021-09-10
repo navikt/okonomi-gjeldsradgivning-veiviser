@@ -4,18 +4,30 @@ import { useRouter } from 'next/router';
 import { Article } from '../../components/Article';
 import { Layout } from '../../components/Layout';
 import { LoadingPage } from '../../components/LoadingPage';
+import { usePreviewSubscription } from '../../lib/sanity/sanity';
 import { getPageProps, PageProps, StaticPathProps } from '../../pageProps';
 import { SanityArticle } from '../../sanityDocumentTypes';
-import { fetchArticleWithSlug, fetchFrontpage, getAllArticlesWithSlug } from '../../utils/sanity-fetch';
+import {
+    articleWithSlugQuery,
+    fetchArticleWithSlug,
+    fetchFrontpage,
+    getAllArticlesWithSlug,
+} from '../../utils/sanity-fetch';
 import Custom404 from '../404';
 
-const ArticlePage = (props: { page?: PageProps; article?: SanityArticle }) => {
+const ArticlePage = (props: { page?: PageProps; article?: SanityArticle; preview?: boolean }) => {
     const router = useRouter();
+
+    const { data } = usePreviewSubscription(articleWithSlugQuery, {
+        params: { slug: props.article?.slug, locale: 'nb' },
+        initialData: props.article,
+        enabled: props.preview,
+    });
 
     if (router.isFallback) {
         return <LoadingPage page={props.page} />;
     }
-    if (!router.isFallback && Object.keys(props.article).length === 0) {
+    if (!router.isFallback && Object.keys(data).length === 0) {
         return <Custom404 page={props.page} />;
     }
 
@@ -34,9 +46,9 @@ const ArticlePage = (props: { page?: PageProps; article?: SanityArticle }) => {
                 title={props.page.appTitle}
                 isFrontPage={false}
                 breadcrumbs={props.page.breadcrumbs}
-                locales={props.article.languages}
+                locales={data.languages}
             >
-                <Article article={props.article} />
+                <Article article={data} />
             </Layout>
         </>
     );
@@ -58,13 +70,18 @@ export const getStaticPaths = async (): Promise<StaticPathProps> => {
 
 interface StaticProps {
     props: {
+        preview: boolean;
         page?: PageProps;
         article: SanityArticle;
     };
     revalidate: number;
 }
 
-export async function getStaticProps(props: { locale: string; params: { slug: string } }): Promise<StaticProps> {
+export async function getStaticProps(props: {
+    locale: string;
+    params: { slug: string };
+    preview: boolean;
+}): Promise<StaticProps> {
     const frontpage = await fetchFrontpage(props.locale);
     const article = await fetchArticleWithSlug(props.params.slug, props.locale);
     const page =
@@ -74,6 +91,7 @@ export async function getStaticProps(props: { locale: string; params: { slug: st
 
     return {
         props: {
+            preview: props.preview,
             page,
             article,
         },

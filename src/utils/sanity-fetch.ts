@@ -1,3 +1,5 @@
+import { groq } from 'next-sanity';
+
 import {
     SanityArticle,
     SanityArticleGroup,
@@ -8,7 +10,7 @@ import {
 } from '../sanityDocumentTypes';
 import client from './sanity-client';
 
-const articleSpec = `
+export const articleSpec = groq`
 {
     "id": _id,
     "title": coalesce(title[$locale], title.nb),
@@ -58,11 +60,12 @@ export const getAllArticlesWithSlug = async (): Promise<[{ slug: string }]> => {
     return client.fetch(query);
 };
 
-export const fetchArticleWithSlug = async (slug = '', locale: string): Promise<SanityArticle> => {
-    const query = `*[_type == "article" && slug.current == $slug][0]
+export const articleWithSlugQuery = groq`*[_type == "article" && slug.current == $slug][0]
     ${articleSpec}`;
+
+export const fetchArticleWithSlug = async (slug = '', locale: string): Promise<SanityArticle> => {
     const params = { slug: slug, locale: locale };
-    return client.fetch(query, params);
+    return client.fetch(articleWithSlugQuery, params);
 };
 
 export const fetchArticleGroups = async (locale: string): Promise<SanityArticleGroup[]> => {
