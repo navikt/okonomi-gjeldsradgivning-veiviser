@@ -82,6 +82,7 @@ export async function getStaticProps(props: {
     params: { slug: string };
     preview: boolean;
 }): Promise<StaticProps> {
+    const { preview = false } = props;
     const frontpage = await fetchFrontpage(props.locale);
     const article = await fetchArticleWithSlug(props.params.slug, props.locale);
     const page =
@@ -91,7 +92,7 @@ export async function getStaticProps(props: {
 
     return {
         props: {
-            preview: props.preview,
+            preview,
             page,
             article,
         },
