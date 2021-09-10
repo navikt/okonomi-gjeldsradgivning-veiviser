@@ -14,6 +14,21 @@ module.exports = {
         localeDetection: false,
     },
 
+    async rewrites() {
+        return {
+            beforeFiles: [
+                {
+                    source: '/sanity/production/:path*',
+                    destination: '/sanity/index.html',
+                },
+                {
+                    source: '/sanity/test/:path*',
+                    destination: '/sanity/index.html',
+                },
+            ],
+        };
+    },
+
     async redirects() {
         return [
             {
