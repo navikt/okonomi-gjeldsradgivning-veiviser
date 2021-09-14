@@ -1,14 +1,7 @@
-import {
-    SanityArticle,
-    SanityArticleGroup,
-    SanityArticlePanel,
-    SanityFileUpload,
-    SanityFrontpage,
-    SanityLinkPanel,
-} from '../sanityDocumentTypes';
+import { SanityArticle, SanityFileUpload, SanityFrontpage } from '../sanityDocumentTypes';
 import client from './sanity-client';
 
-const articleSpec = `
+export const articleSpec = `
 {
     "id": _id,
     "title": coalesce(title[$locale], title.nb),
@@ -32,7 +25,7 @@ const articleSpec = `
     "iconUrl": icon.asset->url,
 }`;
 
-const articleGroupSpec = `
+export const articleGroupSpec = `
 {
     "id": _id,
     "title": coalesce(title[$locale], title.nb),
@@ -42,6 +35,29 @@ const articleGroupSpec = `
         "slug": slug.current,
         "description": coalesce(description[$locale], description.nb),
     },
+}`;
+
+export const articlePanelSpec = `
+{
+    "id": _id,
+    "title": coalesce(title[$locale], title.nb),
+    "description": coalesce(description[$locale], description.nb),
+    "iconUrl": icon.asset->url,
+    "articles": articles[]->{
+        "title": coalesce(title[$locale], title.nb),
+        "slug": slug.current,
+        "description": coalesce(description[$locale], description.nb),
+    }
+}`;
+
+export const linkPanelSpec = `
+{
+    "id": _id,
+    "title": coalesce(title[$locale], title.nb),
+    "description": coalesce(description[$locale], description.nb),
+    "buttonText": coalesce(buttonText[$locale], buttonText.nb),
+    "iconUrl": icon.asset->url,
+    "slug": article->slug.current,
 }`;
 
 const fileUploadSpec = `
@@ -62,51 +78,6 @@ export const fetchArticleWithSlug = async (slug = '', locale: string): Promise<S
     const query = `*[_type == "article" && slug.current == $slug][0]
     ${articleSpec}`;
     const params = { slug: slug, locale: locale };
-    return client.fetch(query, params);
-};
-
-export const fetchArticleGroups = async (locale: string): Promise<SanityArticleGroup[]> => {
-    const query = `*[_type == "articleGroup"]
-    ${articleGroupSpec}`;
-    const params = { locale };
-    return client.fetch(query, params);
-};
-
-export const fetchArticles = async (locale = 'nb'): Promise<SanityArticle[]> => {
-    const query = `*[_type == "article"]
-    ${articleSpec}`;
-    const params = { locale };
-    return client.fetch(query, params);
-};
-
-export const fetchArticlePanels = async (locale: string): Promise<SanityArticlePanel[]> => {
-    const query = `*[_type == "articlePanel"]
-    {
-        "id": _id,
-        "title": coalesce(title[$locale], title.nb),
-        "description": coalesce(description[$locale], description.nb),
-        "iconUrl": icon.asset->url,
-        "articles": articles[]->{
-            "title": coalesce(title[$locale], title.nb),
-            "slug": slug.current,
-            "description": coalesce(description[$locale], description.nb),
-        }
-    }`;
-    const params = { locale };
-    return client.fetch(query, params);
-};
-
-export const fetchLinkPanels = async (locale: string): Promise<SanityLinkPanel[]> => {
-    const query = `*[_type == "linkPanel"]
-    {
-        "id": _id,
-        "title": coalesce(title[$locale], title.nb),
-        "description": coalesce(description[$locale], description.nb),
-        "buttonText": coalesce(buttonText[$locale], buttonText.nb),
-        "iconUrl": icon.asset->url,
-        "slug": article->slug.current,
-    }`;
-    const params = { locale };
     return client.fetch(query, params);
 };
 

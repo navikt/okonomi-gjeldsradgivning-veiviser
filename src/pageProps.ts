@@ -36,3 +36,7 @@ export const getPageProps = async (
         breadcrumbs,
     };
 };
+
+export const getBreadcrumbsForArticle = (title: string, locale: string, slug: string): Breadcrumb => {
+    return { title: title, url: `${process.env.NEXT_PUBLIC_APP_URL}/${locale}/artikkel/${slug}` };
+};
