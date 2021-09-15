@@ -32,7 +32,7 @@ jobs:
         run: npm ci
       - name: Build Sanity
         working-directory: ./sanity
-        run: SANITY_STUDIO_API_DATASET=test npm run build studio
+        run: SANITY_STUDIO_API_DATASET=test npm run build
       - name: Copy Sanity to public
         run: cp -R sanity/dist public/studio
       - name: Install dependencies
