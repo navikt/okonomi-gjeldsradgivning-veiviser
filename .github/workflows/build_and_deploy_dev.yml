@@ -34,7 +34,7 @@ jobs:
         working-directory: ./sanity
         run: SANITY_STUDIO_API_DATASET=test npm run build studio
       - name: Copy Sanity to public
-        run: mv ./sanity/studio ./public/
+        run: cp -R sanity/dist public/studio
       - name: Install dependencies
         run: npm ci
       - name: Build application

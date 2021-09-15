@@ -8,7 +8,7 @@
   "scripts": {
     "start": "sanity start",
     "test": "sanity check",
-    "build": "sanity build -y",
+    "build": "sanity build",
     "deploy": "sanity deploy",
     "migrate": "sanity exec --with-user-token"
   },
