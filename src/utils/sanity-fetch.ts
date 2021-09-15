@@ -18,6 +18,22 @@ const articleSpec = `
     "metaDescription": coalesce(metaDescription[$locale], metaDescription.nb),
     "body": coalesce(body[$locale], body.nb)[]{
         ...,
+        _type == 'expandedPanel' => {
+            ...,
+            "body": body[]{
+                ...,
+                markDefs[]{
+                    ...,
+                    _type == 'internalLink' => {
+                        "slug": @.reference->slug,
+                        "type": @.reference->_type,
+                    },
+                    _type == 'fileUpload' => {
+                        "slug": @.reference->slug.current,
+                    },
+                },
+            }
+        },
         markDefs[]{
             ...,
             _type == 'internalLink' => {
