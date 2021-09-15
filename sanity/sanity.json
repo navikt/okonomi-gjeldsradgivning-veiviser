@@ -1,27 +1,9 @@
 {
     "root": true,
     "project": {
-        "name": "Veiviser for økonomi- og gjeldsrådgivning"
+        "name": "Veiviser for økonomi- og gjeldsrådgivning",
+        "basePath": "/okonomi-og-gjeld/studio"
     },
-    "__experimental_spaces": [
-        {
-            "name": "production",
-            "title": "Prod",
-            "default": true,
-            "api": {
-                "projectId": "cxql1dm9",
-                "dataset": "production"
-            }
-        },
-        {
-            "name": "test",
-            "title": "Test",
-            "api": {
-                "projectId": "cxql1dm9",
-                "dataset": "test"
-            }
-        }
-    ],
     "api": {
         "projectId": "cxql1dm9",
         "dataset": "production"

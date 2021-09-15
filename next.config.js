@@ -14,6 +14,17 @@ module.exports = {
         localeDetection: false,
     },
 
+    async rewrites() {
+        return {
+            beforeFiles: [
+                {
+                    source: '/sanity/desk/:path*',
+                    destination: '/sanity/index.html',
+                },
+            ],
+        };
+    },
+
     async redirects() {
         return [
             {
