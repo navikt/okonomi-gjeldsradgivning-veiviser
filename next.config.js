@@ -18,8 +18,8 @@ module.exports = {
         return {
             beforeFiles: [
                 {
-                    source: '/sanity/desk/:path*',
-                    destination: '/sanity/index.html',
+                    source: '/studio/desk/:path*',
+                    destination: '/studio/index.html',
                 },
             ],
         };
