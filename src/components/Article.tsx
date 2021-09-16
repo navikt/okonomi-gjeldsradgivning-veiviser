@@ -1,4 +1,4 @@
-import { Title } from '@navikt/ds-react';
+import { Heading } from '@navikt/ds-react';
 
 import { SanityArticle } from '../sanityDocumentTypes';
 import { ArticlePanel } from './ArticlePanel';
@@ -9,9 +9,9 @@ export const Article = (props: { article: SanityArticle }) => (
     <article>
         <ArticlePanel>
             <PanelIcon imageUrl={props.article.iconUrl} />
-            <Title level={1} size="2xl" spacing>
+            <Heading level="1" size="2xlarge" spacing>
                 {props.article.title}
-            </Title>
+            </Heading>
             <SanityBlockContent blocks={props.article.body} />
         </ArticlePanel>
     </article>

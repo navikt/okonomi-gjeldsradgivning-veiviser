@@ -1,4 +1,4 @@
-import { Accordion, BodyLong, Ingress, Link as NavDSLink, Title } from '@navikt/ds-react';
+import { Accordion, BodyLong, Heading, Ingress, Link as NavDSLink } from '@navikt/ds-react';
 import BlockContent from '@sanity/block-content-to-react';
 import Vimeo from '@u-wave/react-vimeo';
 import Link from 'next/link';
@@ -15,8 +15,13 @@ const serializers = {
         },
         expandedPanel: function renderExpandedPanel({ node }) {
             return (
-                <Accordion heading={node.title} open={node.defaultOpen}>
-                    <SanityBlockContent blocks={node.body} />
+                <Accordion>
+                    <Accordion.Item defaultOpen={node.defaultOpen}>
+                        <Accordion.Header>{node.title}</Accordion.Header>
+                        <Accordion.Content>
+                            <SanityBlockContent blocks={node.body} />
+                        </Accordion.Content>
+                    </Accordion.Item>
                 </Accordion>
             );
         },
@@ -27,16 +32,16 @@ const serializers = {
             }
             if (style === 'h2') {
                 return (
-                    <Title level={2} size="m" spacing>
+                    <Heading level="2" size="medium" spacing>
                         {children}
-                    </Title>
+                    </Heading>
                 );
             }
             if (style === 'h3') {
                 return (
-                    <Title level={3} size="s" spacing>
+                    <Heading level="3" size="small" spacing>
                         {children}
-                    </Title>
+                    </Heading>
                 );
             }
             if (style === 'ingress') {
