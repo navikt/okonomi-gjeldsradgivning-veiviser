@@ -15,10 +15,8 @@ const getBasepath = () => {
     if (window.location.href.includes('localhost')) {
         return 'http://localhost:3000/okonomi-og-gjeld';
     }
-    if (window.location.href.includes('test')) {
-        return 'https://okonomi-gjeldsradgivning-veiviser.dev.nav.no/okonomi-og-gjeld';
-    }
-    return 'https://www.nav.no/okonomi-og-gjeld';
+
+    return `${window.location.origin}/okonomi-og-gjeld`;
 };
 
 export function WebPreviewWrapper(props: { url: string }) {
