@@ -1,4 +1,4 @@
-import { BodyShort, Cell, ContentContainer, Grid, Panel, Title } from '@navikt/ds-react';
+import { BodyShort, Button, Cell, ContentContainer, Grid, Heading, Panel } from '@navikt/ds-react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { groq } from 'next-sanity';
@@ -82,14 +82,14 @@ const Home = (props: Props) => {
                                     <FrontPagePanel>
                                         <FlexContainer>
                                             <div>
-                                                <Title level={2} size="m" spacing>
+                                                <Heading level="2" size="medium" spacing>
                                                     {panel.title}
-                                                </Title>
+                                                </Heading>
                                                 <SanityBlockContent blocks={panel.description} />
-                                                <Link href={`/artikkel/${panel.slug}`}>
-                                                    <a className="navds-button navds-button--action navds-button--medium">
-                                                        <BodyShort size="m">Kontakt oss</BodyShort>
-                                                    </a>
+                                                <Link href={`/artikkel/${panel.slug}`} passHref>
+                                                    <Button variant="primary" as="a">
+                                                        Kontakt oss
+                                                    </Button>
                                                 </Link>
                                             </div>
                                             <PanelImageContainer>
@@ -116,9 +116,9 @@ const Home = (props: Props) => {
                                     <Cell xs={12}>
                                         <HeadingWithLine>
                                             <Line />
-                                            <Title level={2} size="m">
+                                            <Heading level="2" size="medium">
                                                 {articleGroup.title}
-                                            </Title>
+                                            </Heading>
                                             <Line />
                                         </HeadingWithLine>
                                     </Cell>
@@ -145,11 +145,10 @@ const HeadingWithLine = styled.div`
     justify-content: space-between;
     align-items: center;
     width: 100%;
-
     margin-top: 2rem;
 
     @media screen and (min-width: 480px) {
-        .navds-title {
+        .navds-heading {
             margin: 0 2rem;
         }
     }
@@ -159,7 +158,7 @@ const Line = styled.span`
     @media screen and (min-width: 480px) {
         flex: 1;
         height: 0px;
-        border: 1px solid #78706a;
+        border-bottom: 1px solid #78706a;
     }
 `;
 
