@@ -1,4 +1,4 @@
-import { Title } from '@navikt/ds-react';
+import { Heading } from '@navikt/ds-react';
 import styled from 'styled-components';
 
 interface BannerProps {
@@ -39,13 +39,13 @@ export const PageBanner = (props: { isFrontPage: boolean; title: string; iconUrl
         <Banner height={props.isFrontPage ? '190px' : '70px'}>
             <BannerContent isFrontpage={props.isFrontPage}>
                 {props.isFrontPage ? (
-                    <Title level={1} size="xl">
+                    <Heading level="1" size="xlarge">
                         {props.title}
-                    </Title>
+                    </Heading>
                 ) : (
-                    <Title level={1} size="l">
+                    <Heading level="1" size="large">
                         {props.title}
-                    </Title>
+                    </Heading>
                 )}
                 {props.isFrontPage && <BannerIcon alt="" src={props.iconUrl} />}
             </BannerContent>

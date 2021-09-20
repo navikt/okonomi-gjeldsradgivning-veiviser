@@ -1,4 +1,4 @@
-import { BodyLong, Title } from '@navikt/ds-react';
+import { BodyLong, Heading } from '@navikt/ds-react';
 import Head from 'next/head';
 import Link from 'next/link';
 import React from 'react';
@@ -13,9 +13,9 @@ const Custom404 = () => (
         </Head>
         <Layout title="Økonomi- og gjeldsrådgivning" isFrontPage={true}>
             <FrontpagePanel>
-                <Title level={1} size="xl" spacing>
+                <Heading level="1" size="xlarge" spacing>
                     Denne siden finnes ikke
-                </Title>
+                </Heading>
                 <BodyLong spacing>
                     Prøv å gå tilbake til{' '}
                     <Link href="/">
