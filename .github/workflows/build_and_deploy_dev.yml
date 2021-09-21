@@ -27,6 +27,14 @@ jobs:
           cache: 'npm'
       - name: Copy env-file for dev
         run: cp nais/dev/${{ github.event.inputs.config-file-name }}.env .env.local
+      - name: Install Sanity dependencies
+        working-directory: ./sanity
+        run: npm ci
+      - name: Build Sanity
+        working-directory: ./sanity
+        run: SANITY_STUDIO_API_DATASET=test npm run build
+      - name: Copy Sanity to public
+        run: cp -R sanity/dist public/studio
       - name: Install dependencies
         run: npm ci
       - name: Build application
