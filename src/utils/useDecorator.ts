@@ -1,7 +1,9 @@
-import { Breadcrumb, Language, setAvailableLanguages, setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
+import { setAvailableLanguages, setBreadcrumbs } from '@navikt/nav-dekoratoren-moduler';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { useCookies } from 'react-cookie';
+
+import { Breadcrumb, Language } from '../types';
 
 export const useDecorator = (breadcrumbPage?: Breadcrumb, locales?: string[]) => {
     const { asPath, basePath, locale } = useRouter();
