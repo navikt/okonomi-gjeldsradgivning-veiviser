@@ -1,5 +1,4 @@
-import { Breadcrumb } from '@navikt/nav-dekoratoren-moduler';
-
+import { Breadcrumb } from './types';
 import { fetchFrontpage } from './utils/sanity-fetch';
 
 export interface StaticPathProps {

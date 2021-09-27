@@ -32,6 +32,7 @@ export const PanelIcon = (props: { imageUrl?: string }) => (
         {props.imageUrl && (
             <StyledPanelIcon>
                 <IconImage>
+                    {/* eslint-disable-next-line @next/next/no-img-element*/}
                     <img src={props.imageUrl} alt="" />
                 </IconImage>
             </StyledPanelIcon>

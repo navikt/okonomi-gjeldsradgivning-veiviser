@@ -1,6 +1,6 @@
-import { Breadcrumb } from '@navikt/nav-dekoratoren-moduler';
 import styled from 'styled-components';
 
+import { Breadcrumb } from '../types';
 import { useDecorator } from '../utils/useDecorator';
 import { PageBanner } from './PageBanner';
 
