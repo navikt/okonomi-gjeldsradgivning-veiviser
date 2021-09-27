@@ -1,4 +1,4 @@
-import { BodyShort, Button, Cell, ContentContainer, Grid, Heading, Panel } from '@navikt/ds-react';
+import { Button, Cell, ContentContainer, Grid, Heading, Panel } from '@navikt/ds-react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { groq } from 'next-sanity';
@@ -93,6 +93,7 @@ const Home = (props: Props) => {
                                                 </Link>
                                             </div>
                                             <PanelImageContainer>
+                                                {/* eslint-disable-next-line @next/next/no-img-element*/}
                                                 <img src={panel.iconUrl} alt="" />
                                             </PanelImageContainer>
                                         </FlexContainer>
