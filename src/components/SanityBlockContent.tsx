@@ -6,6 +6,7 @@ import React from 'react';
 
 import { logAmplitudeEvent } from '../utils/amplitude';
 import client from '../utils/sanity-client';
+import { Timeline } from './Timeline';
 
 const serializers = {
     types: {
@@ -24,6 +25,9 @@ const serializers = {
                     </Accordion.Item>
                 </Accordion>
             );
+        },
+        timeline: function renderTimeline({ node }) {
+            return <Timeline elements={node.elements} />;
         },
         block: function renderBlock({ node, children }) {
             const style = node.style;
