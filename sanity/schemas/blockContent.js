@@ -114,6 +114,7 @@ export default {
         {
             type: 'vimeo',
         },
-        { type: 'expandedPanel'}
+        { type: 'expandedPanel' },
+        { type: 'timeline' },
     ],
 };
