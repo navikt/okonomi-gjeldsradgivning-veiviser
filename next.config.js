@@ -1,4 +1,12 @@
-module.exports = {
+const { withSentryConfig } = require('@sentry/nextjs');
+
+const sentryWebpackPluginOptions = {
+    silent: true,
+    // For all available options, see:
+    // https://github.com/getsentry/sentry-webpack-plugin#options.
+};
+
+const moduleExports = {
     basePath: '/okonomi-og-gjeld',
     target: 'server',
     trailingSlash: false,
@@ -35,3 +43,5 @@ module.exports = {
         ];
     },
 };
+
+module.exports = withSentryConfig(moduleExports, sentryWebpackPluginOptions);
