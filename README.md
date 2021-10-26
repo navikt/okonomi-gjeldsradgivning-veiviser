@@ -30,6 +30,19 @@ For å starte Sanity studio lokalt:
 
 Det er satt opp automatisk bygg og deploy til produksjon ved fletting til `main`.
 
+## Sentry
+
+Vi bruker Sentry for logging av feilmeldinger og overvåkning av ytelse. Sentry er skrudd på som default i `dev-gcp` og `prod-gcp`.
+
+For å kjøre appen med Sentry lokalt må følge env-variabler legges til i lokal `.env.local`:
+`ENABLE_SENTRY=true`
+`NEXT_PUBLIC_ENVIRONMENT=localhost`
+
+Ved bygging av app lokalt (`next build`) hvor Sentry er skrudd på må [auth-token](https://sentry.gc.nav.no/settings/account/api/auth-tokens/) også legges til i `.sentryclirc`.
+`[auth] token=kjempehemmeligtokensomeropprettetunderbrukerinnstillingerisentry`
+
+`.sentryclirc` ligger i `.gitignore` og skal ikke sjekkes inn i repoet.
+
 ## Kodekvalitet
 
 Prettier brukes til å formatere kode. Reglene for formatering ligger i `.prettierrc.js`. Det kjøres en egen hook som formaterer koden ved commit.
