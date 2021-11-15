@@ -26,6 +26,12 @@ jobs:
         with:
           node-version: '16'
           cache: 'npm'
+      - uses: actions/cache@v2
+        with:
+          path: ${{ github.workspace }}/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
       - name: Copy env-file for dev
         run: cp nais/dev/${{ github.event.inputs.config-file-name }}.env .env.local
       - name: Install Sanity dependencies
