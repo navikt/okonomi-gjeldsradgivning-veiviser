@@ -6,6 +6,7 @@ const decoratorEnv = process.env.DECORATOR_ENV as Exclude<ENV, 'localhost'>;
 
 const decoratorParams: Props = {
     env: decoratorEnv ?? 'prod',
+    context: 'privatperson',
     chatbot: false,
     feedback: false,
 };
