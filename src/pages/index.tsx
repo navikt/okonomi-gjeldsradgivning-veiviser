@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { groq } from 'next-sanity';
 import React from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 import { FrontPageLinkPanel } from '../components/FrontPageLinkPanel';
 import { PageBannerNewGrid } from '../components/PageBannerNewGrid';
