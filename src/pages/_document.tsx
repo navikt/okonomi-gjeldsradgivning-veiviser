@@ -1,8 +1,8 @@
-import { Components, ENV, fetchDecoratorReact, Props } from '@navikt/nav-dekoratoren-moduler/ssr';
+import { Components, Env, fetchDecoratorReact, Props } from '@navikt/nav-dekoratoren-moduler/ssr';
 import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
-const decoratorEnv = process.env.DECORATOR_ENV as Exclude<ENV, 'localhost'>;
+const decoratorEnv = process.env.DECORATOR_ENV as Exclude<Env, 'localhost'>;
 
 const decoratorParams: Props = {
     env: decoratorEnv ?? 'prod',
