@@ -1,5 +1,5 @@
 import { Heading } from '@navikt/ds-react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 import { digisosColors } from '../utils/colors';
 
