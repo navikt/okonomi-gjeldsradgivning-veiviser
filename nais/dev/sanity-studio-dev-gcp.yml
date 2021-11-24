@@ -1,0 +1,32 @@
+apiVersion: "nais.io/v1alpha1"
+kind: "Application"
+metadata:
+  name: okonomi-gjeldsradgivning-veiviser-sanity
+  namespace: teamdigisos
+  labels:
+    team: teamdigisos
+spec:
+  image: {{image}}
+  port: 3000
+  liveness:
+    path: /okonomi-og-gjeld/studio/internal/api/isAlive
+    initialDelay: 5
+    timeout: 1
+    periodSeconds: 5
+    failureThreshold: 10
+  readiness:
+    path: /okonomi-og-gjeld/studio/internal/api/isReady
+    initialDelay: 5
+    timeout: 1
+  replicas:
+    min: 1
+    max: 2
+  resources:
+    limits:
+      cpu: 200m
+      memory: 512Mi
+    requests:
+      cpu: 50m
+      memory: 128Mi
+  ingresses:
+    - https://okonomi-gjeldsradgivning-veiviser.dev.nav.no/okonomi-og-gjeld/studio
