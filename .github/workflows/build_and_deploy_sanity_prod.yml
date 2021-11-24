@@ -21,7 +21,7 @@ jobs:
         run: npm ci
       - name: Build Sanity
         working-directory: ./sanity
-        run: SANITY_STUDIO_API_DATASET=test npm run build
+        run: SANITY_STUDIO_API_DATASET=production npm run build
       - name: Login to GitHub package registry
         run: |
           echo ${GITHUB_TOKEN} | docker login -u ${GITHUB_REPOSITORY} --password-stdin docker.pkg.github.com
