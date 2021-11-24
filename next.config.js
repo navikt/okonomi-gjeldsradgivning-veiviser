@@ -22,17 +22,6 @@ const moduleExports = {
         localeDetection: false,
     },
 
-    async rewrites() {
-        return {
-            beforeFiles: [
-                {
-                    source: '/studio/desk/:path*',
-                    destination: '/studio/index.html',
-                },
-            ],
-        };
-    },
-
     async redirects() {
         return [
             {
