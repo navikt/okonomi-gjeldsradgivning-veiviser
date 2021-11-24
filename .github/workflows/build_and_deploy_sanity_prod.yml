@@ -6,7 +6,7 @@ on:
 # FIXME: Legg til docker layer caching, f.eks. https://github.com/marketplace/actions/build-docker-images-using-cache
 jobs:
   build_and_deploy:
-    name: Build and deploy to dev
+    name: Build and deploy to prod
     runs-on: ubuntu-latest
     env:
       DOCKER_IMAGE: docker.pkg.github.com/${{ github.repository }}/${{ github.event.repository.name }}-sanity
@@ -32,7 +32,7 @@ jobs:
         uses: navikt/sosialhjelp-ci/actions/create-artifact-version@master
       - name: Get complete tag
         run: |
-          echo "COMPLETE_TAG=${{ github.event.inputs.config-file-name }}-$( date +%s )-${{ steps.artifact-version.outputs.version }}" >> $GITHUB_ENV
+          echo "COMPLETE_TAG=prod-gcp-$( date +%s )-${{ steps.artifact-version.outputs.version }}" >> $GITHUB_ENV
       - name: Create docker image tags
         run: |
           echo "DOCKER_TAG=${{ env.DOCKER_IMAGE }}:${{ env.COMPLETE_TAG }}" >> $GITHUB_ENV
