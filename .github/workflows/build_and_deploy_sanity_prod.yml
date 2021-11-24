@@ -9,7 +9,7 @@ jobs:
     name: Build and deploy to dev
     runs-on: ubuntu-latest
     env:
-      DOCKER_IMAGE: docker.pkg.github.com/${{ github.repository }}/${{ github.event.repository.name }}/sanity
+      DOCKER_IMAGE: docker.pkg.github.com/${{ github.repository }}/${{ github.event.repository.name }}-sanity
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -55,7 +55,7 @@ jobs:
         uses: nais/deploy/actions/deploy@v1
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-          RESOURCE: /nais/prod/sanity-studio-prod-gcp.yaml
+          RESOURCE: nais/prod/sanity-studio-prod-gcp.yml
           CLUSTER: prod-gcp
           REF: ${{ github.sha }}
           PRINT_PAYLOAD: true
