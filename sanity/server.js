@@ -4,7 +4,7 @@ const path = require('path');
 const app = express(); // create express app
 app.disable('x-powered-by');
 
-const buildPath = path.resolve(__dirname, 'build');
+const buildPath = path.resolve(__dirname, 'dist');
 
 const basePath = '/okonomi-og-gjeld/studio';
 
