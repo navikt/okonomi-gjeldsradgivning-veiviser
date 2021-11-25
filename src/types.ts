@@ -1,3 +1,4 @@
+import { Locale } from '@navikt/nav-dekoratoren-moduler';
 import { NextPageContext } from 'next';
 
 export interface Context extends NextPageContext {
@@ -15,11 +16,11 @@ export type Breadcrumb = {
 export type Language =
     | {
           url?: string;
-          locale: string;
+          locale: Locale;
           handleInApp: true;
       }
     | {
           url: string;
-          locale: string;
+          locale: Locale;
           handleInApp?: false;
       };
