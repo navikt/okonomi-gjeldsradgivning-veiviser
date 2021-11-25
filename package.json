@@ -9,7 +9,7 @@
         "build": "next build",
         "start": "next start",
         "export": "next export",
-        "lint": "eslint --fix .",
+        "lint": "next lint",
         "test": "jest",
         "prepare": "husky install"
     },
@@ -24,7 +24,6 @@
         "@u-wave/react-vimeo": "^0.9.5",
         "amplitude-js": "^8.8.0",
         "classnames": "^2.3.1",
-        "eslint": "^7.32.0",
         "html-react-parser": "^1.4.0",
         "next": "^12.0.2",
         "next-sanity": "^0.4.0",
@@ -37,22 +36,13 @@
         "styled-components": "^5.3.1"
     },
     "devDependencies": {
-        "@next/eslint-plugin-next": "^11.1.2",
         "@types/jest": "^27.0.2",
         "@types/node": "^14.17.19",
         "@types/node-fetch": "^2.5.12",
         "@types/react": "^17.0.24",
         "@types/react-collapse": "^5.0.1",
         "@types/styled-components": "^5.1.14",
-        "@typescript-eslint/eslint-plugin": "^4.31.2",
-        "@typescript-eslint/parser": "^4.31.2",
-        "eslint-config-next": "^11.1.2",
-        "eslint-config-prettier": "^8.3.0",
-        "eslint-plugin-jsx-a11y": "^6.4.1",
-        "eslint-plugin-prettier": "^4.0.0",
-        "eslint-plugin-react": "^7.26.0",
-        "eslint-plugin-react-hooks": "^4.2.0",
-        "eslint-plugin-simple-import-sort": "^7.0.0",
+        "eslint-config-next": "12.0.4",
         "husky": "^7.0.0",
         "jest": "^27.2.2",
         "lint-staged": "^11.1.2",
@@ -61,6 +51,6 @@
     },
     "lint-staged": {
         "*.{js,ts,tsx,less,css,md}": "prettier --write",
-        "*.{js,ts,tsx}": "eslint --fix"
+        "*.{js,ts,tsx}": "next lint"
     }
 }
