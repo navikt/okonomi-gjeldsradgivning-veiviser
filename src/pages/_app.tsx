@@ -13,17 +13,16 @@ export function reportWebVitals(metric: NextWebVitalsMetric) {
 const CustomApp = ({ Component, pageProps }: AppProps) => {
     const router = useRouter();
     const kommerFra = router.query['kommerFra'];
-    const video = router.query['video'];
 
     useEffect(() => {
         initAmplitude();
     }, []);
 
     useEffect(() => {
-        if (kommerFra && video) {
-            logAmplitudeEvent('sidevisning', { kommerFra, video });
+        if (kommerFra) {
+            logAmplitudeEvent('sidevisning', { kommerFra });
         }
-    }, [kommerFra, video]);
+    }, [kommerFra]);
 
     return <Component {...pageProps} />;
 };

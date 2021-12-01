@@ -51,6 +51,6 @@
     },
     "lint-staged": {
         "*.{js,ts,tsx,less,css,md}": "prettier --write",
-        "*.{js,ts,tsx}": "next lint"
+        "*.{js,ts,tsx}": "eslint"
     }
 }
