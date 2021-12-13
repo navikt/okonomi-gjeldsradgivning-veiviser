@@ -5,10 +5,10 @@ import { useDecorator } from '../utils/useDecorator';
 import { PageBanner } from './PageBanner';
 
 const StyledLayout = styled.div`
-    background-color: var(--navds-color-gray-10);
+    background-color: var(--navds-semantic-color-canvas-background);
 
     .decorator-utils-container {
-        background-color: var(--navds-color-white);
+        background-color: var(--navds-semantic-color-canvas-background-light);
     }
 
     .navds-link {
