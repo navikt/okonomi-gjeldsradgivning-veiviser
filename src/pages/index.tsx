@@ -15,7 +15,7 @@ import { articleGroupSpec, articlePanelSpec, linkPanelSpec } from '../utils/sani
 import { useDecorator } from '../utils/useDecorator';
 
 const StyledApp = styled.div`
-    background-color: var(--navds-color-gray-10);
+    background-color: var(--navds-semantic-color-canvas-background);
     padding-bottom: 5.625rem;
 `;
 
