@@ -6,7 +6,7 @@ on:
 
 jobs:
   deploy_dev-gcp:
-    uses: navikt/okonomi-og-gjeldsradgivning/.github/workflows/build_and_deploy_dev.yml@main
+    uses: navikt/okonomi-gjeldsradgivning-veiviser/.github/workflows/build_and_deploy_dev.yml@main
     with:
       config-file-name: dev-gcp
       cluster: dev-gcp
@@ -14,7 +14,7 @@ jobs:
       api_deploy_token: ${{ secrets.NAIS_DEPLOY_APIKEY }}
       sentry_auth_token: ${{ secrets.SENTRY_AUTH_TOKEN }}
   deploy-sanity_dev-gcp:
-    uses: navikt/okonomi-og-gjeldsradgivning/.github/workflows/build_and_deploy_sanity_dev.yml@main
+    uses: navikt/okonomi-gjeldsradgivning-veiviser/.github/workflows/build_and_deploy_sanity_dev.yml@main
     with:
       config-file-name: dev-gcp
     secrets:
