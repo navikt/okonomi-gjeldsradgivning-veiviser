@@ -21,7 +21,7 @@ jobs:
     name: Build and deploy to dev
     runs-on: ubuntu-latest
     env:
-      DOCKER_IMAGE: docker.pkg.github.com/${{ github.repository }}/${{ github.event.repository.name }}-sanity
+      DOCKER_IMAGE: docker.pkg.github.com/${{ github.repository }}/okonomi-gjeldsradgivning-veiviser-sanity
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2

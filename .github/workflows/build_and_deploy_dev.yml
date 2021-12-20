@@ -31,7 +31,7 @@ jobs:
     name: Build and deploy to dev
     runs-on: ubuntu-latest
     env:
-      DOCKER_IMAGE: docker.pkg.github.com/${{ github.repository }}/${{ github.event.repository.name }}
+      DOCKER_IMAGE: docker.pkg.github.com/${{ github.repository }}/okonomi-gjeldsradgivning-veiviser
       SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN != '' && secrets.SENTRY_AUTH_TOKEN || secrets.sentry_auth_token }}
     steps:
       - uses: actions/checkout@v2
