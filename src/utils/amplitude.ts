@@ -1,8 +1,9 @@
-// Hindrer crash ved server-side kjøring (amplitude.js fungerer kun i browser)
-const amplitude = typeof window !== 'undefined' ? require('amplitude-js') : () => null;
+import amplitude from 'amplitude-js';
+
+const isBrowser = () => typeof window !== 'undefined';
 
 export const initAmplitude = () => {
-    if (amplitude) {
+    if (isBrowser()) {
         amplitude.getInstance().init('default', '', {
             apiEndpoint: 'amplitude.nav.no/collect-auto',
             saveEvents: false,
@@ -16,7 +17,7 @@ export const initAmplitude = () => {
 export function logAmplitudeEvent(eventName: string, eventData?: Record<string, unknown>): void {
     setTimeout(() => {
         try {
-            if (amplitude) {
+            if (isBrowser()) {
                 amplitude.getInstance().logEvent(eventName, eventData);
             }
         } catch (error) {
