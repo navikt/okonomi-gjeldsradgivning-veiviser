@@ -24,9 +24,9 @@ spec:
   resources:
     limits:
       cpu: 200m
-      memory: 512Mi
+      memory: 256Mi
     requests:
-      cpu: 50m
-      memory: 128Mi
+      cpu: 1m
+      memory: 32Mi
   ingresses:
     - https://okonomi-gjeldsradgivning-veiviser.dev.nav.no/okonomi-og-gjeld/studio
