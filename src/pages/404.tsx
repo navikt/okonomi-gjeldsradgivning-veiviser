@@ -1,4 +1,4 @@
-import { BodyLong, Heading } from '@navikt/ds-react';
+import { BodyLong, BodyShort, Heading, Link as DSLink } from '@navikt/ds-react';
 import Head from 'next/head';
 import Link from 'next/link';
 import React from 'react';
@@ -15,16 +15,31 @@ const Custom404 = (props: { page?: PageProps }) => (
         </Head>
         <Layout title="Økonomi- og gjeldsrådgivning" isFrontPage={false} breadcrumbs={props.page.breadcrumbs}>
             <FrontpagePanel>
-                <Heading level="1" size="xlarge" spacing>
-                    Denne siden finnes ikke
+                <Heading level="1" size="large" spacing>
+                    Fant ikke siden
                 </Heading>
-                <BodyLong spacing>
-                    Prøv å gå tilbake til{' '}
+                <BodyShort spacing>
+                    Beklager, siden kan være slettet eller flyttet, eller det var en feil i lenken som førte deg hit.
+                </BodyShort>
+                <BodyShort spacing>
+                    Du kan <DSLink href="https://www.nav.no/">gå til forsiden</DSLink>, eller lese mer om{' '}
                     <Link href="/">
-                        <a className="navds-link">forsiden</a>
+                        <a className="navds-link">økonomi- og gjeldsrådgivning</a>
                     </Link>
                     .
-                </BodyLong>
+                </BodyShort>
+
+                <Heading level="2" size="medium" spacing>
+                    In English
+                </Heading>
+                <BodyShort spacing>The page you requested cannot be found.</BodyShort>
+                <BodyShort spacing>
+                    Go to the <DSLink href="https://www.nav.no/">front page</DSLink>, or read more about{' '}
+                    <Link href="/en">
+                        <a className="navds-link">økonomi- og gjeldsrådgivning</a>
+                    </Link>
+                    .
+                </BodyShort>
             </FrontpagePanel>
         </Layout>
     </>
