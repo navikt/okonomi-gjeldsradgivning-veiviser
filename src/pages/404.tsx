@@ -36,7 +36,7 @@ const Custom404 = (props: { page?: PageProps }) => (
                 <BodyShort spacing>
                     Go to the <DSLink href="https://www.nav.no/">front page</DSLink>, or read more about{' '}
                     <Link href="/en">
-                        <a className="navds-link">økonomi- og gjeldsrådgivning</a>
+                        <a className="navds-link">financial advicing</a>
                     </Link>
                     .
                 </BodyShort>
