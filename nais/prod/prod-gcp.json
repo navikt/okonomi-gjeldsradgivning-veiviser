@@ -1,5 +1,13 @@
 {
+    "applicationName": "okonomi-gjeldsradgivning-veiviser",
     "namespace": "teamdigisos",
-    "ingresses": ["https://www.nav.no/okonomi-og-gjeld"],
-    "prometheusEnabled": false
-}
+    "ingresses": [
+      "https://www.nav.no/okonomi-og-gjeld"
+    ],
+    "minReplicas": "2",
+    "maxReplicas": "3",
+    "cpuLimit": "500m",
+    "memoryLimit": "512Mi",
+    "cpuRequest": "5m",
+    "memoryRequest": "128Mi"
+  }

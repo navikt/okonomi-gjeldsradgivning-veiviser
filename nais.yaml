@@ -1,7 +1,7 @@
 apiVersion: "nais.io/v1alpha1"
 kind: "Application"
 metadata:
-  name: okonomi-gjeldsradgivning-veiviser
+  name: {{applicationName}}
   namespace: {{namespace}}
   labels:
     team: teamdigisos
@@ -20,21 +20,16 @@ spec:
     path: /okonomi-og-gjeld/api/isReady
     initialDelay: 5
     timeout: 1
-  prometheus:
-    enabled: {{prometheusEnabled}}
   replicas:
-    min: 2
-    max: 3
-  webproxy: true
+    min: {{minReplicas}}
+    max: {{maxReplicas}}
   resources:
     limits:
-      cpu: 500m
-      memory: 512Mi
+      cpu: {{cpuLimit}}
+      memory: {{memoryLimit}}
     requests:
-      cpu: 5m
-      memory: 128Mi
-  vault:
-    enabled: false
+      cpu: {{cpuRequest}}
+      memory: {{memoryRequest}}
   accessPolicy:
     outbound:
       external:
