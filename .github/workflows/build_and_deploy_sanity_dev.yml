@@ -13,7 +13,10 @@ on:
       config-file-name:
         description: 'Config-fil (uten .json) som skal deployes'
         required: true
-        default: 'dev-gcp'
+        default: 'dev-gcp-mock'
+        type: choice
+        options:
+          - 'dev-gcp-mock'
 
 # FIXME: Legg til docker layer caching, f.eks. https://github.com/marketplace/actions/build-docker-images-using-cache
 jobs:
@@ -70,7 +73,7 @@ jobs:
         uses: nais/deploy/actions/deploy@v1
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY != '' && secrets.NAIS_DEPLOY_APIKEY || secrets.api_deploy_token }}
-          RESOURCE: nais/dev/sanity-studio-dev-gcp.yml
+          RESOURCE: nais/dev/sanity-studio-dev-gcp-mock.yml
           CLUSTER: dev-gcp
           REF: ${{ github.sha }}
           PRINT_PAYLOAD: true
