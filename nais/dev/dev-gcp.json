@@ -1,8 +1,8 @@
 {
-    "applicationName": "okonomi-gjeldsradgivning-veiviser",
+    "applicationName": "okonomi-gjeldsradgivning-veiviser-gcp",
     "namespace": "teamdigisos",
     "ingresses": [
-      "https://okonomi-gjeldsradgivning-veiviser.dev.nav.no/okonomi-og-gjeld"
+      "https://okonomi-gjeldsradgivning-veiviser-gcp.dev.nav.no/okonomi-og-gjeld"
     ],
     "minReplicas": "1",
     "maxReplicas": "2",
