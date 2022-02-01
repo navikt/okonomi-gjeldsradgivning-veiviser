@@ -22,6 +22,7 @@ on:
         type: choice
         options:
           - 'dev-gcp'
+          - 'dev-gcp-mock'
       cluster:
         description: 'Cluster å deploye til (dev-gcp)'
         required: true
@@ -86,7 +87,7 @@ jobs:
         uses: nais/deploy/actions/deploy@v1
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY != '' && secrets.NAIS_DEPLOY_APIKEY || secrets.api_deploy_token }}
-          RESOURCE: nais.yaml
+          RESOURCE: nais-dev.yaml
           CLUSTER: ${{ env.CLUSTER_NAME }}
           VARS: nais/dev/${{ env.CONFIG_FILE }}.json
           REF: ${{ github.sha }}

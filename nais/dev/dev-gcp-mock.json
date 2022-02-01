@@ -1,8 +1,8 @@
 {
-    "applicationName": "okonomi-gjeldsradgivning-veiviser",
+    "applicationName": "okonomi-gjeldsradgivning-veiviser-mock",
     "namespace": "teamdigisos",
     "ingresses": [
-      "https://okonomi-gjeldsradgivning-veiviser.dev.nav.no/okonomi-og-gjeld"
+      "https://okonomi-gjeldsradgivning-veiviser-mock.dev.nav.no/okonomi-og-gjeld"
     ],
     "minReplicas": "1",
     "maxReplicas": "2",
@@ -11,3 +11,4 @@
     "cpuRequest": "1m",
     "memoryRequest": "64Mi"
   }
+  
