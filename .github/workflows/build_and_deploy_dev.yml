@@ -87,7 +87,7 @@ jobs:
         uses: nais/deploy/actions/deploy@v1
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY != '' && secrets.NAIS_DEPLOY_APIKEY || secrets.api_deploy_token }}
-          RESOURCE: nais-dev.yaml
+          RESOURCE: nais.yaml
           CLUSTER: ${{ env.CLUSTER_NAME }}
           VARS: nais/dev/${{ env.CONFIG_FILE }}.json
           REF: ${{ github.sha }}
