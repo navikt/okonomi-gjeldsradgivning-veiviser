@@ -21,7 +21,11 @@ class CustomDocument extends Document<{ decorator: Components }> {
         const { Styles, Scripts, Header, Footer } = this.props.decorator;
         return (
             <Html lang="nb">
-                <Head />
+                <Head>
+                    {process.env.NEXT_PUBLIC_ENVIRONMENT != 'prod-gcp' && 
+                        <meta name="robots" content="noindex,nofollow" />
+                    }
+                </Head>
                 <Styles />
                 <Scripts />
 
