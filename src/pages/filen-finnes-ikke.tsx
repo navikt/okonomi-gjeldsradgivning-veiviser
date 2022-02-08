@@ -17,7 +17,7 @@ const Home = (props: { page: PageProps }) => {
             }
             <Layout title={props.page.title} isFrontPage={false} breadcrumbs={props.page.breadcrumbs}>
                 <FrontpagePanel>
-                    <Heading level="1" size="xlarge" spacing>
+                    <Heading level="1" size="large" spacing>
                         Filen finnes ikke
                     </Heading>
                     <BodyLong spacing>Fant ikke filen</BodyLong>
