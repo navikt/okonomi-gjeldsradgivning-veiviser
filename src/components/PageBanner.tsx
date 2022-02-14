@@ -39,11 +39,11 @@ export const PageBanner = (props: { isFrontPage: boolean; title: string; iconUrl
         <Banner height={props.isFrontPage ? '190px' : '70px'}>
             <BannerContent isFrontpage={props.isFrontPage}>
                 {props.isFrontPage ? (
-                    <Heading level="1" size="xlarge">
+                    <Heading level="1" size="large">
                         {props.title}
                     </Heading>
                 ) : (
-                    <Heading level="1" size="large">
+                    <Heading level="1" size="medium">
                         {props.title}
                     </Heading>
                 )}

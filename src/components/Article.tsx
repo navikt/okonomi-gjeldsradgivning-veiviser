@@ -10,7 +10,7 @@ export const Article = (props: { article: SanityArticle }) => (
     <article>
         <ArticlePanel>
             <PanelIcon imageUrl={props.article.iconUrl} />
-            <Heading level="1" size="2xlarge" spacing>
+            <Heading level="1" size="xlarge" spacing>
                 {props.article.title}
             </Heading>
             <SanityBlockContent blocks={props.article.body} />
