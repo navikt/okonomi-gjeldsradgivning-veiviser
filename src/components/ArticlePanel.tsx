@@ -1,8 +1,7 @@
+import { Panel } from '@navikt/ds-react';
 import styled from 'styled-components';
 
-import { SectionPanel } from './SectionPanel';
-
-export const ArticlePanel = styled(SectionPanel)`
+export const ArticlePanel = styled(Panel)`
     max-width: 39.125rem;
     padding: 2rem 2rem 2rem 2rem !important;
 `;
