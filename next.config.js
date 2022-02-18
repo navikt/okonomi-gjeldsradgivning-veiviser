@@ -11,6 +11,7 @@ const moduleExports = {
     target: 'server',
     trailingSlash: false,
     reactStrictMode: true,
+    swcMinify: true, // Blir default på i Next 12.2
 
     eslint: {
         build: true,
@@ -30,11 +31,6 @@ const moduleExports = {
                 permanent: true,
             },
         ];
-    },
-
-    experimental: {
-        // Enables the styled-components SWC transform
-        styledComponents: true,
     },
 };
 
