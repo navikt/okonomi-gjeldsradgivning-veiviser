@@ -20,7 +20,7 @@
         "@navikt/nav-dekoratoren-moduler": "^1.6.9",
         "@portabletext/react": "^1.0.3",
         "@sanity/client": "^3.0.6",
-        "@sentry/nextjs": "^6.17.3",
+        "@sentry/nextjs": "^6.17.4",
         "@u-wave/react-vimeo": "^0.9.5",
         "amplitude-js": "^8.8.0",
         "classnames": "^2.3.1",
