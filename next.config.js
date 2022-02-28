@@ -32,6 +32,10 @@ const moduleExports = {
             },
         ];
     },
+
+    experimental: {
+        outputStandalone: true,
+    },
 };
 
 if (process.env.ENABLE_SENTRY === 'true') {
