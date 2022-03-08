@@ -31,6 +31,15 @@ For å starte Sanity studio lokalt:
 `npm install`  
 `npm run sanity start`
 
+### Github package registry
+
+Vi bruker Github sitt package registry for npm pakker, siden flere av Nav sine pakker kun blir publisert her.
+
+For å kunne kjøre `npm install` lokalt må du logge inn mot Github package registry:
+
+-   Lag/forny access token med repo og read:packages rettigheter i github ( under developer settings). husk enable sso
+-   Login på npm med `npm login --scope=@navikt --registry=https://npm.pkg.github.com` og benytt github brukernavn, epost og tokenet du nettopp genererte
+
 ## Bygg og deploy
 
 Det er satt opp automatisk bygg og deploy til produksjon ved fletting til `main`.

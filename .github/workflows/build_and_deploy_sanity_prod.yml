@@ -15,10 +15,13 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '16'
+          registry-url: 'https://npm.pkg.github.com'
           cache: 'npm'
       - name: Install Sanity dependencies
         working-directory: ./sanity
         run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
       - name: Build Sanity
         working-directory: ./sanity
         run: SANITY_STUDIO_API_DATASET=production npm run build
