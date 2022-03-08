@@ -20,6 +20,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: "16"
+          registry-url: 'https://npm.pkg.github.com'
       - uses: actions/checkout@v2
       - uses: actions/cache@v1.1.2
         with:
@@ -30,6 +31,8 @@ jobs:
         run: cp nais/ci.env .env.local
       - name: Install dependencies
         run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
       - name: Run tests
         run: npm run test
       - name: Build application
