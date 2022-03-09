@@ -17,7 +17,7 @@
         "@navikt/ds-css": "^0.15.1",
         "@navikt/ds-icons": "^0.8.1",
         "@navikt/ds-react": "^0.16.1",
-        "@navikt/nav-dekoratoren-moduler": "^1.6.9",
+        "@navikt/nav-dekoratoren-moduler": "^1.6.14",
         "@portabletext/react": "^1.0.3",
         "@sanity/client": "^3.0.6",
         "@sentry/nextjs": "^6.17.3",
