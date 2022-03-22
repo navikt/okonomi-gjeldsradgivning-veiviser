@@ -1,22 +1,10 @@
 name: Build and deploy sanity studio to dev
 on:
   workflow_call:
-    inputs:
-      config-file-name:
-        required: true
-        type: string
     secrets:
       api_deploy_token:
         required: true
   workflow_dispatch:
-    inputs:
-      config-file-name:
-        description: 'Config-fil (uten .json) som skal deployes'
-        required: true
-        default: 'dev-gcp-mock'
-        type: choice
-        options:
-          - 'dev-gcp-mock'
 
 # FIXME: Legg til docker layer caching, f.eks. https://github.com/marketplace/actions/build-docker-images-using-cache
 jobs:
@@ -32,9 +20,6 @@ jobs:
           node-version: '16'
           registry-url: 'https://npm.pkg.github.com'
           cache: 'npm'
-      - name: Sett cluster og config to env variables
-        run: |
-          echo "CONFIG_FILE=${{ inputs.config-file-name  != '' && inputs.config-file-name  || github.event.inputs.config-file-name }}" >> $GITHUB_ENV
       - name: Install Sanity dependencies
         working-directory: ./sanity
         run: npm ci
@@ -54,7 +39,7 @@ jobs:
         uses: navikt/sosialhjelp-ci/actions/create-artifact-version@master
       - name: Get complete tag
         run: |
-          echo "COMPLETE_TAG=${{ env.CONFIG_FILE }}-$( date +%s )-${{ steps.artifact-version.outputs.version }}" >> $GITHUB_ENV
+          echo "COMPLETE_TAG=sanity-studio-mock-$( date +%s )-${{ steps.artifact-version.outputs.version }}" >> $GITHUB_ENV
       - name: Create docker image tags
         run: |
           echo "DOCKER_TAG=${{ env.DOCKER_IMAGE }}:${{ env.COMPLETE_TAG }}" >> $GITHUB_ENV
@@ -77,7 +62,7 @@ jobs:
         uses: nais/deploy/actions/deploy@v1
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY != '' && secrets.NAIS_DEPLOY_APIKEY || secrets.api_deploy_token }}
-          RESOURCE: nais/dev/sanity-studio-dev-gcp-mock.yml
+          RESOURCE: nais/dev/sanity-studio-mock.yml
           CLUSTER: dev-gcp
           REF: ${{ github.sha }}
           PRINT_PAYLOAD: true

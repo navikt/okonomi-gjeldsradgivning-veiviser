@@ -15,11 +15,11 @@ on:
       config-file-name:
         description: 'Config-fil (uten .json) som skal deployes'
         required: true
-        default: 'dev-gcp'
+        default: 'dev'
         type: choice
         options:
-          - 'dev-gcp'
-          - 'dev-gcp-mock'
+          - 'dev'
+          - 'mock'
 
 # FIXME: Legg til docker layer caching, f.eks. https://github.com/marketplace/actions/build-docker-images-using-cache
 jobs:
