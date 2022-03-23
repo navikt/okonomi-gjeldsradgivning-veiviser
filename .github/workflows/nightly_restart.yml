@@ -7,20 +7,18 @@ jobs:
   deploy_dev-gcp:
     uses: navikt/okonomi-gjeldsradgivning-veiviser/.github/workflows/build_and_deploy_dev.yml@main
     with:
-      config-file-name: dev-gcp
+      config-file-name: dev
     secrets:
       api_deploy_token: ${{ secrets.NAIS_DEPLOY_APIKEY }}
       sentry_auth_token: ${{ secrets.SENTRY_AUTH_TOKEN }}
   deploy_dev-gcp-mock:
     uses: navikt/okonomi-gjeldsradgivning-veiviser/.github/workflows/build_and_deploy_dev.yml@main
     with:
-      config-file-name: dev-gcp-mock
+      config-file-name: mock
     secrets:
       api_deploy_token: ${{ secrets.NAIS_DEPLOY_APIKEY }}
       sentry_auth_token: ${{ secrets.SENTRY_AUTH_TOKEN }}
   deploy-sanity_dev-gcp:
     uses: navikt/okonomi-gjeldsradgivning-veiviser/.github/workflows/build_and_deploy_sanity_dev.yml@main
-    with:
-      config-file-name: dev-gcp
     secrets:
       api_deploy_token: ${{ secrets.NAIS_DEPLOY_APIKEY }}
