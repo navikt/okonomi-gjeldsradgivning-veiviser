@@ -24,7 +24,7 @@
         "amplitude-js": "^8.18.1",
         "classnames": "^2.3.1",
         "html-react-parser": "^1.4.10",
-        "next": "^12.1.4",
+        "next": "^12.1.5",
         "next-sanity": "^0.5.2",
         "node-cache": "^5.1.2",
         "react": "^17.0.2",
