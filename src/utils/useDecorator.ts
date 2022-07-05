@@ -15,7 +15,7 @@ export const useDecorator = (breadcrumbPage?: Breadcrumb, locales?: string[]) =>
     useEffect(() => {
         const breadcrumbs: Breadcrumb[] = [
             {
-                title: 'Økonomi- og gjeldsrådgivinig',
+                title: 'Økonomi- og gjeldsrådgivning',
                 url: `${basePath}/${locale}`,
             },
         ];
