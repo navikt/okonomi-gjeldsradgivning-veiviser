@@ -1,3 +1,7 @@
+# Repoet er arkivert
+
+Innholdet er flyttet til Enonic CMS, så dette repoet er arkivert.
+
 # Veiviser for økonomi- og gjeldsrådgivning
 
 Ny veiviser for økonomi- og gjeldsrådgivning
